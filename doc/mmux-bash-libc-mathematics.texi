@@ -144,6 +144,7 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * init::                        Library initialisation.
 * version::                     Version functions.
+* format::                      Input and output formats.
 
 Appendices
 
@@ -227,6 +228,38 @@ Return an integer representing the library interface current revision number.
 @deftypefun int mmux_bash_libc_math_version_interface_age (void)
 Return an integer representing the library interface current age.
 @end deftypefun
+
+@c page
+@node format
+@chapter Input and output formats
+
+
+Under @gnu{} Bash: everything is a string.  Every time we call a builtin: its arguments are just
+string and we have to convert them into internal C language @code{double} representations.
+
+
+@deffn Builtin mmux-bash-libc-math-result-format @var{NEW_FORMAT}
+@deffnx Builtin mmux-bash-libc-math-result-format @var{NEW_FORMAT} @var{OLD_FORMAT_VARNAME}
+When called with one argument: store internally a copy of the string @var{NEW_FORMAT} to be used as
+format for floating--point result numbers.
+
+@example
+add 1 2         @print{} 3.00000
+
+mmux-bash-libc-math-result-format "%.1lf"
+add 1 2         @print{} 3
+@end example
+
+When called with two arguments: in addition store the previous format, as a string, in the local
+variable @var{OLD_FORMAT_VARNAME}.
+
+@example
+mmux-bash-libc-math-result-format "%.1lf" OLD_FORMAT
+
+$OLD_FORMAT     @print{} "%lf"
+@end example
+@end deffn
+
 
 @c page
 @c ------------------------------------------------------------

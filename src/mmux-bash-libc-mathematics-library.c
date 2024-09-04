@@ -137,10 +137,14 @@ mmuxbashlibcmathresultformat_main (int argc,  char * argv[])
        specified as second argument. */
     if (3 == argc) {
       var = make_local_variable(argv[2], 0);
+      /* NOTE I  do not know if  the return value is  meant to be NULL  when an error
+	 occurs; checking it does not hurt.  (Marco Maggi; Sep 4, 2024) */
       if (NULL == var) {
 	return EXECUTION_FAILURE;
       }
       var = bind_variable(argv[1], mmux_bash_libc_math_result_format, 0);
+      /* NOTE I  do not know if  the return value is  meant to be NULL  when an error
+	 occurs; checking it does not hurt.  (Marco Maggi; Sep 4, 2024) */
       if (NULL == var) {
 	return EXECUTION_FAILURE;
       }

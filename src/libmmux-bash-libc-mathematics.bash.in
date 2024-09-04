@@ -39,9 +39,7 @@ enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" div
 
 enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" sin
 
-function mmux-bash-libc-math-result-format () {
-    mmuxbashlibcmathresultformat "$@"
-}
+alias mmux-bash-libc-math-result-format='mmuxbashlibcmathresultformat'
 
 ### end of file
 # Local Variables:
