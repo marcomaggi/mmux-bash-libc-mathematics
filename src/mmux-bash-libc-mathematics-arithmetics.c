@@ -320,4 +320,72 @@ div_builtin_unload (char *name)
 }
 #endif
 
+
+static int
+neg_main (int argc,  char * argv[])
+{
+  if (2 != argc) {
+    builtin_usage();
+    return EX_USAGE;
+  } else {
+    double	op, rop;
+    int		rv;
+
+    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "neg");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+    rop = - op;
+    return mmux_bash_libc_math_print_result(rop);
+  }
+}
+static int
+neg_builtin (WORD_LIST * list)
+{
+  char **	argv;
+  int		argc;
+
+  argv = make_builtin_argv(list, &argc);
+  if (argv) {
+    int		rv = neg_main(argc, argv);
+    free(argv);
+    return rv;
+  } else {
+    fprintf(stderr, "neg: error: internal error accessing list of builtin operands\n");
+    return EXECUTION_FAILURE;
+  }
+}
+
+static char * neg_doc[] = {
+  "Compute the negation of a floating point number, print the result on stdout.",
+  (char *)NULL
+};
+
+/* Bash will search for this struct  building the name "ciao_struct" from the command
+   line argument "ciao" we have given to the "enable" builtin. */
+struct builtin neg_struct = {
+  .name		= "neg",		/* Builtin name */
+  .function	= neg_builtin,		/* Function implementing the builtin */
+  .flags	= BUILTIN_ENABLED,	/* Initial flags for builtin */
+  .long_doc	= neg_doc,		/* Array of long documentation strings. */
+  .short_doc	= "neg DOUBLE",		/* Usage synopsis; becomes short_doc */
+  .handle	= 0			/* Reserved for internal use */
+};
+
+/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
+   function returns 0, the load fails. */
+int
+neg_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+{
+  mmux_bash_libc_math_library_init();
+  return (1);
+}
+
+#if 0
+/* Called when `neg' is disabled. */
+void
+neg_builtin_unload (char *name)
+{
+}
+#endif
+
+
 /* end of file */
