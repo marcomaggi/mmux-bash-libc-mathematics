@@ -59,11 +59,10 @@ AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h math.h])
 
 AC_PATH_PROG([BASH_PROGRAM],[/bin/bash],[/bin/bash],[:])
 
-AS_VAR_SET([MMUX_ENABLED_MBFL],[yes])
 AC_ARG_ENABLE([mbfl],
   [AS_HELP_STRING([--enable-mbfl],[enable using MBFL for testing (default: yes)])],
-  [AS_VAR_SET([MMUX_ENABLED_MBFL],[yes])],
-  [AS_VAR_SET([MMUX_ENABLED_MBFL],[no])])
+  [AS_VAR_SET([MMUX_ENABLED_MBFL],[$enableval])],
+  [AS_VAR_SET([MMUX_ENABLED_MBFL],[yes])])
 
 if test "x$MMUX_ENABLED_MBFL" = 'xyes'
 then

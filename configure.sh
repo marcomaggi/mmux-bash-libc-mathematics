@@ -10,6 +10,9 @@ then libdir=${prefix}/lib64
 else libdir=${prefix}/lib
 fi
 
+# --enable-mbfl
+# DISTCHECK_CONFIGURE_FLAGS='--enable-mbfl'
+
 ../configure \
     --config-cache				\
     --cache-file=./config.cache			\
@@ -17,7 +20,6 @@ fi
     --disable-static --enable-shared            \
     --prefix="${prefix}"			\
     --libdir="${libdir}"                        \
-    --enable-mbfl				\
     CFLAGS='-O3'				\
     "$@"
 
