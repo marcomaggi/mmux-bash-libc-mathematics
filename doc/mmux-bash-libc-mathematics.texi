@@ -243,15 +243,15 @@ Under @gnu{} Bash: everything is a string.  Every time we call a builtin: its ar
 string and we have to convert them into internal C language @code{double} representations.
 
 
-@deffn Builtin mmux-bash-libc-math-result-format @var{NEW_FORMAT}
-@deffnx Builtin mmux-bash-libc-math-result-format @var{NEW_FORMAT} @var{OLD_FORMAT_VARNAME}
+@deffn Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT}
+@deffnx Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT} @var{OLD_FORMAT_VARNAME}
 When called with one argument: store internally a copy of the string @var{NEW_FORMAT} to be used as
-format for floating--point result numbers.
+format for floating--point double numbers.
 
 @example
 add 1 2         @print{} 3.00000
 
-mmux-bash-libc-math-result-format "%.1lf"
+mmux-bash-libc-math-double-format "%.1lf"
 add 1 2         @print{} 3
 @end example
 
@@ -259,7 +259,7 @@ When called with two arguments: in addition store the previous format, as a stri
 variable @var{OLD_FORMAT_VARNAME}.
 
 @example
-mmux-bash-libc-math-result-format "%.1lf" OLD_FORMAT
+mmux-bash-libc-math-double-format "%.1lf" OLD_FORMAT
 
 $OLD_FORMAT     @print{} "%lf"
 @end example
@@ -378,6 +378,21 @@ atan2 0.2 0.3           @print{} 0.5880
 @end example
 @end deffn
 
+
+@deffn Builtin csin @var{COMPLEX}
+@deffnx Builtin ccos @var{COMPLEX}
+@deffnx Builtin ctan @var{COMPLEX}
+Print a string representing the result of applying the complex trigonometric sine, cosine and
+tangent function to @var{COMPLEX}.
+@end deffn
+
+
+@deffn Builtin casin @var{COMPLEX}
+@deffnx Builtin cacos @var{COMPLEX}
+@deffnx Builtin catan @var{COMPLEX}
+Print a string representing the result of applying the complex trigonometric arc sine, arc cosine
+and arc tangent function to @var{COMPLEX}.
+@end deffn
 
 @c page
 @node hyperbolic

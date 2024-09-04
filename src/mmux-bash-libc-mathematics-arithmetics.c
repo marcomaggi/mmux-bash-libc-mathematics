@@ -48,7 +48,7 @@ add_main (int argc,  char * argv[])
       if (EXECUTION_SUCCESS != rv) { return rv; }
       rop += op;
     }
-    return mmux_bash_libc_math_print_result(rop);
+    return mmux_bash_libc_math_print_double(rop);
   }
 }
 static int
@@ -121,7 +121,7 @@ sub_main (int argc,  char * argv[])
       if (EXECUTION_SUCCESS != rv) { return rv; }
       rop -= op;
     }
-    return mmux_bash_libc_math_print_result(rop);
+    return mmux_bash_libc_math_print_double(rop);
   }
 }
 static int
@@ -194,7 +194,7 @@ mul_main (int argc,  char * argv[])
       if (EXECUTION_SUCCESS != rv) { return rv; }
       rop *= op;
     }
-    return mmux_bash_libc_math_print_result(rop);
+    return mmux_bash_libc_math_print_double(rop);
   }
 }
 static int
@@ -267,7 +267,7 @@ div_main (int argc,  char * argv[])
       if (EXECUTION_SUCCESS != rv) { return rv; }
       rop = rop / op;
     }
-    return mmux_bash_libc_math_print_result(rop);
+    return mmux_bash_libc_math_print_double(rop);
   }
 }
 static int
@@ -334,7 +334,7 @@ neg_main (int argc, char *argv[])
     rv = mmux_bash_libc_math_parse_double(&op, argv[1], "neg");
     if (EXECUTION_SUCCESS != rv) { return rv; }
     rop = - op;
-    return mmux_bash_libc_math_print_result(rop);
+    return mmux_bash_libc_math_print_double(rop);
   }
 }
 static int

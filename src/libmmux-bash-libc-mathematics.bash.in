@@ -32,14 +32,15 @@ declare -rg MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_I
 
 declare MMUX_BASH_LIBC_MATH_BUILTIN
 for MMUX_BASH_LIBC_MATH_BUILTIN in \
-    mmuxbashlibcmathresultformat		\
+    mmuxbashlibcmathdoubleformat		\
 	add sub mul div neg			\
-	sin cos tan asin acos atan atan2
+	sin cos tan asin acos atan atan2	\
+	csin ccos ctan casin cacos catan
 do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"
 done
 unset MMUX_BASH_LIBC_MATH_BUILTIN
 
-alias mmux-bash-libc-math-result-format='mmuxbashlibcmathresultformat'
+alias mmux-bash-libc-math-double-format='mmuxbashlibcmathdoubleformat'
 
 ### end of file
 # Local Variables:

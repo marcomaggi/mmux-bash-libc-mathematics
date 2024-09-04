@@ -46,6 +46,8 @@
 #include <stdio.h>
 #include <inttypes.h>
 #include <math.h>
+#include <complex.h>
+#include <regex.h>
 
 /* We  really need  to pay  attention to  the order  in which  we include  the files,
    otherwise errors will ensue. */
@@ -61,8 +63,8 @@
  ** Preprocessor macros.
  ** ----------------------------------------------------------------- */
 
-#undef  MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT
-#define MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT	"%lf"
+#undef  MMUX_BASH_LIBC_MATH_DEFAULT_DOUBLE_FORMAT
+#define MMUX_BASH_LIBC_MATH_DEFAULT_DOUBLE_FORMAT	"%lf"
 
 
 /** --------------------------------------------------------------------

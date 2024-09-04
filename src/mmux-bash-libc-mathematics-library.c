@@ -28,9 +28,11 @@
 
 #include "mmux-bash-libc-mathematics-internals.h"
 
-#undef  MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN
-#define MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN	1023
-static char mmux_bash_libc_math_result_format[1+MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN];
+#undef  MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN
+#define MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN		63
+static char mmux_bash_libc_math_double_format[1+MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN];
+
+static regex_t mmux_bash_libc_math_complex_rex;
 
 
 /** --------------------------------------------------------------------
@@ -70,8 +72,19 @@ mmux_bash_libc_math_library_init (void)
 
   if (to_be_initialised) {
     to_be_initialised = false;
+
+    {
+      int	rv;
+
+      rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([0-9\\.+-]\\+\\))+i\\*(\\([0-9\\.+-]\\+\\))$", 0);
+      if (rv) {
+	fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
+	exit(EXIT_FAILURE);
+      }
+    }
+
     mmux_bash_libc_math_trigonometric_init_module();
-    mmux_bash_libc_math_result_format_set(MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT);
+    mmux_bash_libc_math_double_format_set(MMUX_BASH_LIBC_MATH_DEFAULT_DOUBLE_FORMAT);
 
     mmux_bash_libc_math_create_global_double_variable("M_E",		M_E);
     mmux_bash_libc_math_create_global_double_variable("M_LOG2E",	M_LOG2E);
@@ -96,33 +109,23 @@ mmux_bash_libc_math_library_init (void)
 
 
 /** --------------------------------------------------------------------
- ** Helpers.
+ ** Selecting printf format for values of type double.
  ** ----------------------------------------------------------------- */
 
 int
-mmux_bash_libc_math_print_result (double rop)
-{
-  if (0) {
-    fprintf(stderr, "%s: using result format: %s\n", __func__, mmux_bash_libc_math_result_format);
-  }
-  printf(mmux_bash_libc_math_result_format, rop);
-  return EXECUTION_SUCCESS;
-}
-
-int
-mmux_bash_libc_math_result_format_set (const char * new_result_format)
+mmux_bash_libc_math_double_format_set (const char * new_result_format)
 {
   int	new_result_format_len = strlen(new_result_format);
 
-  if (new_result_format_len <= MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN) {
+  if (new_result_format_len <= MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN) {
     if (0) {
-      fprintf(stderr, "%s: setting new format: %s\n", __func__, new_result_format);
+      fprintf(stderr, "%s: setting new double format: %s\n", __func__, new_result_format);
     }
     /* We tell "strncpy()" to copy the from  buffer and fill everything else with nul
        bytes.  See the documentation of "strncpy()". */
-    strncpy(mmux_bash_libc_math_result_format, new_result_format, MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN);
+    strncpy(mmux_bash_libc_math_double_format, new_result_format, MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN);
     if (0) {
-      fprintf(stderr, "%s: result format is now: %s\n", __func__, mmux_bash_libc_math_result_format);
+      fprintf(stderr, "%s: double format is now: %s\n", __func__, mmux_bash_libc_math_double_format);
     }
     return EXECUTION_SUCCESS;
   } else {
@@ -130,16 +133,134 @@ mmux_bash_libc_math_result_format_set (const char * new_result_format)
   }
 }
 
+
+/** --------------------------------------------------------------------
+ ** Printing double and complex.
+ ** ----------------------------------------------------------------- */
+
 int
-mmux_bash_libc_math_parse_double (double * op, const char * s_op, const char * caller_name)
+mmux_bash_libc_math_print_double (double rop)
 {
-  int	rv = sscanf(s_op, "%lf", op);
+  if (0) {
+    fprintf(stderr, "%s: using double format: %s\n", __func__, mmux_bash_libc_math_double_format);
+  }
+  printf(mmux_bash_libc_math_double_format, rop);
+  return EXECUTION_SUCCESS;
+}
+int
+mmux_bash_libc_math_print_complex (double complex rop)
+{
+  double	rop_re = creal(rop), rop_im = cimag(rop);
+
+  if (0) {
+    fprintf(stderr, "%s: using double format: %s\n", __func__, mmux_bash_libc_math_double_format);
+  }
+
+  printf("(");
+  printf(mmux_bash_libc_math_double_format, rop_re);
+  printf(")+i*(");
+  printf(mmux_bash_libc_math_double_format, rop_im);
+  printf(")");
+  return EXECUTION_SUCCESS;
+}
+
+
+/** --------------------------------------------------------------------
+ ** Parsing double and complex.
+ ** ----------------------------------------------------------------- */
+
+int
+mmux_bash_libc_math_parse_double (double * p_op, const char * s_op, const char * caller_name)
+{
+  int	rv;
+
+  /* Try all the formats before giving up. */
+  rv = sscanf(s_op, "%lf", p_op);
   if ((0 == rv) || (EOF == rv)) {
-    fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
-    return EXECUTION_FAILURE;
+    rv = sscanf(s_op, "%lg", p_op);
+    if ((0 == rv) || (EOF == rv)) {
+      rv = sscanf(s_op, "%le", p_op);
+      if ((0 == rv) || (EOF == rv)) {
+	rv = sscanf(s_op, "%la", p_op);
+	if ((0 == rv) || (EOF == rv)) {
+	  fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
+	  return EXECUTION_FAILURE;
+	}
+      }
+    }
   }
   return EXECUTION_SUCCESS;
 }
+
+int
+mmux_bash_libc_math_parse_complex (double complex * p_op, const char * s_op, const char * caller_name)
+{
+  int	len = strlen(s_op);
+
+  if (len > 2048) {
+    fprintf(stderr, "%s: error: invalid argument, string too long (max 2048 chars): \"%s\"\n", caller_name, s_op);
+    return EXECUTION_FAILURE;
+  } else {
+    char	s_op_re[1024];
+    char	s_op_im[1024];
+    double	op_re, op_im;
+    int		rv;
+    size_t	nmatch = 3;
+    regmatch_t	match[3];
+
+    if (0) {
+      fprintf(stderr, "%s: scanning %s\n", __func__, s_op);
+    }
+
+    /* First use a regular expression to  extract the real and imaginary parts.  Then
+       we parse the real part and the imaginary part separately. */
+    rv = regexec(&mmux_bash_libc_math_complex_rex, s_op, nmatch, &(match[0]), 0);
+    if (rv) {
+      char	error_message[1024];
+
+      regerror(rv, &mmux_bash_libc_math_complex_rex, error_message, 1024);
+
+      fprintf(stderr, "%s: error: invalid argument, expected complex number: %s: \"%s\"\n", caller_name, error_message, s_op);
+      return EXECUTION_FAILURE;
+    }
+
+    {
+      int	i, imax = match[1].rm_eo - match[1].rm_so;
+
+      for (i=0; i < imax; ++i) {
+	s_op_re[i] = s_op[match[1].rm_so + i];
+      }
+      s_op_re[imax] = '\0';
+    }
+
+    {
+      int	i, imax = match[2].rm_eo - match[2].rm_so;
+
+      for (i=0; i < imax; ++i) {
+	s_op_im[i] = s_op[match[2].rm_so + i];
+      }
+      s_op_im[imax] = '\0';
+    }
+
+    if (0) {
+      fprintf(stderr, "%s: scanned re='%s' im='%s'\n", __func__, s_op_re, s_op_im);
+    }
+
+    rv = mmux_bash_libc_math_parse_double(&op_re, s_op_re, caller_name);
+    if (EXECUTION_FAILURE == rv) { return rv; }
+
+    rv = mmux_bash_libc_math_parse_double(&op_im, s_op_im, caller_name);
+    if (EXECUTION_FAILURE == rv) { return rv; }
+
+    *p_op = op_re + op_im * ((double complex)_Complex_I);
+    return EXECUTION_SUCCESS;
+  }
+}
+
+
+/** --------------------------------------------------------------------
+ ** Helpers.
+ ** ----------------------------------------------------------------- */
 
 void
 mmux_bash_libc_math_create_global_double_variable (const char * name, double value)
@@ -156,11 +277,11 @@ mmux_bash_libc_math_create_global_double_variable (const char * name, double val
 
 
 /** --------------------------------------------------------------------
- ** Result number format configuration.
+ ** Double number format configuration.
  ** ----------------------------------------------------------------- */
 
 static int
-mmuxbashlibcmathresultformat_main (int argc,  char * argv[])
+mmuxbashlibcmathdoubleformat_main (int argc,  char * argv[])
 {
   if ((3 == argc) || (2 == argc)) {
     SHELL_VAR *	var;
@@ -174,7 +295,7 @@ mmuxbashlibcmathresultformat_main (int argc,  char * argv[])
       if (NULL == var) {
 	return EXECUTION_FAILURE;
       }
-      var = bind_variable(argv[1], mmux_bash_libc_math_result_format, 0);
+      var = bind_variable(argv[1], mmux_bash_libc_math_double_format, 0);
       /* NOTE I  do not know if  the return value is  meant to be NULL  when an error
 	 occurs; checking it does not hurt.  (Marco Maggi; Sep 4, 2024) */
       if (NULL == var) {
@@ -184,63 +305,63 @@ mmuxbashlibcmathresultformat_main (int argc,  char * argv[])
 
     if (0) {
       /* Print the old format. */
-      printf("%s\n", mmux_bash_libc_math_result_format);
+      printf("%s\n", mmux_bash_libc_math_double_format);
 
     }
 
     /* Set the new format. */
-    return mmux_bash_libc_math_result_format_set(argv[1]);
+    return mmux_bash_libc_math_double_format_set(argv[1]);
   } else {
     builtin_usage();
     return EX_USAGE;
   }
 }
 static int
-mmuxbashlibcmathresultformat_builtin (WORD_LIST * list)
+mmuxbashlibcmathdoubleformat_builtin (WORD_LIST * list)
 {
   char **	argv;
   int		argc;
 
   argv = make_builtin_argv(list, &argc);
   if (argv) {
-    int		rv = mmuxbashlibcmathresultformat_main(argc, argv);
+    int		rv = mmuxbashlibcmathdoubleformat_main(argc, argv);
     free(argv);
     return rv;
   } else {
-    fprintf(stderr, "mmuxbashlibcmathresultformat: error: internal error accessing list of builtin operands\n");
+    fprintf(stderr, "mmuxbashlibcmathdoubleformat: error: internal error accessing list of builtin operands\n");
     return EXECUTION_FAILURE;
   }
 }
 
-static char * mmuxbashlibcmathresultformat_doc[] = {
-  "Configure the printf format for floating-point result numbers.",
+static char * mmuxbashlibcmathdoubleformat_doc[] = {
+  "Configure the printf format for floating-point double numbers.",
   (char *)NULL
 };
 
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
-struct builtin mmuxbashlibcmathresultformat_struct = {
-  .name		= "mmuxbashlibcmathresultformat",		/* Builtin name */
-  .function	= mmuxbashlibcmathresultformat_builtin,		/* Function implementing the builtin */
+struct builtin mmuxbashlibcmathdoubleformat_struct = {
+  .name		= "mmuxbashlibcmathdoubleformat",		/* Builtin name */
+  .function	= mmuxbashlibcmathdoubleformat_builtin,		/* Function implementing the builtin */
   .flags	= BUILTIN_ENABLED,				/* Initial flags for builtin */
-  .long_doc	= mmuxbashlibcmathresultformat_doc,		/* Array of long documentation strings. */
-  .short_doc	= "mmuxbashlibcmathresultformat FORMAT_STRING [OLD_FORMAT_VARNAME]",	/* Usage synopsis; becomes short_doc */
+  .long_doc	= mmuxbashlibcmathdoubleformat_doc,		/* Array of long documentation strings. */
+  .short_doc	= "mmuxbashlibcmathdoubleformat FORMAT_STRING [OLD_FORMAT_VARNAME]",	/* Usage synopsis; becomes short_doc */
   .handle	= 0						/* Reserved for internal use */
 };
 
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
-mmuxbashlibcmathresultformat_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+mmuxbashlibcmathdoubleformat_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   mmux_bash_libc_math_library_init();
   return 1;
 }
 
 #if 0
-/* Called when `mmuxbashlibcmathresultformat' is disabled. */
+/* Called when `mmuxbashlibcmathdoubleformat' is disabled. */
 void
-mmuxbashlibcmathresultformat_builtin_unload (char *name)
+mmuxbashlibcmathdoubleformat_builtin_unload (char *name)
 {
 }
 #endif

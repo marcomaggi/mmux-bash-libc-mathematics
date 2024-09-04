@@ -54,19 +54,30 @@ source "$MMUX_LIBRARY"
 function trigonometric-sin-1.1 () {
     mbfl_location_enter
     {
-	mmux-bash-libc-math-result-format "%.5lf" OLDFORMAT
-	mbfl_location_handler "mmux-bash-libc-math-result-format '$OLDFORMAT' &>/dev/null"
+	mmux-bash-libc-math-double-format "%.5lf" OLDFORMAT
+	mbfl_location_handler "mmux-bash-libc-math-double-format '$OLDFORMAT' &>/dev/null"
 
 	dotest-equal 0.93204 $(sin 1.2)
     }
     mbfl_location_leave
 }
 
+### ------------------------------------------------------------------------
+
+function trigonometric-csin-1.1 () {
+    mmux-bash-libc-math-double-format "%.4lf"
+    dotest-equal '(13.9794)+i*(5.4228)' $(csin '(1.2)+i*(3.4)')
+}
+function trigonometric-csin-1.2 () {
+    mmux-bash-libc-math-double-format "%.4lf"
+    dotest-equal '(-13.9794)+i*(5.4228)' $(csin '(-1.2)+i*(+3.4)')
+}
+
 
 #### trigonometric cosine
 
 function trigonometric-cos-1.1 () {
-    mmux-bash-libc-math-result-format "%.5lf"
+    mmux-bash-libc-math-double-format "%.5lf"
     dotest-equal 0.36236 $(cos 1.2)
 }
 
@@ -74,7 +85,7 @@ function trigonometric-cos-1.1 () {
 #### trigonometric tangent
 
 function trigonometric-tan-1.1 () {
-    mmux-bash-libc-math-result-format "%.4lf"
+    mmux-bash-libc-math-double-format "%.4lf"
     dotest-equal 2.5722 $(tan 1.2)
 }
 
@@ -82,7 +93,7 @@ function trigonometric-tan-1.1 () {
 #### trigonometric arc sine
 
 function trigonometric-asin-1.1 () {
-    mmux-bash-libc-math-result-format "%.5lf"
+    mmux-bash-libc-math-double-format "%.5lf"
     dotest-equal 0.20136 $(asin 0.2)
 }
 
@@ -90,7 +101,7 @@ function trigonometric-asin-1.1 () {
 #### trigonometric arc cosine
 
 function trigonometric-acos-1.1 () {
-    mmux-bash-libc-math-result-format "%.4lf"
+    mmux-bash-libc-math-double-format "%.4lf"
     dotest-equal 1.3694 $(acos 0.2)
 }
 
@@ -98,14 +109,14 @@ function trigonometric-acos-1.1 () {
 #### trigonometric arc tangent
 
 function trigonometric-atan-1.1 () {
-    mmux-bash-libc-math-result-format "%.4lf"
+    mmux-bash-libc-math-double-format "%.4lf"
     dotest-equal 0.1974 $(atan 0.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function trigonometric-atan2-1.1 () {
-    mmux-bash-libc-math-result-format "%.4lf"
+    mmux-bash-libc-math-double-format "%.4lf"
     dotest-equal 0.5880 $(atan2 0.2 0.3)
 }
 

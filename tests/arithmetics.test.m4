@@ -52,15 +52,15 @@ source "$MMUX_LIBRARY"
 #### addition
 
 function arithmetics-add-1.1 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 1 $(add 1)
 }
 function arithmetics-add-1.2 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 4 $(add 1 3)
 }
 function arithmetics-add-1.3 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 9 $(add 1 3 5)
 }
 
@@ -68,19 +68,19 @@ function arithmetics-add-1.3 () {
 #### subtraction
 
 function arithmetics-sub-1.1 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 1 $(sub 1)
 }
 function arithmetics-sub-1.2 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal -2 $(sub 1 3)
 }
 function arithmetics-sub-1.3 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal -7 $(sub 1 3 5)
 }
 function arithmetics-sub-1.4 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 6 $(sub 10 1 3)
 }
 
@@ -88,15 +88,15 @@ function arithmetics-sub-1.4 () {
 #### multiplication
 
 function arithmetics-mul-1.1 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 1 $(mul 1)
 }
 function arithmetics-mul-1.2 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 6 $(mul 2 3)
 }
 function arithmetics-mul-1.3 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 30 $(mul 2 3 5)
 }
 
@@ -104,15 +104,15 @@ function arithmetics-mul-1.3 () {
 #### division
 
 function arithmetics-div-1.1 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 1 $(div 1)
 }
 function arithmetics-div-1.2 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 4 $(div 12 3)
 }
 function arithmetics-div-1.3 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 4 $(div 24 2 3)
 }
 
@@ -120,11 +120,11 @@ function arithmetics-div-1.3 () {
 #### negation
 
 function arithmetics-neg-1.1 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal -1 $(neg 1)
 }
 function arithmetics-neg-1.2 () {
-    mmux-bash-libc-math-result-format "%.0lf"
+    mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal -12 $(neg 12)
 }
 
