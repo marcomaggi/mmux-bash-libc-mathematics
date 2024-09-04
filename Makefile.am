@@ -66,6 +66,7 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 	src/mmux-bash-libc-mathematics.h		\
 	src/mmux-bash-libc-mathematics-internals.h	\
 	src/mmux-bash-libc-mathematics-library.c	\
+	src/mmux-bash-libc-mathematics-arithmetics.c	\
 	src/mmux-bash-libc-mathematics-trigonometric.c
 
 .PHONY: library
@@ -82,6 +83,7 @@ EXTRA_DIST		+= $(mmux_library_SCRIPTS)
 #### tests
 
 MMUX_CHECK_TESTS	=		\
+	tests/arithmetics.bash		\
 	tests/trigonometric.bash
 
 EXTRA_DIST		+= $(MMUX_CHECK_TESTS)

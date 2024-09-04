@@ -70,4 +70,16 @@ mmux_bash_libc_math_library_init (void)
   }
 }
 
+
+/** --------------------------------------------------------------------
+ ** Helpers.
+ ** ----------------------------------------------------------------- */
+
+int
+mmux_bash_libc_math_print_result (double rop)
+{
+  printf("%lf\n", rop);
+  return EXECUTION_SUCCESS;
+}
+
 /* end of file */

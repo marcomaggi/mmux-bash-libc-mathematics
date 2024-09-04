@@ -34,6 +34,8 @@ bind_it (const char * name, double value)
 {
   SHELL_VAR *	v MMUX_BASH_LIBC_MATH_UNUSED;
   char		str[1024];
+  /* I do  not know what  FLAGS is for,  but setting it  to zero seems  fine.  (Marco
+     Maggi; Sep 4, 2024) */
   int		flags = 0;
 
   snprintf(str, 1024, "%lf", value);
@@ -82,8 +84,7 @@ sin_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
   rop  = sin(op);
-  printf("%f\n", rop);
-  return EXECUTION_SUCCESS;
+  return mmux_bash_libc_math_print_result(rop);
 }
 
 static char * sin_doc[] = {
