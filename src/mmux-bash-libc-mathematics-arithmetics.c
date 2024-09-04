@@ -322,7 +322,7 @@ div_builtin_unload (char *name)
 
 
 static int
-neg_main (int argc,  char * argv[])
+neg_main (int argc, char *argv[])
 {
   if (2 != argc) {
     builtin_usage();

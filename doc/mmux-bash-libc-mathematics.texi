@@ -352,6 +352,33 @@ neg 12                  @print{} -12.00000
 @node trigonometric
 @chapter Trigonometric builtins
 
+
+@deffn Builtin sin @var{DOUBLE}
+@deffnx Builtin cos @var{DOUBLE}
+@deffnx Builtin tan @var{DOUBLE}
+Print a string representing the result of applying the trigonometric sine, cosine and tangent
+function to @var{DOUBLE}.
+
+@example
+sin 1.2                 @print{} 0.93204
+cos 1.2                 @print{} 0.93204
+@end example
+@end deffn
+
+
+@deffn Builtin asin @var{DOUBLE}
+@deffnx Builtin acos @var{DOUBLE}
+@deffnx Builtin atan @var{DOUBLE}
+@deffnx Builtin atan2 @vari{DOUBLE} @varii{DOUBLE}
+Print a string representing the result of applying the trigonometric arc sine, arc cosine and arc
+tangent function to @var{DOUBLE}.
+
+@example
+atan2 0.2 0.3           @print{} 0.5880
+@end example
+@end deffn
+
+
 @c page
 @node hyperbolic
 @chapter Hyperbolic builtins

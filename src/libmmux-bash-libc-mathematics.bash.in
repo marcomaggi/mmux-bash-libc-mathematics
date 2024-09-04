@@ -30,15 +30,14 @@ declare -rg MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSI
 declare -rg MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
 declare -rg MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
 
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathresultformat
-
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" add
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" sub
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mul
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" div
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" neg
-
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" sin
+declare MMUX_BASH_LIBC_MATH_BUILTIN
+for MMUX_BASH_LIBC_MATH_BUILTIN in \
+    mmuxbashlibcmathresultformat		\
+	add sub mul div neg			\
+	sin cos tan asin acos atan atan2
+do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"
+done
+unset MMUX_BASH_LIBC_MATH_BUILTIN
 
 alias mmux-bash-libc-math-result-format='mmuxbashlibcmathresultformat'
 

@@ -49,7 +49,7 @@ mbfl_linker_source_library_by_stem(tests)
 source "$MMUX_LIBRARY"
 
 
-#### real numbers, trigonometric sine
+#### trigonometric sine
 
 function trigonometric-sin-1.1 () {
     mbfl_location_enter
@@ -60,6 +60,53 @@ function trigonometric-sin-1.1 () {
 	dotest-equal 0.93204 $(sin 1.2)
     }
     mbfl_location_leave
+}
+
+
+#### trigonometric cosine
+
+function trigonometric-cos-1.1 () {
+    mmux-bash-libc-math-result-format "%.5lf"
+    dotest-equal 0.36236 $(cos 1.2)
+}
+
+
+#### trigonometric tangent
+
+function trigonometric-tan-1.1 () {
+    mmux-bash-libc-math-result-format "%.4lf"
+    dotest-equal 2.5722 $(tan 1.2)
+}
+
+
+#### trigonometric arc sine
+
+function trigonometric-asin-1.1 () {
+    mmux-bash-libc-math-result-format "%.5lf"
+    dotest-equal 0.20136 $(asin 0.2)
+}
+
+
+#### trigonometric arc cosine
+
+function trigonometric-acos-1.1 () {
+    mmux-bash-libc-math-result-format "%.4lf"
+    dotest-equal 1.3694 $(acos 0.2)
+}
+
+
+#### trigonometric arc tangent
+
+function trigonometric-atan-1.1 () {
+    mmux-bash-libc-math-result-format "%.4lf"
+    dotest-equal 0.1974 $(atan 0.2)
+}
+
+### ------------------------------------------------------------------------
+
+function trigonometric-atan2-1.1 () {
+    mmux-bash-libc-math-result-format "%.4lf"
+    dotest-equal 0.5880 $(atan2 0.2 0.3)
 }
 
 
