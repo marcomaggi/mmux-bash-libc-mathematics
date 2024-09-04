@@ -77,6 +77,10 @@ mmuxbashlibcmathinit_builtin (WORD_LIST * list MMUX_BASH_LIBC_MATH_UNUSED)
    *
    * with the real and imaginary parts  always enclosed in parentheses.  Whatever the
    * sign, whatever the format of the double number: it should always work.
+   *
+   * FIXME  The compiled  regular expression  is never  released; it  stays allocated
+   * forever.  Ideally it  should be released if this library  is unloaded, which, it
+   * is my understanding, is actually possible.  (Marco Maggi; Sep  4, 2024)
    */
   {
     int	rv;
