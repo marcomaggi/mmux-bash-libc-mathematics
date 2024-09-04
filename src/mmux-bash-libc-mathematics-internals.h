@@ -77,8 +77,6 @@
 
 mmux_bash_libc_math_private_decl void mmux_bash_libc_math_trigonometric_init_module (void);
 
-mmux_bash_libc_math_private_decl int mmux_bash_libc_math_print_result (double rop);
-
 
 /** --------------------------------------------------------------------
  ** Done.

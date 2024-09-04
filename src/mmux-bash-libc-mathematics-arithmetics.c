@@ -36,24 +36,16 @@ add_main (int argc,  char * argv[])
     builtin_usage();
     return EX_USAGE;
   } else {
-    char  *	s_op;
     double	op, rop = 0.0;
-    int		rv, i;
+    int		rv;
 
-    s_op = argv[1];
-    rv   = sscanf(s_op, "%lf", &op);
-    if ((0 == rv) || (EOF == rv)) {
-      fprintf(stderr, "add: error: invalid argument: \"%s\"\n", s_op);
-      return EXECUTION_FAILURE;
-    }
+    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "add");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+    rop = op;
 
-    for (i = 2; i < argc; ++i) {
-      s_op = argv[i];
-      rv   = sscanf(s_op, "%lf", &op);
-      if ((0 == rv) || (EOF == rv)) {
-	fprintf(stderr, "add: error: invalid argument: \"%s\"\n", s_op);
-	return EXECUTION_FAILURE;
-      }
+    for (int i = 2; i < argc; ++i) {
+      rv = mmux_bash_libc_math_parse_double(&op, argv[i], "add");
+      if (EXECUTION_SUCCESS != rv) { return rv; }
       rop += op;
     }
     return mmux_bash_libc_math_print_result(rop);
@@ -105,6 +97,225 @@ add_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 /* Called when `add' is disabled. */
 void
 add_builtin_unload (char *name)
+{
+}
+#endif
+
+
+static int
+sub_main (int argc,  char * argv[])
+{
+  if (2 > argc) {
+    builtin_usage();
+    return EX_USAGE;
+  } else {
+    double	op, rop = 0.0;
+    int		rv;
+
+    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "sub");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+    rop = op;
+
+    for (int i = 2; i < argc; ++i) {
+      rv = mmux_bash_libc_math_parse_double(&op, argv[i], "sub");
+      if (EXECUTION_SUCCESS != rv) { return rv; }
+      rop -= op;
+    }
+    return mmux_bash_libc_math_print_result(rop);
+  }
+}
+static int
+sub_builtin (WORD_LIST * list)
+{
+  char **	argv;
+  int		argc;
+
+  argv = make_builtin_argv(list, &argc);
+  if (argv) {
+    int		rv = sub_main(argc, argv);
+    free(argv);
+    return rv;
+  } else {
+    fprintf(stderr, "sub: error: internal error accessing list of builtin operands\n");
+    return EXECUTION_FAILURE;
+  }
+}
+
+static char * sub_doc[] = {
+  "Compute the subtraction between floating point numbers, print the result on stdout.",
+  (char *)NULL
+};
+
+/* Bash will search for this struct  building the name "ciao_struct" from the command
+   line argument "ciao" we have given to the "enable" builtin. */
+struct builtin sub_struct = {
+  .name		= "sub",		/* Builtin name */
+  .function	= sub_builtin,		/* Function implementing the builtin */
+  .flags	= BUILTIN_ENABLED,	/* Initial flags for builtin */
+  .long_doc	= sub_doc,		/* Array of long documentation strings. */
+  .short_doc	= "sub DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
+  .handle	= 0			/* Reserved for internal use */
+};
+
+/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
+   function returns 0, the load fails. */
+int
+sub_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+{
+  mmux_bash_libc_math_library_init();
+  return (1);
+}
+
+#if 0
+/* Called when `sub' is disabled. */
+void
+sub_builtin_unload (char *name)
+{
+}
+#endif
+
+
+static int
+mul_main (int argc,  char * argv[])
+{
+  if (2 > argc) {
+    builtin_usage();
+    return EX_USAGE;
+  } else {
+    double	op, rop = 0.0;
+    int		rv;
+
+    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "mul");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+    rop = op;
+
+    for (int i = 2; i < argc; ++i) {
+      rv = mmux_bash_libc_math_parse_double(&op, argv[i], "mul");
+      if (EXECUTION_SUCCESS != rv) { return rv; }
+      rop *= op;
+    }
+    return mmux_bash_libc_math_print_result(rop);
+  }
+}
+static int
+mul_builtin (WORD_LIST * list)
+{
+  char **	argv;
+  int		argc;
+
+  argv = make_builtin_argv(list, &argc);
+  if (argv) {
+    int		rv = mul_main(argc, argv);
+    free(argv);
+    return rv;
+  } else {
+    fprintf(stderr, "mul: error: internal error accessing list of builtin operands\n");
+    return EXECUTION_FAILURE;
+  }
+}
+
+static char * mul_doc[] = {
+  "Compute the multiplication between floating point numbers, print the result on stdout.",
+  (char *)NULL
+};
+
+/* Bash will search for this struct  building the name "ciao_struct" from the command
+   line argument "ciao" we have given to the "enable" builtin. */
+struct builtin mul_struct = {
+  .name		= "mul",		/* Builtin name */
+  .function	= mul_builtin,		/* Function implementing the builtin */
+  .flags	= BUILTIN_ENABLED,	/* Initial flags for builtin */
+  .long_doc	= mul_doc,		/* Array of long documentation strings. */
+  .short_doc	= "mul DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
+  .handle	= 0			/* Reserved for internal use */
+};
+
+/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
+   function returns 0, the load fails. */
+int
+mul_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+{
+  mmux_bash_libc_math_library_init();
+  return (1);
+}
+
+#if 0
+/* Called when `mul' is disabled. */
+void
+mul_builtin_unload (char *name)
+{
+}
+#endif
+
+
+static int
+div_main (int argc,  char * argv[])
+{
+  if (2 > argc) {
+    builtin_usage();
+    return EX_USAGE;
+  } else {
+    double	op, rop = 0.0;
+    int		rv;
+
+    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "div");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+    rop = op;
+
+    for (int i = 2; i < argc; ++i) {
+      rv = mmux_bash_libc_math_parse_double(&op, argv[i], "div");
+      if (EXECUTION_SUCCESS != rv) { return rv; }
+      rop = rop / op;
+    }
+    return mmux_bash_libc_math_print_result(rop);
+  }
+}
+static int
+div_builtin (WORD_LIST * list)
+{
+  char **	argv;
+  int		argc;
+
+  argv = make_builtin_argv(list, &argc);
+  if (argv) {
+    int		rv = div_main(argc, argv);
+    free(argv);
+    return rv;
+  } else {
+    fprintf(stderr, "div: error: internal error accessing list of builtin operands\n");
+    return EXECUTION_FAILURE;
+  }
+}
+
+static char * div_doc[] = {
+  "Compute the division between floating point numbers, print the result on stdout.",
+  (char *)NULL
+};
+
+/* Bash will search for this struct  building the name "ciao_struct" from the command
+   line argument "ciao" we have given to the "enable" builtin. */
+struct builtin div_struct = {
+  .name		= "div",		/* Builtin name */
+  .function	= div_builtin,		/* Function implementing the builtin */
+  .flags	= BUILTIN_ENABLED,	/* Initial flags for builtin */
+  .long_doc	= div_doc,		/* Array of long documentation strings. */
+  .short_doc	= "div DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
+  .handle	= 0			/* Reserved for internal use */
+};
+
+/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
+   function returns 0, the load fails. */
+int
+div_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+{
+  mmux_bash_libc_math_library_init();
+  return (1);
+}
+
+#if 0
+/* Called when `div' is disabled. */
+void
+div_builtin_unload (char *name)
 {
 }
 #endif

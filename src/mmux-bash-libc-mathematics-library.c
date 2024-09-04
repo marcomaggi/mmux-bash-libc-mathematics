@@ -82,4 +82,16 @@ mmux_bash_libc_math_print_result (double rop)
   return EXECUTION_SUCCESS;
 }
 
+int
+mmux_bash_libc_math_parse_double (double * op, const char * s_op, const char * caller_name)
+{
+  int	rv = sscanf(s_op, "%lf", op);
+  if ((0 == rv) || (EOF == rv)) {
+    fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
+    return EXECUTION_FAILURE;
+  }
+  return EXECUTION_SUCCESS;
+}
+
+
 /* end of file */
