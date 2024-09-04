@@ -6,7 +6,8 @@ This package  implements additional  builtin commands  for the  GNU Bash
 shell; to  do so  it installs a  C language library  and a  shell script
 which is meant to be sourced in a Bash session or script.
 
-  The library targets POSIX systems.
+The  library targets  POSIX  systems.  Only  for  testing: this  package
+depends on the external package MBFL.
 
 The  package uses  the  GNU  Autotools and  it  is  tested on  GNU+Linux
 systems.  The  package relies on  `pkg-config` to find  the dependencies
@@ -50,6 +51,11 @@ to inspect the available configuration options:
 ```
 $ ../configure --help
 ```
+
+By default  the configuration  searches for the  package MBFL  to enable
+testing;  to  disable this  search:  when  configuring, use  the  option
+`--disable-mbfl`.
+
 
 The Makefile is designed to allow parallel builds, so we can do:
 
@@ -150,6 +156,10 @@ and as backup at:
 the documentation is available online:
 
 [http://marcomaggi.github.io/docs/mmux-bash-libc-mathematics.html](http://marcomaggi.github.io/docs/mmux-bash-libc-mathematics.html)
+
+the package MBFL is available online:
+
+[http://github.com/marcomaggi/mbfl/](http://github.com/marcomaggi/mbfl/)
 
 the GNU Project software can be found here:
 

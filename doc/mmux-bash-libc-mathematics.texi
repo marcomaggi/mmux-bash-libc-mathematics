@@ -72,7 +72,8 @@ This document describes version @value{VERSION} of @value{PACKAGE}, a package im
 additional builtin commands for the @gnu{} Bash shell; to do so it installs a C language library and
 a shell script which is meant to be sourced in a Bash session or script.
 
-The library supports @posix{} platforms.
+The library supports @posix{} platforms.  Only for testing: this package depends on the external
+package @acronym{MBFL}.
 
 This package is distributed under the terms of the @gnu{} Lesser General Public License (@lgpl{}).
 
@@ -170,7 +171,8 @@ This document describes version @value{VERSION} of @value{PACKAGE}, a package im
 additional builtin commands for the @gnu{} Bash shell; to do so it installs a C language library and
 a shell script which is meant to be sourced in a Bash session or script.
 
-This package supports @posix{} platforms.
+This package supports @posix{} platforms.  Only for testing: this package depends on the external
+package @acronym{MBFL}.
 
 @cindex @value{PackageHeaderFile}, header file
 @cindex Header file @value{PackageHeaderFile}
@@ -292,6 +294,11 @@ development takes place at:
 and as backup at:
 
 @center @value{BitbucketUrl}
+
+@noindent
+the package @acronym{MBFL} is available online:
+
+@center @url{http://github.com/marcomaggi/mbfl/}
 
 @c page
 @node concept index
