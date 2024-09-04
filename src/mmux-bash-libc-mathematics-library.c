@@ -72,6 +72,25 @@ mmux_bash_libc_math_library_init (void)
     to_be_initialised = false;
     mmux_bash_libc_math_trigonometric_init_module();
     mmux_bash_libc_math_result_format_set(MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT);
+
+    mmux_bash_libc_math_create_global_double_variable("M_E",		M_E);
+    mmux_bash_libc_math_create_global_double_variable("M_LOG2E",	M_LOG2E);
+    mmux_bash_libc_math_create_global_double_variable("M_LOG10E",	M_LOG10E);
+    mmux_bash_libc_math_create_global_double_variable("M_LN2",		M_LN2);
+    mmux_bash_libc_math_create_global_double_variable("M_LN10",		M_LN10);
+    mmux_bash_libc_math_create_global_double_variable("M_PI",		M_PI);
+    mmux_bash_libc_math_create_global_double_variable("M_PI_2",		M_PI_2);
+    mmux_bash_libc_math_create_global_double_variable("M_PI_4",		M_PI_4);
+    mmux_bash_libc_math_create_global_double_variable("M_1_PI",		M_1_PI);
+    mmux_bash_libc_math_create_global_double_variable("M_2_PI",		M_2_PI);
+    mmux_bash_libc_math_create_global_double_variable("M_2_SQRTPI",	M_2_SQRTPI);
+    mmux_bash_libc_math_create_global_double_variable("M_SQRT2",	M_SQRT2);
+    mmux_bash_libc_math_create_global_double_variable("M_SQRT1_2",	M_SQRT1_2);
+    mmux_bash_libc_math_create_global_double_variable("FP_NAN",		FP_NAN);
+    mmux_bash_libc_math_create_global_double_variable("FP_INFINITE",	FP_INFINITE);
+    mmux_bash_libc_math_create_global_double_variable("FP_ZERO",	FP_ZERO);
+    mmux_bash_libc_math_create_global_double_variable("FP_SUBNORMAL",	FP_SUBNORMAL);
+    mmux_bash_libc_math_create_global_double_variable("FP_NORMAL",	FP_NORMAL);
   }
 }
 
@@ -120,6 +139,19 @@ mmux_bash_libc_math_parse_double (double * op, const char * s_op, const char * c
     return EXECUTION_FAILURE;
   }
   return EXECUTION_SUCCESS;
+}
+
+void
+mmux_bash_libc_math_create_global_double_variable (const char * name, double value)
+{
+  SHELL_VAR *	v MMUX_BASH_LIBC_MATH_UNUSED;
+  char		str[1024];
+  /* NOTE I do not know what FLAGS is for, but setting it to zero seems fine.  (Marco
+     Maggi; Sep 4, 2024) */
+  int		flags = 0;
+
+  snprintf(str, 1024, "%lf", value);
+  v = bind_global_variable(name, str, flags);
 }
 
 
