@@ -58,7 +58,18 @@ AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h math.h])
 
 AC_PATH_PROG([BASH_PROGRAM],[/bin/bash],[/bin/bash],[:])
-MBFL_SETUP(v3.0.0)
+
+AS_VAR_SET([MMUX_ENABLED_MBFL],[yes])
+AC_ARG_ENABLE([mbfl],
+  [AS_HELP_STRING([--enable-mbfl],[enable using MBFL for testing (default: yes)])],
+  [AS_VAR_SET([MMUX_ENABLED_MBFL],[yes])],
+  [AS_VAR_SET([MMUX_ENABLED_MBFL],[no])])
+
+if test "x$MMUX_ENABLED_MBFL" = 'xyes'
+then
+  MBFL_SETUP(v3.0.0)
+fi
+AM_CONDITIONAL([MMUX_TESTING_ENABLED],[test "x$MMUX_ENABLED_MBFL" = 'xyes'])
 
 AC_CACHE_SAVE
 

@@ -116,8 +116,10 @@ MMUX_CHECK_BUILT_TESTS	=		\
 	tests/arithmetics.test		\
 	tests/trigonometric.test
 
-check_SCRIPTS		= $(MMUX_CHECK_BUILT_TESTS)
+if MMUX_TESTING_ENABLED
 TESTS			= $(MMUX_CHECK_BUILT_TESTS)
+endif
+check_SCRIPTS		= $(MMUX_CHECK_BUILT_TESTS)
 CLEANFILES		+= $(MMUX_CHECK_BUILT_TESTS)
 MMUX_LIBRARY		= $(builddir)/src/libmmux-bash-libc-mathematics.bash
 
