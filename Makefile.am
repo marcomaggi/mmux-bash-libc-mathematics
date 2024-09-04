@@ -2,8 +2,7 @@
 
 ACLOCAL_AMFLAGS		= -I meta/autotools
 AUTOMAKE_OPTIONS	= foreign
-EXTRA_DIST		= INSTALL configure.sh		\
-			  meta/slackware/slack-desc.in
+EXTRA_DIST		= INSTALL meta/slackware/slack-desc.in
 dist_doc_DATA		= README COPYING
 AM_CFLAGS		= $(MMUX_CFLAGS)
 AM_CPPFLAGS		= -I$(srcdir)/src
@@ -72,6 +71,12 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 .PHONY: library
 
 library: libmmux-bash-libc-mathematics.la
+
+## ------------------------------------------------------------------------
+
+mmux_bashlib_DATA	= src/libmmux-bash-libc-mathematics.bash
+mmux_bashlibdir		= $(datadir)/bash
+EXTRA_DIST		+= $(mmux_library_SCRIPTS)
 
 
 #### tests
