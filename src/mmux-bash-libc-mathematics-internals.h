@@ -78,8 +78,6 @@
  ** Function prototypes.
  ** ----------------------------------------------------------------- */
 
-mmux_bash_libc_math_private_decl void mmux_bash_libc_math_trigonometric_init_module (void);
-
 
 /** --------------------------------------------------------------------
  ** Done.

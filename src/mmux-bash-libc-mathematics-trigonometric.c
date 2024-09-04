@@ -29,13 +29,6 @@
 #include "mmux-bash-libc-mathematics-internals.h"
 
 
-void
-mmux_bash_libc_math_trigonometric_init_module (void)
-{
-  return;
-}
-
-
 static int
 sin_main (int argc, char *argv[])
 {
@@ -87,7 +80,6 @@ struct builtin sin_struct = {
 int
 sin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -150,7 +142,6 @@ struct builtin cos_struct = {
 int
 cos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -213,7 +204,6 @@ struct builtin tan_struct = {
 int
 tan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -276,7 +266,6 @@ struct builtin asin_struct = {
 int
 asin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -339,7 +328,6 @@ struct builtin acos_struct = {
 int
 acos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -402,7 +390,6 @@ struct builtin atan_struct = {
 int
 atan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -469,7 +456,6 @@ struct builtin atan2_struct = {
 int
 atan2_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -532,7 +518,6 @@ struct builtin csin_struct = {
 int
 csin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -595,7 +580,6 @@ struct builtin ccos_struct = {
 int
 ccos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -658,7 +642,6 @@ struct builtin ctan_struct = {
 int
 ctan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -721,7 +704,6 @@ struct builtin casin_struct = {
 int
 casin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -784,7 +766,6 @@ struct builtin cacos_struct = {
 int
 cacos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0
@@ -847,7 +828,6 @@ struct builtin catan_struct = {
 int
 catan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 #if 0

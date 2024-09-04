@@ -30,6 +30,11 @@ declare -rg MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSI
 declare -rg MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
 declare -rg MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
 
+enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathinit
+
+# This initialises the library.
+mmuxbashlibcmathinit
+
 declare MMUX_BASH_LIBC_MATH_BUILTIN
 for MMUX_BASH_LIBC_MATH_BUILTIN in \
     mmuxbashlibcmathdoubleformat		\

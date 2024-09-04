@@ -114,17 +114,11 @@ mmux_bash_libc_math_decl int		mmux_bash_libc_math_version_interface_age	(void);
 
 
 /** --------------------------------------------------------------------
- ** Library initialisation.
- ** ----------------------------------------------------------------- */
-
-mmux_bash_libc_math_decl void mmux_bash_libc_math_library_init (void);
-
-
-/** --------------------------------------------------------------------
  ** Helpers.
  ** ----------------------------------------------------------------- */
 
 mmux_bash_libc_math_decl int mmux_bash_libc_math_double_format_set (const char * new_double_format);
+
 mmux_bash_libc_math_decl int mmux_bash_libc_math_print_double (double rop);
 mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_double (double * op, const char * s_op, const char * caller_name);
 

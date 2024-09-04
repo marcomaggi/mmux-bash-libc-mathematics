@@ -89,7 +89,6 @@ struct builtin add_struct = {
 int
 add_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 
@@ -162,7 +161,6 @@ struct builtin sub_struct = {
 int
 sub_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 
@@ -235,7 +233,6 @@ struct builtin mul_struct = {
 int
 mul_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 
@@ -308,7 +305,6 @@ struct builtin div_struct = {
 int
 div_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 
@@ -375,7 +371,6 @@ struct builtin neg_struct = {
 int
 neg_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return (1);
 }
 

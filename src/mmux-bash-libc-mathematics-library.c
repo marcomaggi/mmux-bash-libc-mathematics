@@ -65,27 +65,34 @@ mmux_bash_libc_math_version_interface_age (void)
  ** Library initialisation.
  ** ----------------------------------------------------------------- */
 
-void
-mmux_bash_libc_math_library_init (void)
+static int
+mmuxbashlibcmathinit_builtin (WORD_LIST * list MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  static bool	to_be_initialised = true;
+  /* Compile the POSIX regular expression required to parse the string representation
+   * of complex numbers.
+   *
+   * We expect complex numbers represented as:
+   *
+   *   (+1.2)+i*(-3.4)
+   *
+   * with the real and imaginary parts  always enclosed in parentheses.  Whatever the
+   * sign, whatever the format of the double number: it should always work.
+   */
+  {
+    int	rv;
 
-  if (to_be_initialised) {
-    to_be_initialised = false;
-
-    {
-      int	rv;
-
-      rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([0-9\\.+-]\\+\\))+i\\*(\\([0-9\\.+-]\\+\\))$", 0);
-      if (rv) {
-	fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
-	exit(EXIT_FAILURE);
-      }
+    rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([0-9\\.+-]\\+\\))+i\\*(\\([0-9\\.+-]\\+\\))$", 0);
+    if (rv) {
+      fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
+      return EXECUTION_FAILURE;
     }
+  }
 
-    mmux_bash_libc_math_trigonometric_init_module();
-    mmux_bash_libc_math_double_format_set(MMUX_BASH_LIBC_MATH_DEFAULT_DOUBLE_FORMAT);
+  mmux_bash_libc_math_double_format_set(MMUX_BASH_LIBC_MATH_DEFAULT_DOUBLE_FORMAT);
 
+  /* These constants are defined by the Standard C Library; we make them available as
+     global shell variables. */
+  {
     mmux_bash_libc_math_create_global_double_variable("M_E",		M_E);
     mmux_bash_libc_math_create_global_double_variable("M_LOG2E",	M_LOG2E);
     mmux_bash_libc_math_create_global_double_variable("M_LOG10E",	M_LOG10E);
@@ -105,7 +112,37 @@ mmux_bash_libc_math_library_init (void)
     mmux_bash_libc_math_create_global_double_variable("FP_SUBNORMAL",	FP_SUBNORMAL);
     mmux_bash_libc_math_create_global_double_variable("FP_NORMAL",	FP_NORMAL);
   }
+
+  return EXECUTION_SUCCESS;
 }
+static char * mmuxbashlibcmathinit_doc[] = {
+  "Initialise the library.",
+  (char *)NULL
+};
+/* Bash will search for this struct  building the name "ciao_struct" from the command
+   line argument "ciao" we have given to the "enable" builtin. */
+struct builtin mmuxbashlibcmathinit_struct = {
+  .name		= "mmuxbashlibcmathinit",		/* Builtin name */
+  .function	= mmuxbashlibcmathinit_builtin,		/* Function implementing the builtin */
+  .flags	= BUILTIN_ENABLED,				/* Initial flags for builtin */
+  .long_doc	= mmuxbashlibcmathinit_doc,		/* Array of long documentation strings. */
+  .short_doc	= "mmuxbashlibcmathinit FORMAT_STRING [OLD_FORMAT_VARNAME]",	/* Usage synopsis; becomes short_doc */
+  .handle	= 0						/* Reserved for internal use */
+};
+#if 0
+/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
+   function returns 0, the load fails. */
+int
+mmuxbashlibcmathinit_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
+{
+  return 1;
+}
+/* Called when `mmuxbashlibcmathinit' is disabled. */
+void
+mmuxbashlibcmathinit_builtin_unload (char *name)
+{
+}
+#endif
 
 
 /** --------------------------------------------------------------------
@@ -349,16 +386,14 @@ struct builtin mmuxbashlibcmathdoubleformat_struct = {
   .handle	= 0						/* Reserved for internal use */
 };
 
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
 mmuxbashlibcmathdoubleformat_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_bash_libc_math_library_init();
   return 1;
 }
-
-#if 0
 /* Called when `mmuxbashlibcmathdoubleformat' is disabled. */
 void
 mmuxbashlibcmathdoubleformat_builtin_unload (char *name)
