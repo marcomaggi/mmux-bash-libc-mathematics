@@ -1,4 +1,4 @@
-# cctemplate
+# MMUX Bash Libc Mathematics
 
 ## Introduction
 
