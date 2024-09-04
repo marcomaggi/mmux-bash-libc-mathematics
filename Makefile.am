@@ -13,6 +13,17 @@ CLEANFILES		=
 nodist_pkgconfig_DATA	= meta/scripts/mmux-bash-libc-mathematics.pc
 
 
+#### MBFL stuff
+
+AM_MBFLPP_FLAGS		= --bash-program="$(BASH_PROGRAM)" --define=__MBFL_LIBDIR__=$(MBFL_LIBDIR) --define=__LIBMBFL_LINKER__=$(MBFL_LIBMBFL_LINKER)
+MBFLPP_PROG_FLAGS	= $(AM_MBFLPP_FLAGS) --add-bash
+
+# We must make sure that these end with a semicolon.
+MBFLPP_PROG_ENV		= MBFL_LIBRARY_PATH=$(builddir)/src/share/mbfl; export MBFL_LIBRARY_PATH;
+
+MBFLPP_PROG_RUN		= $(MBFLPP_PROG_ENV) $(MBFLPP) $(MBFLPP_PROG_FLAGS) $(MBFLPP_FLAGS)
+
+
 #### documentation
 
 EXTRA_DIST		+= doc/mmux-bash-libc-mathematics.style.css
@@ -82,22 +93,53 @@ EXTRA_DIST		+= $(mmux_library_SCRIPTS)
 
 #### tests
 
-MMUX_CHECK_TESTS	=		\
-	tests/arithmetics.bash		\
-	tests/trigonometric.bash
+EXTRA_DIST		+= \
+	tests/arithmetics.test.m4	\
+	tests/trigonometric.test.m4
 
-EXTRA_DIST		+= $(MMUX_CHECK_TESTS)
-TESTS			= $(MMUX_CHECK_TESTS)
+MMUX_CHECK_BUILT_TESTS	=		\
+	tests/arithmetics.test		\
+	tests/trigonometric.test
+
+check_SCRIPTS		= $(MMUX_CHECK_BUILT_TESTS)
+TESTS			= $(MMUX_CHECK_BUILT_TESTS)
+CLEANFILES		+= $(MMUX_CHECK_BUILT_TESTS)
 MMUX_LIBRARY		= $(builddir)/src/libmmux-bash-libc-mathematics.bash
+
+## --------------------------------------------------------------------
+
+MBFL_TESTS_VERBENV	= TESTSUCCESS=yes; export TESTSUCCESS; TESTSTART=yes; export TESTSTART;
+
+# This  environment setting  is used  both  to compile  ".test.m4" files  and to  run
+# ".test" files.
+#
+MBFL_TESTS_ENV		= MBFL_LIBRARY_PATH=$(builddir)/src/share/mbfl; export MBFL_LIBRARY_PATH;
+# We set TMPDIR  because if the "/tmp"  directory is mounted on  a separate partition
+# with  "noexec"  attribute: tests  for  executability  of  files  will fail  if  the
+# temporary test files are created under "/tmp".
+MBFL_TESTS_ENV		+= TMPDIR=$(PWD)/tmp; export TMPDIR;
+MBFL_TESTS_ENV		+= testsdir=$(builddir)/tests; export testsdir;
+MBFL_TESTS_ENV		+= TESTMATCH=$(TESTMATCH); export TESTMATCH;
+MBFL_TESTS_ENV		+= export MMUX_LIBRARY=$(MMUX_LIBRARY);
+MBFL_TESTS_ENV		+= export LD_LIBRARY_PATH=$(builddir)/.libs/:$(LD_LIBRARY_PATH);
+MBFL_TESTS_COMPILE	= $(MBFL_TESTS_ENV) $(MBFLPP_PROG_RUN)
+MBFL_TESTS_FLAGS	= $(MBFLPP_GENERAL_FLAGS)
+
+MBFL_TESTS_PREREQUISITES= $(MMUX_LIBRARY)
 
 # Read "Parallel Test Harness" in the documentation of GNU Automake to
 # understand how to use this interface for "make check".
 #
 # We must make sure that this ends with a semicolon!!!
-AM_TESTS_ENVIRONMENT	= export MMUX_LIBRARY=$(MMUX_LIBRARY); export LD_LIBRARY_PATH=$(builddir)/.libs/:$(LD_LIBRARY_PATH);
-TEST_EXTENSIONS		= .bash
+AM_TESTS_ENVIRONMENT	= $(MBFL_TESTS_VERBENV) $(MBFL_TESTS_ENV)
+TEST_EXTENSIONS		= .test
 TEST_LOG_COMPILER	= $(BASH_PROGRAM)
-AM_TEST_LOG_FLAGS	=
+AM_TEST_LOG_FLAGS	= $(MBFLFLAGS)
+
+## --------------------------------------------------------------------
+
+tests/%.test: tests/%.test.m4 $(MBFL_TESTS_PREREQUISITES)
+	$(MBFL_TESTS_COMPILE) $(MBFL_TESTS_FLAGS) $< >$@
 
 
 #### interface to "make installcheck"

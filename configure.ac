@@ -58,6 +58,7 @@ AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h math.h])
 
 AC_PATH_PROG([BASH_PROGRAM],[/bin/bash],[/bin/bash],[:])
+MBFL_SETUP(v3.0.0)
 
 AC_CACHE_SAVE
 
