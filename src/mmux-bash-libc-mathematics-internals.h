@@ -54,6 +54,8 @@
 #include "shell.h"
 #include "common.h"
 
+#include "mmux-bash-libc-mathematics.h"
+
 
 /** --------------------------------------------------------------------
  ** Preprocessor macros.

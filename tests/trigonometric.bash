@@ -1,3 +1,5 @@
+#!/bin/bash
+#
 # Part of: MMUX Bash Libc Mathematics
 # Contents: tests for trigonometric functions
 # Date: Sep  4, 2024
@@ -31,6 +33,8 @@
 # THIS  SOFTWARE IS  PROVIDED  ON AN  \"AS  IS\" BASIS,  AND  THE AUTHOR  AND  DISTRIBUTORS HAVE  NO
 # OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS.
 #
+
+source "$MMUX_LIBRARY"
 
 sin 1.2
 

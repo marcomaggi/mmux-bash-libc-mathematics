@@ -8,6 +8,9 @@
 #	This library  must be  sourced from an  interactive shell  or from a  script.  It  loads the
 #	shared library and enables the implemented builtins.
 #
+#	The Bash builtin "enable" will search the shared library file in the usual places, including
+#	the directories from "LD_LIBRARY_PATH".
+#
 # Copyright (C) 2024 Marco Maggi <mrc.mgg@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify it under the terms of the GNU
@@ -22,7 +25,12 @@
 # If not, see <http://www.gnu.org/licenses/>.
 #
 
-enable -f libmmux-bash-libc-mathematics.so sin
+declare -rg MMUX_BASH_LIBC_MATHEMATICS_LIBRARY=libmmux-bash-libc-mathematics.so
+declare -rg MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
+declare -rg MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
+declare -rg MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
+
+enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" sin
 
 ### end of file
 # Local Variables:

@@ -80,18 +80,16 @@ MMUX_CHECK_TESTS	=		\
 	tests/trigonometric.bash
 
 EXTRA_DIST		+= $(MMUX_CHECK_TESTS)
-
-check_SCRIPTS		= $(MMUX_CHECK_TESTS)
 TESTS			= $(MMUX_CHECK_TESTS)
-CLEANFILES		+= $(MMUX_CHECK_TESTS)
+MMUX_LIBRARY		= $(builddir)/src/libmmux-bash-libc-mathematics.bash
 
 # Read "Parallel Test Harness" in the documentation of GNU Automake to
 # understand how to use this interface for "make check".
 #
 # We must make sure that this ends with a semicolon!!!
-AM_TESTS_ENVIRONMENT	=
+AM_TESTS_ENVIRONMENT	= export MMUX_LIBRARY=$(MMUX_LIBRARY); export LD_LIBRARY_PATH=$(builddir)/.libs/:$(LD_LIBRARY_PATH);
 TEST_EXTENSIONS		= .bash
-TEST_LOG_COMPILER	= bash
+TEST_LOG_COMPILER	= $(BASH_PROGRAM)
 AM_TEST_LOG_FLAGS	=
 
 

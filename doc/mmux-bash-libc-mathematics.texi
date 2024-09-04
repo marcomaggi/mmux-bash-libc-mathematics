@@ -144,7 +144,6 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * init::                        Library initialisation.
 * version::                     Version functions.
-* conditions::                  Exceptional condition objects.
 
 Appendices
 

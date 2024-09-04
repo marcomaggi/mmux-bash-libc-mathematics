@@ -32,7 +32,7 @@
 static void
 bind_it (const char * name, double value)
 {
-  SHELL_VAR *	v;
+  SHELL_VAR *	v MMUX_BASH_LIBC_MATH_UNUSED;
   char		str[1024];
   int		flags = 0;
 
@@ -40,26 +40,26 @@ bind_it (const char * name, double value)
   v = bind_global_variable(name, str, flags);
 }
 void
-mmux_libc_math_trigonometric_init_module (void)
+mmux_bash_libc_math_trigonometric_init_module (void)
 {
   bind_it("M_E",		M_E);
   bind_it("M_LOG2E",		M_LOG2E);
   bind_it("M_LOG10E",		M_LOG10E);
-  bint_it("M_LN2",		M_LN2);
-  bint_it("M_LN10",		M_LN10);
-  bint_it("M_PI",		M_PI);
-  bint_it("M_PI_2",		M_PI_2);
-  bint_it("M_PI_4",		M_PI_4);
-  bint_it("M_1_PI",		M_1_PI);
-  bint_it("M_2_PI",		M_2_PI);
-  bint_it("M_2_SQRTPI",		M_2_SQRTPI);
-  bint_it("M_SQRT2",		M_SQRT2);
-  bint_it("M_SQRT1_2",		M_SQRT1_2);
-  bint_it("FP_NAN",		FP_NAN);
-  bint_it("FP_INFINITE",	FP_INFINITE);
-  bint_it("FP_ZERO",		FP_ZERO);
-  bint_it("FP_SUBNORMAL",	FP_SUBNORMAL);
-  bint_it("FP_NORMAL",		FP_NORMAL);
+  bind_it("M_LN2",		M_LN2);
+  bind_it("M_LN10",		M_LN10);
+  bind_it("M_PI",		M_PI);
+  bind_it("M_PI_2",		M_PI_2);
+  bind_it("M_PI_4",		M_PI_4);
+  bind_it("M_1_PI",		M_1_PI);
+  bind_it("M_2_PI",		M_2_PI);
+  bind_it("M_2_SQRTPI",		M_2_SQRTPI);
+  bind_it("M_SQRT2",		M_SQRT2);
+  bind_it("M_SQRT1_2",		M_SQRT1_2);
+  bind_it("FP_NAN",		FP_NAN);
+  bind_it("FP_INFINITE",	FP_INFINITE);
+  bind_it("FP_ZERO",		FP_ZERO);
+  bind_it("FP_SUBNORMAL",	FP_SUBNORMAL);
+  bind_it("FP_NORMAL",		FP_NORMAL);
 }
 
 
@@ -105,9 +105,9 @@ struct builtin sin_struct = {
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
-sin_builtin_load (char *name)
+sin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
-  mmux_libc_math_library_init
+  mmux_bash_libc_math_library_init();
   return (1);
 }
 

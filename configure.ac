@@ -7,7 +7,7 @@ AC_INIT([MMUX Bash Libc Mathematics],[MMUX_PACKAGE_VERSION],
   [mrc.mgg@gmail.com],
   [mmux-bash-libc-mathematics],[http://github.com/marcomaggi/mmux-bash-libc-mathematics])
 MMUX_INIT
-MMUX_LIBTOOL_LIBRARY_VERSIONS([mmux-bash-libc-mathematics],1,0,0)
+MMUX_LIBTOOL_LIBRARY_VERSIONS([mmux_bash_libc_mathematics],1,0,0)
 AC_REVISION([0.1])
 AC_COPYRIGHT([Copyright (c) 2024 Marco Maggi <mrc.mgg@gmail.com>
 
@@ -57,6 +57,8 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h math.h])
 
+AC_PATH_PROG([BASH_PROGRAM],[/bin/bash],[/bin/bash],[:])
+
 AC_CACHE_SAVE
 
 
@@ -84,8 +86,9 @@ AC_CACHE_SAVE
 
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_FILES([Makefile]
-   [meta/scripts/mmux-bash-libc-mathematics.pc]
-   [meta/slackware/slack-desc])
+  [src/libmmux-bash-libc-mathematics.bash]
+  [meta/scripts/mmux-bash-libc-mathematics.pc]
+  [meta/slackware/slack-desc])
 MMUX_OUTPUT
 AC_OUTPUT
 
