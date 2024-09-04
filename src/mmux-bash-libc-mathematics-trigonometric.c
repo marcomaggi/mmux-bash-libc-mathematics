@@ -75,6 +75,7 @@ struct builtin sin_struct = {
   .short_doc	= "sin DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -82,7 +83,6 @@ sin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `sin' is disabled. */
 void
 sin_builtin_unload (char *name)
@@ -137,6 +137,7 @@ struct builtin cos_struct = {
   .short_doc	= "cos DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -144,7 +145,6 @@ cos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `cos' is disabled. */
 void
 cos_builtin_unload (char *name)
@@ -199,6 +199,7 @@ struct builtin tan_struct = {
   .short_doc	= "tan DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -206,7 +207,6 @@ tan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `tan' is disabled. */
 void
 tan_builtin_unload (char *name)
@@ -261,6 +261,7 @@ struct builtin asin_struct = {
   .short_doc	= "asin DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -268,7 +269,6 @@ asin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `asin' is disabled. */
 void
 asin_builtin_unload (char *name)
@@ -323,6 +323,7 @@ struct builtin acos_struct = {
   .short_doc	= "acos DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -330,7 +331,6 @@ acos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `acos' is disabled. */
 void
 acos_builtin_unload (char *name)
@@ -385,6 +385,7 @@ struct builtin atan_struct = {
   .short_doc	= "atan DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -392,7 +393,6 @@ atan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `atan' is disabled. */
 void
 atan_builtin_unload (char *name)
@@ -451,6 +451,7 @@ struct builtin atan2_struct = {
   .short_doc	= "atan2 DOUBLE",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -458,7 +459,6 @@ atan2_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `atan2' is disabled. */
 void
 atan2_builtin_unload (char *name)
@@ -513,6 +513,7 @@ struct builtin csin_struct = {
   .short_doc	= "csin COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -520,7 +521,6 @@ csin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `csin' is disabled. */
 void
 csin_builtin_unload (char *name)
@@ -575,6 +575,7 @@ struct builtin ccos_struct = {
   .short_doc	= "ccos COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -582,7 +583,6 @@ ccos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `ccos' is disabled. */
 void
 ccos_builtin_unload (char *name)
@@ -637,6 +637,7 @@ struct builtin ctan_struct = {
   .short_doc	= "ctan COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -644,7 +645,6 @@ ctan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `ctan' is disabled. */
 void
 ctan_builtin_unload (char *name)
@@ -699,6 +699,7 @@ struct builtin casin_struct = {
   .short_doc	= "casin COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -706,7 +707,6 @@ casin_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `casin' is disabled. */
 void
 casin_builtin_unload (char *name)
@@ -761,6 +761,7 @@ struct builtin cacos_struct = {
   .short_doc	= "cacos COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -768,7 +769,6 @@ cacos_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `cacos' is disabled. */
 void
 cacos_builtin_unload (char *name)
@@ -823,6 +823,7 @@ struct builtin catan_struct = {
   .short_doc	= "catan COMPLEX",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -830,7 +831,6 @@ catan_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-#if 0
 /* Called when `catan' is disabled. */
 void
 catan_builtin_unload (char *name)

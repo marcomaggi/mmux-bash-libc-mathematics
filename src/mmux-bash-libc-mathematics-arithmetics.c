@@ -67,12 +67,10 @@ add_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
 }
-
 static char * add_doc[] = {
   "Compute the addition between floating point numbers, print the result on stdout.",
   (char *)NULL
 };
-
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
 struct builtin add_struct = {
@@ -83,7 +81,7 @@ struct builtin add_struct = {
   .short_doc	= "add DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
-
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -91,8 +89,6 @@ add_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-
-#if 0
 /* Called when `add' is disabled. */
 void
 add_builtin_unload (char *name)
@@ -139,12 +135,10 @@ sub_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
 }
-
 static char * sub_doc[] = {
   "Compute the subtraction between floating point numbers, print the result on stdout.",
   (char *)NULL
 };
-
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
 struct builtin sub_struct = {
@@ -155,7 +149,7 @@ struct builtin sub_struct = {
   .short_doc	= "sub DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
-
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -163,8 +157,6 @@ sub_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-
-#if 0
 /* Called when `sub' is disabled. */
 void
 sub_builtin_unload (char *name)
@@ -211,12 +203,10 @@ mul_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
 }
-
 static char * mul_doc[] = {
   "Compute the multiplication between floating point numbers, print the result on stdout.",
   (char *)NULL
 };
-
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
 struct builtin mul_struct = {
@@ -227,7 +217,7 @@ struct builtin mul_struct = {
   .short_doc	= "mul DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
-
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -235,8 +225,6 @@ mul_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-
-#if 0
 /* Called when `mul' is disabled. */
 void
 mul_builtin_unload (char *name)
@@ -283,12 +271,10 @@ div_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
 }
-
 static char * div_doc[] = {
   "Compute the division between floating point numbers, print the result on stdout.",
   (char *)NULL
 };
-
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
 struct builtin div_struct = {
@@ -299,7 +285,7 @@ struct builtin div_struct = {
   .short_doc	= "div DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
-
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -307,8 +293,6 @@ div_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-
-#if 0
 /* Called when `div' is disabled. */
 void
 div_builtin_unload (char *name)
@@ -349,12 +333,10 @@ neg_builtin (WORD_LIST * list)
     return EXECUTION_FAILURE;
   }
 }
-
 static char * neg_doc[] = {
   "Compute the negation of a floating point number, print the result on stdout.",
   (char *)NULL
 };
-
 /* Bash will search for this struct  building the name "ciao_struct" from the command
    line argument "ciao" we have given to the "enable" builtin. */
 struct builtin neg_struct = {
@@ -365,7 +347,7 @@ struct builtin neg_struct = {
   .short_doc	= "neg DOUBLE",		/* Usage synopsis; becomes short_doc */
   .handle	= 0			/* Reserved for internal use */
 };
-
+#if 0
 /* Called when  the builtin is  enabled and loaded from  the shared object.   If this
    function returns 0, the load fails. */
 int
@@ -373,14 +355,11 @@ neg_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   return (1);
 }
-
-#if 0
 /* Called when `neg' is disabled. */
 void
 neg_builtin_unload (char *name)
 {
 }
 #endif
-
 
 /* end of file */
