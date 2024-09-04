@@ -61,7 +61,8 @@
  ** Preprocessor macros.
  ** ----------------------------------------------------------------- */
 
-
+#undef  MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT
+#define MMUX_BASH_LIBC_MATH_DEFAULT_RESULT_FORMAT	"%lf"
 
 
 /** --------------------------------------------------------------------

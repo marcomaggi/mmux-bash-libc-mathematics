@@ -7,6 +7,8 @@ dist_doc_DATA		= README COPYING
 AM_CFLAGS		= $(MMUX_CFLAGS)
 AM_CPPFLAGS		= -I$(srcdir)/src
 CLEANFILES		=
+DISTCLEANFILES		=
+BUILT_SOURCES		=
 
 ## --------------------------------------------------------------------
 
@@ -22,6 +24,19 @@ MBFLPP_PROG_FLAGS	= $(AM_MBFLPP_FLAGS) --add-bash
 MBFLPP_PROG_ENV		= MBFL_LIBRARY_PATH=$(builddir)/src/share/mbfl; export MBFL_LIBRARY_PATH;
 
 MBFLPP_PROG_RUN		= $(MBFLPP_PROG_ENV) $(MBFLPP) $(MBFLPP_PROG_FLAGS) $(MBFLPP_FLAGS)
+
+
+#### Automake dirstamp files
+
+MMUX_AM_DIRSTAMP_FILES	= \
+	tests/$(am__dirstamp)
+
+BUILT_SOURCES		+= $(MMUX_AM_DIRSTAMP_FILES)
+DISTCLEANFILES		+= $(MMUX_AM_DIRSTAMP_FILES)
+
+tests/$(am__dirstamp):
+	@$(MKDIR_P) tests/
+	@: > $(@)
 
 
 #### documentation
@@ -143,18 +158,32 @@ tests/%.test: tests/%.test.m4 $(MBFL_TESTS_PREREQUISITES)
 
 
 #### interface to "make installcheck"
+
+# This  thing with  the PATH  environment  variable is  needed to  run
+# distcheck successfully.   We need  to remember  that, for  some sick
+# reason, the  Bash built-in "source"  will search for the  file under
+# PATH's directories.
 #
+MBFL_ICHECK_ENV	 = PATH=$(DESTDIR)$(bindir):$$PATH; export PATH;
+MBFL_ICHECK_ENV	+= TMPDIR=$(PWD)/tmp; export TMPDIR;
+MBFL_ICHECK_ENV	+= testsdir=$(builddir)/tests; export testsdir;
+MBFL_ICHECK_RUN	 = $(BASH_PROGRAM) $(MBFL_ICHECK_FLAGS)
+
 # If a  test script executes no  test functions: its exit  code is 77,
 # which signals  GNU Automake's  test harness that  the test  has been
 # skipped.  This is fine when running  "make check", but will cause an
 # error when  running "make installcheck";  so we intercept  that exit
 # code and normalise it to 0.
-
+#
+# We  want  to support  the  case  of  a  ".test" script  being  under
+# "$(srcdir)" rather than under "$(builddir)"; so we look for the file
+# in both directories.
+#
 installcheck-local: $(TESTS)
 	$(MBFL_ICHECK_ENV) RV=0					;\
 	for FILE in $(TESTS)					;\
-	do  echo "running: '$(top_srcdir)/$$FILE'"		;\
-	    if ! bash "$(top_srcdir)/$$FILE"			;\
+	do  echo "running: '$(builddir)/$$FILE'"		;\
+	    if ! $(MBFL_ICHECK_RUN) "$(builddir)/$$FILE"	;\
 	    then RV=$$?; break					;\
 	    fi							;\
 	done							;\

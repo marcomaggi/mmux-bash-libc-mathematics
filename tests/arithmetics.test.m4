@@ -52,12 +52,15 @@ source "$MMUX_LIBRARY"
 #### addition
 
 function arithmetics-add-1.1 () {
+    mmux-bash-libc-math-result-format "%.0lf"
     dotest-equal 1 $(add 1)
 }
 function arithmetics-add-1.2 () {
+    mmux-bash-libc-math-result-format "%.0lf"
     dotest-equal 4 $(add 1 3)
 }
 function arithmetics-add-1.3 () {
+    mmux-bash-libc-math-result-format "%.0lf"
     dotest-equal 9 $(add 1 3 5)
 }
 

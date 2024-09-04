@@ -52,7 +52,14 @@ source "$MMUX_LIBRARY"
 #### real numbers, trigonometric sine
 
 function trigonometric-sin-1.1 () {
-    dotest-equal 1 $(sin 1.2)
+    mbfl_location_enter
+    {
+	mmux-bash-libc-math-result-format "%.5lf" OLDFORMAT
+	mbfl_location_handler "mmux-bash-libc-math-result-format '$OLDFORMAT' &>/dev/null"
+
+	dotest-equal 0.93204 $(sin 1.2)
+    }
+    mbfl_location_leave
 }
 
 
