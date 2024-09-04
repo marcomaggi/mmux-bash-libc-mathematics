@@ -102,7 +102,7 @@ mmux_bash_libc_math_library_init (void)
 int
 mmux_bash_libc_math_print_result (double rop)
 {
-  if (1) {
+  if (0) {
     fprintf(stderr, "%s: using result format: %s\n", __func__, mmux_bash_libc_math_result_format);
   }
   printf(mmux_bash_libc_math_result_format, rop);
@@ -115,13 +115,13 @@ mmux_bash_libc_math_result_format_set (const char * new_result_format)
   int	new_result_format_len = strlen(new_result_format);
 
   if (new_result_format_len <= MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN) {
-    if (1) {
+    if (0) {
       fprintf(stderr, "%s: setting new format: %s\n", __func__, new_result_format);
     }
     /* We tell "strncpy()" to copy the from  buffer and fill everything else with nul
        bytes.  See the documentation of "strncpy()". */
     strncpy(mmux_bash_libc_math_result_format, new_result_format, MMUX_BASH_LIBC_MATH_RESULT_FORMAT_MAXLEN);
-    if (1) {
+    if (0) {
       fprintf(stderr, "%s: result format is now: %s\n", __func__, mmux_bash_libc_math_result_format);
     }
     return EXECUTION_SUCCESS;
@@ -234,7 +234,7 @@ int
 mmuxbashlibcmathresultformat_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
 {
   mmux_bash_libc_math_library_init();
-  return (1);
+  return 1;
 }
 
 #if 0
