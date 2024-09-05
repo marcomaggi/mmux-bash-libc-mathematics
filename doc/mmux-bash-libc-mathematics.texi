@@ -227,7 +227,21 @@ Return an integer representing the library interface current age.
 
 
 Under @gnu{} Bash: everything is a string.  Every time we call a builtin: its arguments are just
-strings and we have to convert them into internal C language @code{double} representations.
+strings and we have to convert them into internal floating--point number representations.
+
+In this documentation: every argument @var{REAL} is meant to be a string representation of a C
+language type @code{double float}; every argument @var{complex} is meant to be a @strong{special}
+string representation of a C language type @code{complex double}.
+
+This pakcage's ``official'' representation of complex numbers is like this:
+
+@example
+(1.2)+i*(3.4)
+@end example
+
+@noindent
+in which both the real part @samp{1.2} and the imaginary part @samp{3.4} are enclosed in
+parentheses; this way any format for the real numbers can be used in the representation.
 
 
 @deffn Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT}
@@ -258,11 +272,11 @@ $OLD_FORMAT     @print{} "%lf"
 @chapter Arithmetics builtins
 
 
-@deffn Builtin add @varo{DOUBLE} @vari{DOUBLE} @dots{}
+@deffn Builtin add @varo{REAL} @vari{REAL} @dots{}
 Print a string which is the result of the operation:
 
 @example
-@varo{DOUBLE} + @vari{DOUBLE} + @dots{}
+@varo{REAL} + @vari{REAL} + @dots{}
 @end example
 
 If only one operand is given: print that operand.
@@ -273,11 +287,11 @@ add 1.3 2.5             @print{} 3.80000
 @end deffn
 
 
-@deffn Builtin sub @varo{DOUBLE} @vari{DOUBLE} @dots{}
+@deffn Builtin sub @varo{REAL} @vari{REAL} @dots{}
 Print a string which is the result of the operation:
 
 @example
-@varo{DOUBLE} - (@vari{DOUBLE} + @dots{})
+@varo{REAL} - (@vari{REAL} + @dots{})
 @end example
 
 If only one operand is given: print that operand.
@@ -289,11 +303,11 @@ sub 10 1 3              @print{} 6.00000
 @end deffn
 
 
-@deffn Builtin mul @varo{DOUBLE} @vari{DOUBLE} @dots{}
+@deffn Builtin mul @varo{REAL} @vari{REAL} @dots{}
 Print a string which is the result of the operation:
 
 @example
-@varo{DOUBLE} * @vari{DOUBLE} * @dots{}
+@varo{REAL} * @vari{REAL} * @dots{}
 @end example
 
 If only one operand is given: print that operand.
@@ -304,11 +318,11 @@ mul 2 3 5               @print{} 30.00000
 @end deffn
 
 
-@deffn Builtin div @varo{DOUBLE} @vari{DOUBLE} @dots{}
+@deffn Builtin div @varo{REAL} @vari{REAL} @dots{}
 Print a string which is the result of the operation:
 
 @example
-@varo{DOUBLE} / (@vari{DOUBLE} * @dots{})
+@varo{REAL} / (@vari{REAL} * @dots{})
 @end example
 
 If only one operand is given: print that operand.
@@ -320,11 +334,11 @@ div 24 2 3              @print{} 4.00000
 @end deffn
 
 
-@deffn Builtin neg @var{DOUBLE}
+@deffn Builtin neg @var{REAL}
 Print a string which is the result of the operation:
 
 @example
-- @var{DOUBLE}
+- @var{REAL}
 @end example
 
 @noindent
@@ -397,11 +411,11 @@ just invert the sign of the operand.
 @chapter Trigonometric builtins
 
 
-@deffn Builtin sin @var{DOUBLE}
-@deffnx Builtin cos @var{DOUBLE}
-@deffnx Builtin tan @var{DOUBLE}
+@deffn Builtin sin @var{REAL}
+@deffnx Builtin cos @var{REAL}
+@deffnx Builtin tan @var{REAL}
 Print a string representing the result of applying the trigonometric sine, cosine and tangent
-function to @var{DOUBLE}.
+function to @var{REAL}.
 
 @example
 sin 1.2                 @print{} 0.93204
@@ -410,12 +424,12 @@ cos 1.2                 @print{} 0.93204
 @end deffn
 
 
-@deffn Builtin asin @var{DOUBLE}
-@deffnx Builtin acos @var{DOUBLE}
-@deffnx Builtin atan @var{DOUBLE}
-@deffnx Builtin atan2 @vari{DOUBLE} @varii{DOUBLE}
+@deffn Builtin asin @var{REAL}
+@deffnx Builtin acos @var{REAL}
+@deffnx Builtin atan @var{REAL}
+@deffnx Builtin atan2 @vari{REAL} @varii{REAL}
 Print a string representing the result of applying the trigonometric arc sine, arc cosine and arc
-tangent function to @var{DOUBLE}.
+tangent function to @var{REAL}.
 
 @example
 atan2 0.2 0.3           @print{} 0.5880
