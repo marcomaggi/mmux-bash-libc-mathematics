@@ -145,6 +145,7 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * version::                     Version functions.
 * format::                      Input and output formats.
+* complex::                     Complex numbers utilities.
 * comparison::                  Comparison builtins.
 * sorting::                     Sorting builtins.
 * arithmetics::                 Arithmetics builtins.
@@ -265,6 +266,46 @@ variable @var{OLD_FORMAT_VARNAME}.
 mmux-bash-libc-math-double-format "%.1lf" OLD_FORMAT
 
 $OLD_FORMAT     @print{} "%lf"
+@end example
+@end deffn
+
+@c page
+@node complex
+@chapter Complex numbers utilities
+
+
+@deffn Builtin creal @var{COMPLEX}
+Print a string representing the real part of the operand, a real number.
+
+@example
+creal '(1.2)+i*(3.4)'           @print{} 1.2
+@end example
+@end deffn
+
+
+@deffn Builtin cimag @var{COMPLEX}
+Print a string representing the imaginary part of the operand, a real number.
+
+@example
+cimag '(1.2)+i*(3.4)'           @print{} 3.4
+@end example
+@end deffn
+
+
+@deffn Builtin conj @var{COMPLEX}
+Print a string representing the conjugate of the operand.
+
+@example
+conjugate '(1.2)+i*(3.4)'       @print{} '(1.2)+i*(-3.4)'
+@end example
+@end deffn
+
+
+@deffn Builtin carg @var{COMPLEX}
+Print a string representing the argument of the operand, a real number.
+
+@example
+carg '(1.2)+i*(3.4)'            @print{} 1.231504
 @end example
 @end deffn
 

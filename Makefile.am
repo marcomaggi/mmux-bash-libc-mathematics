@@ -99,6 +99,7 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 	src/mmux-bash-libc-mathematics-library.c	\
 	src/mmux-bash-libc-mathematics-comparison.c	\
 	src/mmux-bash-libc-mathematics-sorting.c	\
+	src/mmux-bash-libc-mathematics-complex.c	\
 	src/mmux-bash-libc-mathematics-arithmetics.c	\
 	src/mmux-bash-libc-mathematics-trigonometric.c
 
@@ -121,12 +122,14 @@ EXTRA_DIST		+= $(mmux_library_SCRIPTS)
 EXTRA_DIST		+= \
 	tests/arithmetics.test.m4	\
 	tests/comparison.test.m4	\
+	tests/complex.test.m4		\
 	tests/sorting.test.m4		\
 	tests/trigonometric.test.m4
 
 MMUX_CHECK_BUILT_TESTS	=		\
 	tests/arithmetics.test		\
 	tests/comparison.test		\
+	tests/complex.test		\
 	tests/sorting.test		\
 	tests/trigonometric.test
 

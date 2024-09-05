@@ -42,6 +42,7 @@ then
 	    cadd csub cmul cdiv cneg cabs					\
 	    isgreater isgreaterequal isless islessequal islessgreater isunordered	\
 	    min max								\
+	    creal cimag conj carg						\
 	    sin cos tan asin acos atan atan2					\
 	    csin ccos ctan casin cacos catan
     do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"
