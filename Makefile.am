@@ -76,6 +76,11 @@ install-html-local:
 
 #### libraries
 
+EXTRA_DIST	+= \
+	src/mmux-bash-libc-mathematics.m4			\
+	src/mmux-bash-libc-mathematics-arithmetics.c.m4		\
+	src/mmux-bash-libc-mathematics-trigonometric.c.m4
+
 mmux_bash_libc_mathematics_CURRENT		= @mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
 mmux_bash_libc_mathematics_REVISION		= @mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
 mmux_bash_libc_mathematics_AGE			= @mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
@@ -98,6 +103,9 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 .PHONY: library
 
 library: libmmux-bash-libc-mathematics.la
+
+src/%.c: src/%.c.m4 src/mmux-bash-libc-mathematics.m4
+	$(M4_PROGRAM) --prefix-builtins $(top_srcdir)/src/mmux-bash-libc-mathematics.m4 $< >$@
 
 ## ------------------------------------------------------------------------
 

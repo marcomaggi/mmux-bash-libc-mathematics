@@ -57,6 +57,7 @@ AC_HEADER_STDC
 AC_HEADER_SYS_WAIT
 AC_CHECK_HEADERS([assert.h stdint.h strings.h errno.h stddef.h math.h])
 
+AC_PATH_PROG([M4_PROGRAM],[m4])
 AC_PATH_PROG([BASH_PROGRAM],[/bin/bash],[/bin/bash],[:])
 
 AC_ARG_ENABLE([mbfl],

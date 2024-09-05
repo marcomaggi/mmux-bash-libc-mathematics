@@ -32,69 +32,23 @@
 static int
 add_main (int argc,  char * argv[])
 {
-  if (2 > argc) {
-    builtin_usage();
-    return EX_USAGE;
-  } else {
-    double	op, rop = 0.0;
-    int		rv;
+  double	op, rop = 0.0;
+  int		rv;
 
-    rv = mmux_bash_libc_math_parse_double(&op, argv[1], "add");
+  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "add");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  rop = op;
+
+  for (int i = 2; i < argc; ++i) {
+    rv = mmux_bash_libc_math_parse_double(&op, argv[i], "add");
     if (EXECUTION_SUCCESS != rv) { return rv; }
-    rop = op;
-
-    for (int i = 2; i < argc; ++i) {
-      rv = mmux_bash_libc_math_parse_double(&op, argv[i], "add");
-      if (EXECUTION_SUCCESS != rv) { return rv; }
-      rop += op;
-    }
-    return mmux_bash_libc_math_print_double(rop);
+    rop += op;
   }
+  return mmux_bash_libc_math_print_double(rop);
 }
-static int
-add_builtin (WORD_LIST * list)
-{
-  char **	argv;
-  int		argc;
-
-  argv = make_builtin_argv(list, &argc);
-  if (argv) {
-    int		rv = add_main(argc, argv);
-    free(argv);
-    return rv;
-  } else {
-    fprintf(stderr, "add: error: internal error accessing list of builtin operands\n");
-    return EXECUTION_FAILURE;
-  }
-}
-static char * add_doc[] = {
-  "Compute the addition between floating point numbers, print the result on stdout.",
-  (char *)NULL
-};
-/* Bash will search for this struct  building the name "ciao_struct" from the command
-   line argument "ciao" we have given to the "enable" builtin. */
-struct builtin add_struct = {
-  .name		= "add",		/* Builtin name */
-  .function	= add_builtin,		/* Function implementing the builtin */
-  .flags	= BUILTIN_ENABLED,	/* Initial flags for builtin */
-  .long_doc	= add_doc,		/* Array of long documentation strings. */
-  .short_doc	= "add DOUBLE DOUBLE ...",	/* Usage synopsis; becomes short_doc */
-  .handle	= 0			/* Reserved for internal use */
-};
-#if 0
-/* Called when  the builtin is  enabled and loaded from  the shared object.   If this
-   function returns 0, the load fails. */
-int
-add_builtin_load (char *name MMUX_BASH_LIBC_MATH_UNUSED)
-{
-  return (1);
-}
-/* Called when `add' is disabled. */
-void
-add_builtin_unload (char *name)
-{
-}
-#endif
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[add]]],[[[(2 > argc)]]],
+    [[["add DOUBLE DOUBLE ..."]]],
+    [[["Compute the addition between floating point numbers, print the result on stdout."]]])
 
 
 static int
