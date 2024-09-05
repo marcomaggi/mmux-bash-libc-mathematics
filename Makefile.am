@@ -177,6 +177,7 @@ tests/%.test: tests/%.test.m4 $(MBFL_TESTS_PREREQUISITES)
 MBFL_ICHECK_ENV	 = PATH=$(DESTDIR)$(bindir):$$PATH; export PATH;
 MBFL_ICHECK_ENV	+= TMPDIR=$(PWD)/tmp; export TMPDIR;
 MBFL_ICHECK_ENV	+= testsdir=$(builddir)/tests; export testsdir;
+MBFL_ICHECK_ENV	+= export MMUX_LIBRARY=$(DESTDIR)$(mmux_bashlibdir)/libmmux-bash-libc-mathematics.bash
 MBFL_ICHECK_RUN	 = $(BASH_PROGRAM) $(MBFL_ICHECK_FLAGS)
 
 # If a  test script executes no  test functions: its exit  code is 77,
