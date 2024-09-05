@@ -123,6 +123,7 @@ EXTRA_DIST		+= \
 	tests/arithmetics.test.m4	\
 	tests/comparison.test.m4	\
 	tests/complex.test.m4		\
+	tests/format.test.m4		\
 	tests/sorting.test.m4		\
 	tests/trigonometric.test.m4
 
@@ -130,6 +131,7 @@ MMUX_CHECK_BUILT_TESTS	=		\
 	tests/arithmetics.test		\
 	tests/comparison.test		\
 	tests/complex.test		\
+	tests/format.test		\
 	tests/sorting.test		\
 	tests/trigonometric.test
 

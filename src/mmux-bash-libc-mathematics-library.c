@@ -29,10 +29,16 @@
 #include "mmux-bash-libc-mathematics-internals.h"
 
 #undef  MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN
-#define MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN		63
+#define MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN		8
 static char mmux_bash_libc_math_double_format[1+MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN];
 
+/* This regular expression is used to parse this package's standard format of complex
+   double numbers.  */
 static regex_t mmux_bash_libc_math_complex_rex;
+
+/* This  regular expression  is used  to validate  the format  specifiers for  double
+   numbers.  */
+static regex_t mmux_bash_libc_math_double_format_rex;
 
 
 /** --------------------------------------------------------------------
@@ -83,9 +89,15 @@ mmuxbashlibcmathinit_builtin (WORD_LIST * list MMUX_BASH_LIBC_MATH_UNUSED)
    * is my understanding, is actually possible.  (Marco Maggi; Sep  4, 2024)
    */
   {
-    int	rv;
+    int	rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([^)]\\+\\))+i\\*(\\([^)]\\+\\))$", 0);
+    if (rv) {
+      fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
+      return EXECUTION_FAILURE;
+    }
+  }
 
-    rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([^)]\\+\\))+i\\*(\\([^)]\\+\\))$", 0);
+  {
+    int rv = regcomp(&mmux_bash_libc_math_double_format_rex, "^%[+-\\#\\'\\ ]*[0-9]*\\.\\?[0-9]*l\\?[feEgGaA]$", REG_NOSUB);
     if (rv) {
       fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
       return EXECUTION_FAILURE;
@@ -158,20 +170,38 @@ mmux_bash_libc_math_double_format_set (const char * new_result_format)
 {
   int	new_result_format_len = strlen(new_result_format);
 
-  if (new_result_format_len <= MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN) {
-    if (0) {
-      fprintf(stderr, "%s: setting new double format: %s\n", __func__, new_result_format);
-    }
-    /* We tell "strncpy()" to copy the from  buffer and fill everything else with nul
-       bytes.  See the documentation of "strncpy()". */
-    strncpy(mmux_bash_libc_math_double_format, new_result_format, MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN);
-    if (0) {
-      fprintf(stderr, "%s: double format is now: %s\n", __func__, mmux_bash_libc_math_double_format);
-    }
-    return EXECUTION_SUCCESS;
-  } else {
+  if (new_result_format_len > MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN) {
+    fprintf(stderr, "%s: error setting new double format, string too long (maxlen=%d): %s\n",
+	    __func__, MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN, new_result_format);
     return EXECUTION_FAILURE;
   }
+
+  if (0) {
+    fprintf(stderr, "%s: setting new double format: %s\n", __func__, new_result_format);
+  }
+
+  /* Validate the format string. */
+  {
+    int		rv;
+
+    rv = regexec(&mmux_bash_libc_math_double_format_rex, new_result_format, 0, NULL, 0);
+    if (rv) {
+      char	error_message[1024];
+
+      regerror(rv, &mmux_bash_libc_math_double_format_rex, error_message, 1024);
+      fprintf(stderr, "mmux-bash-libc-math: error: invalid argument, expected double format (%s): \"%s\"\n",
+	      error_message, new_result_format);
+      return EXECUTION_FAILURE;
+    }
+  }
+
+  /* We tell "strncpy()" to copy the from  buffer and fill everything else with nul
+     bytes.  See the documentation of "strncpy()". */
+  strncpy(mmux_bash_libc_math_double_format, new_result_format, MMUX_BASH_LIBC_MATH_DOUBLE_FORMAT_MAXLEN);
+  if (0) {
+    fprintf(stderr, "%s: double format is now: %s\n", __func__, mmux_bash_libc_math_double_format);
+  }
+  return EXECUTION_SUCCESS;
 }
 
 
@@ -199,6 +229,7 @@ mmux_bash_libc_math_print_complex (double complex rop)
 
   if (0.0 == rop_im) {
     mmux_bash_libc_math_print_double(rop_re);
+    return EXECUTION_SUCCESS;
   } else {
     printf("(");
     printf(mmux_bash_libc_math_double_format, rop_re);
