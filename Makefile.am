@@ -101,7 +101,8 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 	src/mmux-bash-libc-mathematics-sorting.c	\
 	src/mmux-bash-libc-mathematics-complex.c	\
 	src/mmux-bash-libc-mathematics-arithmetics.c	\
-	src/mmux-bash-libc-mathematics-trigonometric.c
+	src/mmux-bash-libc-mathematics-trigonometric.c	\
+	src/mmux-bash-libc-mathematics-hyperbolic.c
 
 .PHONY: library
 
@@ -125,6 +126,7 @@ EXTRA_DIST		+= \
 	tests/complex.test.m4		\
 	tests/format.test.m4		\
 	tests/sorting.test.m4		\
+	tests/hyperbolic.test.m4	\
 	tests/trigonometric.test.m4
 
 MMUX_CHECK_BUILT_TESTS	=		\
@@ -133,6 +135,7 @@ MMUX_CHECK_BUILT_TESTS	=		\
 	tests/complex.test		\
 	tests/format.test		\
 	tests/sorting.test		\
+	tests/hyperbolic.test		\
 	tests/trigonometric.test
 
 if MMUX_TESTING_ENABLED
