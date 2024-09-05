@@ -261,6 +261,37 @@ function arithmetics-cneg-2.2 () {
 }
 
 
+#### absolute value
+
+function arithmetics-abs-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 123 $(abs '123')
+}
+function arithmetics-abs-1.2 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 123 $(abs '-123')
+}
+function arithmetics-abs-1.3 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 0 $(abs 0)
+}
+
+### ------------------------------------------------------------------------
+
+function arithmetics-cabs-1.1 () {
+    mmux-bash-libc-math-double-format "%.5lf"
+    dotest-equal '3.60555' $(cabs '(1.2)+i*(3.4)')
+}
+function arithmetics-cabs-1.2 () {
+    mmux-bash-libc-math-double-format "%.5lf"
+    dotest-equal '3.60555' $(cabs '(-1.2)+i*(-3.4)')
+}
+function arithmetics-cabs-1.3 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '0.0' $(cabs '(0.0)+i*(0.0)')
+}
+
+
 #### let's go
 
 dotest arithmetics-

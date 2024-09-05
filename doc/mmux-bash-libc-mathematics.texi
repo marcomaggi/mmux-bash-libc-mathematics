@@ -145,6 +145,8 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * version::                     Version functions.
 * format::                      Input and output formats.
+* comparison::                  Comparison builtins.
+* sorting::                     Sorting builtins.
 * arithmetics::                 Arithmetics builtins.
 * trigonometric::               Trigonometric builtins.
 * hyperbolic::                  Hyperbolic builtins.
@@ -266,10 +268,83 @@ $OLD_FORMAT     @print{} "%lf"
 @end example
 @end deffn
 
+@c page
+@node comparison
+@chapter Comparison builtins
+
+
+@deffn Builtin isgreater @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is greater than @varii{REAL}; otherwise return false.
+
+@example
+if isgreater 2 1
+then echo F yeah
+fi
+@end example
+@end deffn
+
+
+@deffn Builtin isgreaterequal @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is greater than, or equal to, @varii{REAL}; otherwise return false.
+@end deffn
+
+
+@deffn Builtin isless @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is less than @varii{REAL}; otherwise return false.
+@end deffn
+
+
+@deffn Builtin islessequal @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is less than, or equal to, @varii{REAL}; otherwise return false.
+@end deffn
+
+
+@deffn Builtin islessgreater @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is less than, or greater than, @varii{REAL}; otherwise return false.
+@end deffn
+
+
+@deffn Builtin isunordered @vari{REAL} @varii{REAL}
+Return true if @vari{REAL} is unordered with respect to @varii{REAL}; otherwise return false.
+
+@example
+isunordered 2 1                 @result{} 1
+isunordered 1 2                 @result{} 1
+isunordered 1 1                 @result{} 1
+isunordered 'NaN' 1             @result{} 0
+isunordered 1 'NaN'             @result{} 0
+isunordered 'NaN' 'NaN'         @result{} 0
+@end example
+@end deffn
+
+@c page
+@node sorting
+@chapter Sorting builtins
+
+
+@deffn Builtin min @varo{REAL} @vari{REAL} @dots{}
+Print a string representing the minimum among the operands.
+@end deffn
+
+
+@deffn Builtin max @varo{REAL} @vari{REAL} @dots{}
+Print a string representing the maximum among the operands.
+@end deffn
 
 @c page
 @node arithmetics
 @chapter Arithmetics builtins
+
+
+@menu
+* arithmetics real::            Arithmetic operations between real numbers.
+* arithmetics complex::         Arithmetic operations between complex numbers.
+* arithmetics rounding::        Rounding real numbers.
+@end menu
+
+@c page
+@node arithmetics real
+@section Arithmetic operations between real numbers
 
 
 @deffn Builtin add @varo{REAL} @vari{REAL} @dots{}
@@ -334,6 +409,16 @@ div 24 2 3              @print{} 4.00000
 @end deffn
 
 
+@deffn Builtin mod @varo{REAL_NUMERATOR} @vari{REAL_DENOMINATOR}
+Print a string representing the mod of the arguments.
+@end deffn
+
+
+@deffn Builtin remainder @varo{REAL_NUMERATOR} @vari{REAL_DENOMINATOR}
+Print a string representing the remainder of the arguments.
+@end deffn
+
+
 @deffn Builtin neg @var{REAL}
 Print a string which is the result of the operation:
 
@@ -349,7 +434,10 @@ neg 12                  @print{} -12.00000
 @end example
 @end deffn
 
-@c ------------------------------------------------------------------------
+@c page
+@node arithmetics complex
+@section Arithmetic operations between complex numbers
+
 
 @deffn Builtin cadd @varo{COMPLEX} @vari{COMPLEX} @dots{}
 Print a string which is the result of the operation:
@@ -404,6 +492,35 @@ Print a string which is the result of the operation:
 
 @noindent
 just invert the sign of the operand.
+@end deffn
+
+@c page
+@node arithmetics rounding
+@section Rounding real numbers
+
+
+@deffn Builtin ceil @var{REAL}
+Print a string which is the result of applying @cfunc{ceil} to the operand.
+@end deffn
+
+
+@deffn Builtin floor @var{REAL}
+Print a string which is the result of applying @cfunc{floor} to the operand.
+@end deffn
+
+
+@deffn Builtin trunc @var{REAL}
+Print a string which is the result of applying @cfunc{trunc} to the operand.
+@end deffn
+
+
+@deffn Builtin round @var{REAL}
+Print a string which is the result of applying @cfunc{round} to the operand.
+@end deffn
+
+
+@deffn Builtin rint @var{REAL}
+Print a string which is the result of applying @cfunc{rint} to the operand.
 @end deffn
 
 @c page

@@ -130,6 +130,132 @@ MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[neg]]],[[[(2 != argc)]]],
     [[["neg DOUBLE"]]],
     [[["Compute the negation of a floating-point number, print the result on stdout."]]])
 
+/* ------------------------------------------------------------------ */
+
+static int
+abs_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "abs");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(fabs(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[abs]]],[[[(2 != argc)]]],
+    [[["abs DOUBLE"]]],
+    [[["Compute the absolute value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+ceil_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "ceil");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(ceil(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ceil]]],[[[(2 != argc)]]],
+    [[["ceil DOUBLE"]]],
+    [[["Compute the ceil value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+floor_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "floor");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(floor(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[floor]]],[[[(2 != argc)]]],
+    [[["floor DOUBLE"]]],
+    [[["Compute the floor value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+trunc_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "trunc");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(trunc(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[trunc]]],[[[(2 != argc)]]],
+    [[["trunc DOUBLE"]]],
+    [[["Compute the trunc value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+rint_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "rint");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(rint(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[rint]]],[[[(2 != argc)]]],
+    [[["rint DOUBLE"]]],
+    [[["Compute the rint value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+round_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double	op;
+
+  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "round");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(round(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[round]]],[[[(2 != argc)]]],
+    [[["round DOUBLE"]]],
+    [[["Compute the round value of a floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+mod_main (int argc,  char * argv[])
+{
+  double	ops[argc]; /* we allocate one more of these, not a problem */
+
+  for (int i = 1; i < argc; ++i) {
+    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "mod");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+  }
+
+  return mmux_bash_libc_math_print_double(fmod(ops[1], ops[2]));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[mod]]],[[[(3 != argc)]]],
+    [[["mod REAL_NUMERATOR REAL_DENOMINATOR"]]],
+    [[["Compute the mod between two floating-point numbers, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+remainder_main (int argc,  char * argv[])
+{
+  double	ops[argc]; /* we allocate one more of these, not a problem */
+
+  for (int i = 1; i < argc; ++i) {
+    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "remainder");
+    if (EXECUTION_SUCCESS != rv) { return rv; }
+  }
+
+  return mmux_bash_libc_math_print_double(remainder(ops[1], ops[2]));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[remainder]]],[[[(3 != argc)]]],
+    [[["remainder REAL_NUMERATOR REAL_DENOMINATOR"]]],
+    [[["Compute the remainder between two floating-point numbers, print the result on stdout."]]])
+
 
 /** --------------------------------------------------------------------
  ** Arithmetics for complex numbers.
@@ -231,5 +357,21 @@ cneg_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cneg]]],[[[(2 != argc)]]],
     [[["cneg COMPLEX"]]],
     [[["Compute the negation of a complex floating-point number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+cabs_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double complex	op;
+
+  int rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "cabs");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  return mmux_bash_libc_math_print_double(cabs(op));
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cabs]]],[[[(2 != argc)]]],
+    [[["cabs COMPLEX"]]],
+    [[["Compute the absolute value of a complex floating-point number, print the result on stdout."]]])
+
 
 /* end of file */
