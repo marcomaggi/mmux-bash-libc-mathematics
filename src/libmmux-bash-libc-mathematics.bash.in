@@ -39,6 +39,7 @@ then
     for MMUX_BASH_LIBC_MATH_BUILTIN in \
 	mmuxbashlibcmathdoubleformat		\
 	    add sub mul div neg			\
+	    cadd csub cmul cdiv cneg		\
 	    sin cos tan asin acos atan atan2	\
 	    csin ccos ctan casin cacos catan
     do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"

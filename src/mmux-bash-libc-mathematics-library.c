@@ -85,7 +85,7 @@ mmuxbashlibcmathinit_builtin (WORD_LIST * list MMUX_BASH_LIBC_MATH_UNUSED)
   {
     int	rv;
 
-    rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([0-9\\.+-]\\+\\))+i\\*(\\([0-9\\.+-]\\+\\))$", 0);
+    rv = regcomp(&mmux_bash_libc_math_complex_rex, "^(\\([^)]\\+\\))+i\\*(\\([^)]\\+\\))$", 0);
     if (rv) {
       fprintf(stderr, "MMUX Bash Libc Mathematics: internal error: compiling regular expression\n");
       return EXECUTION_FAILURE;
@@ -197,41 +197,57 @@ mmux_bash_libc_math_print_complex (double complex rop)
     fprintf(stderr, "%s: using double format: %s\n", __func__, mmux_bash_libc_math_double_format);
   }
 
-  printf("(");
-  printf(mmux_bash_libc_math_double_format, rop_re);
-  printf(")+i*(");
-  printf(mmux_bash_libc_math_double_format, rop_im);
-  printf(")");
-  return EXECUTION_SUCCESS;
+  if (0.0 == rop_im) {
+    mmux_bash_libc_math_print_double(rop_re);
+  } else {
+    printf("(");
+    printf(mmux_bash_libc_math_double_format, rop_re);
+    printf(")+i*(");
+    printf(mmux_bash_libc_math_double_format, rop_im);
+    printf(")");
+    return EXECUTION_SUCCESS;
+  }
 }
 
 
 /** --------------------------------------------------------------------
- ** Parsing double and complex.
+ ** Parsing real numbers in double format.
  ** ----------------------------------------------------------------- */
+
+static int parse_double (double * p_op, const char * s_op);
 
 int
 mmux_bash_libc_math_parse_double (double * p_op, const char * s_op, const char * caller_name)
 {
+  int	rv = parse_double(p_op, s_op);
+
+  if (EXECUTION_FAILURE == rv) {
+    fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
+  }
+  return rv;
+}
+static int
+parse_double (double * p_op, const char * s_op)
+{
   int	rv;
 
-  /* Try all the formats before giving up. */
+  /* According to  the documentation  of "sscanf()": "%f"  is considered  a universal
+     floating-point format specification; "%g", "%e", "%a" are all accepted subcases.
+     So we try only "%f" and it should recognise all the formats. */
   rv = sscanf(s_op, "%lf", p_op);
-  if ((0 == rv) || (EOF == rv)) {
-    rv = sscanf(s_op, "%lg", p_op);
-    if ((0 == rv) || (EOF == rv)) {
-      rv = sscanf(s_op, "%le", p_op);
-      if ((0 == rv) || (EOF == rv)) {
-	rv = sscanf(s_op, "%la", p_op);
-	if ((0 == rv) || (EOF == rv)) {
-	  fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
-	  return EXECUTION_FAILURE;
-	}
-      }
-    }
+  if ((EOF != rv) && (1 == rv)) {
+    return EXECUTION_SUCCESS;
+  } else {
+    return EXECUTION_FAILURE;
   }
-  return EXECUTION_SUCCESS;
 }
+
+
+/** --------------------------------------------------------------------
+ ** Parsing complex numbers in double format.
+ ** ----------------------------------------------------------------- */
+
+static int parse_complex_parentheses_format (double complex * p_op, const char * s_op, const char * caller_name);
 
 int
 mmux_bash_libc_math_parse_complex (double complex * p_op, const char * s_op, const char * caller_name)
@@ -242,57 +258,95 @@ mmux_bash_libc_math_parse_complex (double complex * p_op, const char * s_op, con
     fprintf(stderr, "%s: error: invalid argument, string too long (max 2048 chars): \"%s\"\n", caller_name, s_op);
     return EXECUTION_FAILURE;
   } else {
-    char	s_op_re[1024];
-    char	s_op_im[1024];
-    double	op_re, op_im;
     int		rv;
-    size_t	nmatch = 3;
-    regmatch_t	match[3];
 
     if (0) {
       fprintf(stderr, "%s: scanning %s\n", __func__, s_op);
     }
 
-    /* First use a regular expression to  extract the real and imaginary parts.  Then
-       we parse the real part and the imaginary part separately. */
-    rv = regexec(&mmux_bash_libc_math_complex_rex, s_op, nmatch, &(match[0]), 0);
-    if (rv) {
+    rv = parse_complex_parentheses_format(p_op, s_op, caller_name);
+    if (EXECUTION_SUCCESS == rv) {
+      return rv;
+    } else {
+      double	op_re;
+
+      rv = parse_double(&op_re, s_op);
+      if (EXECUTION_SUCCESS == rv) {
+	*p_op = op_re + 0.0 * ((double complex)_Complex_I);
+	return EXECUTION_SUCCESS;
+      } else {
+	fprintf(stderr, "%s: error: invalid argument, expected complex number: \"%s\"\n", caller_name, s_op);
+	return EXECUTION_FAILURE;
+      }
+    }
+  }
+}
+
+int
+parse_complex_parentheses_format (double complex * p_op, const char * s_op, const char * caller_name)
+/* Try to parse a complex number in the format: (1.2)+i*(3.4)
+
+   First use  a regular  expression to  extract the real  and imaginary  parts.  Then
+   parse the real part and the imaginary part separately. */
+{
+  double	op_re, op_im;
+  int		rv;
+  char		s_op_re[1024];
+  char		s_op_im[1024];
+  size_t	nmatch = 3;
+  regmatch_t	match[3];
+
+  rv = regexec(&mmux_bash_libc_math_complex_rex, s_op, nmatch, &(match[0]), 0);
+  if (rv) {
+    if (0) {
       char	error_message[1024];
 
       regerror(rv, &mmux_bash_libc_math_complex_rex, error_message, 1024);
-
-      fprintf(stderr, "%s: error: invalid argument, expected complex number: %s: \"%s\"\n", caller_name, error_message, s_op);
-      return EXECUTION_FAILURE;
+      fprintf(stderr, "%s: error: invalid argument, expected complex number (%s): \"%s\"\n", caller_name, error_message, s_op);
     }
+    return EXECUTION_FAILURE;
+  }
 
-    {
-      int	i, imax = match[1].rm_eo - match[1].rm_so;
+  /* Extract the first matching parentetical subexpression, which represents the real
+     part. */
+  {
+    int	i, imax = match[1].rm_eo - match[1].rm_so;
 
-      for (i=0; i < imax; ++i) {
-	s_op_re[i] = s_op[match[1].rm_so + i];
-      }
-      s_op_re[imax] = '\0';
+    for (i=0; i < imax; ++i) {
+      s_op_re[i] = s_op[match[1].rm_so + i];
     }
+    s_op_re[imax] = '\0';
+  }
 
-    {
-      int	i, imax = match[2].rm_eo - match[2].rm_so;
+  /* Extract  the second  matching parentetical  subexpression, which  represents the
+     imaginary part. */
+  {
+    int	i, imax = match[2].rm_eo - match[2].rm_so;
 
-      for (i=0; i < imax; ++i) {
-	s_op_im[i] = s_op[match[2].rm_so + i];
-      }
-      s_op_im[imax] = '\0';
+    for (i=0; i < imax; ++i) {
+      s_op_im[i] = s_op[match[2].rm_so + i];
     }
+    s_op_im[imax] = '\0';
+  }
 
-    if (0) {
-      fprintf(stderr, "%s: scanned re='%s' im='%s'\n", __func__, s_op_re, s_op_im);
-    }
+  if (0) {
+    fprintf(stderr, "%s: scanned re='%s' im='%s'\n", __func__, s_op_re, s_op_im);
+  }
 
+  /* Parse the real part. */
+  {
     rv = mmux_bash_libc_math_parse_double(&op_re, s_op_re, caller_name);
     if (EXECUTION_FAILURE == rv) { return rv; }
+  }
 
+  /* Parse the imaginary part. */
+  {
     rv = mmux_bash_libc_math_parse_double(&op_im, s_op_im, caller_name);
     if (EXECUTION_FAILURE == rv) { return rv; }
+  }
 
+  /* Assemble the complex number. */
+  {
     *p_op = op_re + op_im * ((double complex)_Complex_I);
     return EXECUTION_SUCCESS;
   }

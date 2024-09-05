@@ -64,6 +64,34 @@ function arithmetics-add-1.3 () {
     dotest-equal 9 $(add 1 3 5)
 }
 
+### ------------------------------------------------------------------------
+
+function arithmetics-cadd-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 1 $(cadd 1)
+}
+function arithmetics-cadd-1.2 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 4 $(cadd 1 3)
+}
+function arithmetics-cadd-1.3 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 9 $(cadd 1 3 5)
+}
+
+function arithmetics-cadd-2.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(1.2)+i*(3.4)' $(cadd '(1.2)+i*(3.4)')
+}
+function arithmetics-cadd-2.2 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(6.8)+i*(11.2)' $(cadd '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
+}
+function arithmetics-cadd-2.3 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(4.7)+i*(6.9)' $(cadd '(1.2)+i*(3.4)' '(5.6)+i*(7.8)' '(-2.1)+i*(-4.3)')
+}
+
 
 #### subtraction
 
@@ -84,6 +112,34 @@ function arithmetics-sub-1.4 () {
     dotest-equal 6 $(sub 10 1 3)
 }
 
+### ------------------------------------------------------------------------
+
+function arithmetics-csub-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 1 $(csub 1)
+}
+function arithmetics-csub-1.2 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal -2 $(csub 1 3)
+}
+function arithmetics-csub-1.3 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal -7 $(csub 1 3 5)
+}
+
+function arithmetics-csub-2.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(1.2)+i*(3.4)' $(csub '(1.2)+i*(3.4)')
+}
+function arithmetics-csub-2.2 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(-4.4)+i*(-4.4)' $(csub '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
+}
+function arithmetics-csub-2.3 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(-2.3)+i*(-0.1)' $(csub '(1.2)+i*(3.4)' '(5.6)+i*(7.8)' '(-2.1)+i*(-4.3)')
+}
+
 
 #### multiplication
 
@@ -98,6 +154,34 @@ function arithmetics-mul-1.2 () {
 function arithmetics-mul-1.3 () {
     mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal 30 $(mul 2 3 5)
+}
+
+### ------------------------------------------------------------------------
+
+function arithmetics-cmul-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 1 $(cmul 1)
+}
+function arithmetics-cmul-1.2 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 3 $(cmul 1 3)
+}
+function arithmetics-cmul-1.3 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 15 $(cmul 1 3 5)
+}
+
+function arithmetics-cmul-2.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(1.2)+i*(3.4)' $(cmul '(1.2)+i*(3.4)')
+}
+function arithmetics-cmul-2.2 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(-19.8)+i*(28.4)' $(cmul '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
+}
+function arithmetics-cmul-2.3 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(163.7)+i*(25.5)' $(cmul '(1.2)+i*(3.4)' '(5.6)+i*(7.8)' '(-2.1)+i*(-4.3)')
 }
 
 
@@ -116,6 +200,34 @@ function arithmetics-div-1.3 () {
     dotest-equal 4 $(div 24 2 3)
 }
 
+### ------------------------------------------------------------------------
+
+function arithmetics-cdiv-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal 1 $(cdiv 1)
+}
+function arithmetics-cdiv-1.2 () {
+    mmux-bash-libc-math-double-format "%.4lf"
+    dotest-equal 0.3333 $(cdiv 1 3)
+}
+function arithmetics-cdiv-1.3 () {
+    mmux-bash-libc-math-double-format "%.6lf"
+    dotest-equal 0.066667 $(cdiv 1 3 5)
+}
+
+function arithmetics-cdiv-2.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(1.2)+i*(3.4)' $(cdiv '(1.2)+i*(3.4)')
+}
+function arithmetics-cdiv-2.2 () {
+    mmux-bash-libc-math-double-format "%.5lf"
+    dotest-equal '(0.36052)+i*(0.10499)' $(cdiv '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
+}
+function arithmetics-cdiv-2.3 () {
+    mmux-bash-libc-math-double-format "%.6lf"
+    dotest-equal '(-0.052775)+i*(0.058068)' $(cdiv '(1.2)+i*(3.4)' '(5.6)+i*(7.8)' '(-2.1)+i*(-4.3)')
+}
+
 
 #### negation
 
@@ -126,6 +238,26 @@ function arithmetics-neg-1.1 () {
 function arithmetics-neg-1.2 () {
     mmux-bash-libc-math-double-format "%.0lf"
     dotest-equal -12 $(neg 12)
+}
+
+### ------------------------------------------------------------------------
+
+function arithmetics-cneg-1.1 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal -1 $(cneg 1)
+}
+function arithmetics-cneg-1.2 () {
+    mmux-bash-libc-math-double-format "%.0lf"
+    dotest-equal -12 $(cneg 12)
+}
+
+function arithmetics-cneg-2.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(-1.2)+i*(-3.4)' $(cneg '(1.2)+i*(3.4)')
+}
+function arithmetics-cneg-2.2 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(-5.6)+i*(7.8)' $(cneg '(5.6)+i*(-7.8)')
 }
 
 

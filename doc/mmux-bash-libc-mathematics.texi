@@ -335,6 +335,63 @@ neg 12                  @print{} -12.00000
 @end example
 @end deffn
 
+@c ------------------------------------------------------------------------
+
+@deffn Builtin cadd @varo{COMPLEX} @vari{COMPLEX} @dots{}
+Print a string which is the result of the operation:
+
+@example
+@varo{COMPLEX} + @vari{COMPLEX} + @dots{}
+@end example
+
+If only one operand is given: print that operand.
+@end deffn
+
+
+@deffn Builtin csub @varo{COMPLEX} @vari{COMPLEX} @dots{}
+Print a string which is the result of the operation:
+
+@example
+@varo{COMPLEX} - (@vari{COMPLEX} + @dots{})
+@end example
+
+If only one operand is given: print that operand.
+@end deffn
+
+
+@deffn Builtin cmul @varo{COMPLEX} @vari{COMPLEX} @dots{}
+Print a string which is the result of the operation:
+
+@example
+@varo{COMPLEX} * @vari{COMPLEX} * @dots{}
+@end example
+
+If only one operand is given: print that operand.
+@end deffn
+
+
+@deffn Builtin cdiv @varo{COMPLEX} @vari{COMPLEX} @dots{}
+Print a string which is the result of the operation:
+
+@example
+@varo{COMPLEX} / (@vari{COMPLEX} * @dots{})
+@end example
+
+If only one operand is given: print that operand.
+@end deffn
+
+
+@deffn Builtin cneg @var{COMPLEX}
+Print a string which is the result of the operation:
+
+@example
+- @var{COMPLEX}
+@end example
+
+@noindent
+just invert the sign of the operand.
+@end deffn
+
 @c page
 @node trigonometric
 @chapter Trigonometric builtins
