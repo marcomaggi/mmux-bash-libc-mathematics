@@ -615,6 +615,36 @@ and arc tangent function to @var{COMPLEX}.
 @chapter Hyperbolic builtins
 
 
+@deffn Builtin sinh @var{REAL}
+@deffnx Builtin cosh @var{REAL}
+@deffnx Builtin tanh @var{REAL}
+Print a string representing the result of applying the hyperbolic sine, cosine and tangent
+function to @var{REAL}.
+@end deffn
+
+
+@deffn Builtin asinh @var{REAL}
+@deffnx Builtin acosh @var{REAL}
+@deffnx Builtin atanh @var{REAL}
+Print a string representing the result of applying the hyperbolic arc sine, arc cosine and arc
+tangent function to @var{REAL}.
+@end deffn
+
+
+@deffn Builtin csinh @var{COMPLEX}
+@deffnx Builtin ccosh @var{COMPLEX}
+@deffnx Builtin ctanh @var{COMPLEX}
+Print a string representing the result of applying the complex hyperbolic sine, cosine and
+tangent function to @var{COMPLEX}.
+@end deffn
+
+
+@deffn Builtin casinh @var{COMPLEX}
+@deffnx Builtin cacosh @var{COMPLEX}
+@deffnx Builtin catanh @var{COMPLEX}
+Print a string representing the result of applying the complex hyperbolic arc sine, arc cosine
+and arc tangent function to @var{COMPLEX}.
+@end deffn
 
 @c page
 @c ------------------------------------------------------------
