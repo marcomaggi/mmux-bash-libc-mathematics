@@ -34,6 +34,50 @@
  ** ----------------------------------------------------------------- */
 
 static int
+rectangular_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double		re_op, im_op;
+  double complex	rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_double(&re_op, argv[1], "rectangular");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rv = mmux_bash_libc_math_parse_double(&im_op, argv[2], "rectangular");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = re_op + im_op * ((double complex)_Complex_I);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[rectangular]]],[[[(3 != argc)]]],
+    [[["rectangular DOUBLE_REAL DOUBLE_IMAG"]]],
+    [[["Compose a complex number from its real and imaginary parts, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+polar_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
+{
+  double		magnitude_op, angle_op;
+  double complex	rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_double(&magnitude_op, argv[1], "polar");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rv = mmux_bash_libc_math_parse_double(&angle_op, argv[2], "polar");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = magnitude_op * cos(angle_op) + magnitude_op * sin(angle_op) * ((double complex)_Complex_I);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[polar]]],[[[(3 != argc)]]],
+    [[["polar DOUBLE_MAGNITUDE DOUBLE_ANGLE"]]],
+    [[["Compose a complex number from its magnitude and angle parts, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
 creal_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double complex	op;

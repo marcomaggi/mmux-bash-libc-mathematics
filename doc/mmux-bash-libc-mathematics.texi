@@ -274,6 +274,27 @@ $OLD_FORMAT     @print{} "%lf"
 @chapter Complex numbers utilities
 
 
+@deffn Builtin rectangular @var{REAL_RE} @var{REAL_IM}
+Compose a complex number from its real and imaginary parts, print the result on stdout.
+
+@example
+rectangular 1.2 3.4             @print{} (1.2)+i*(3.4)
+@end example
+@end deffn
+
+
+@deffn Builtin polar @var{REAL_MAGNITUDE} @var{REAL_ANGLE}
+Compose a complex number from its magnitude and angle parts, print the result on stdout.
+
+@example
+declare MAG=$(cabs '(1.2)+i*(3.4)')
+declare ANG=$(carg '(1.2)+i*(3.4)')
+
+polar "$MAG" "$ANG"             @print{} (1.200000001)+i*(3.399999999)
+@end example
+@end deffn
+
+
 @deffn Builtin creal @var{COMPLEX}
 Print a string representing the real part of the operand, a real number.
 

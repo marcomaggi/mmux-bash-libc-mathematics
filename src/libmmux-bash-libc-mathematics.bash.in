@@ -42,6 +42,7 @@ then
 	    cadd csub cmul cdiv cneg cabs						\
 	    isgreater isgreaterequal isless islessequal islessgreater isunordered	\
 	    min max									\
+	    rectangular polar								\
 	    creal cimag conj carg							\
 	    sin   cos   tan   asin   acos   atan atan2					\
 	    csin  ccos  ctan  casin  cacos  catan					\

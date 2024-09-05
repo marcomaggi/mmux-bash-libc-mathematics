@@ -49,6 +49,24 @@ mbfl_linker_source_library_by_stem(tests)
 source "$MMUX_LIBRARY"
 
 
+#### rectangular
+
+function complex-rectangular-1.1 () {
+    mmux-bash-libc-math-double-format "%.1lf"
+    dotest-equal '(1.2)+i*(3.4)' $(rectangular 1.2 3.4)
+}
+
+
+#### polar
+
+function complex-polar-1.1 () {
+    mmux-bash-libc-math-double-format "%.9lf"
+    declare MAG=$(cabs '(1.2)+i*(3.4)')
+    declare ANG=$(carg '(1.2)+i*(3.4)')
+    dotest-equal '(1.200000001)+i*(3.399999999)' $(polar QQ(MAG) QQ(ANG))
+}
+
+
 #### real part
 
 function complex-creal-1.1 () {
