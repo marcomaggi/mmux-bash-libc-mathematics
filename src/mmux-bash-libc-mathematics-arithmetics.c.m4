@@ -128,7 +128,7 @@ neg_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[neg]]],[[[(2 != argc)]]],
     [[["neg DOUBLE"]]],
-    [[["Compute the negision of a floating-point number, print the result on stdout."]]])
+    [[["Compute the negation of a floating-point number, print the result on stdout."]]])
 
 
 /** --------------------------------------------------------------------
@@ -230,6 +230,6 @@ cneg_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cneg]]],[[[(2 != argc)]]],
     [[["cneg COMPLEX"]]],
-    [[["Compute the negision of a complex floating-point number, print the result on stdout."]]])
+    [[["Compute the negation of a complex floating-point number, print the result on stdout."]]])
 
 /* end of file */
