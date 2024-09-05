@@ -43,9 +43,10 @@ then
 	    isgreater isgreaterequal isless islessequal islessgreater isunordered	\
 	    min max									\
 	    creal cimag conj carg							\
-	    sin cos tan asin acos atan atan2						\
-	    csin ccos ctan casin cacos catan						\
-	    sinh ccosh ctanh casinh cacosh catanh
+	    sin   cos   tan   asin   acos   atan atan2					\
+	    csin  ccos  ctan  casin  cacos  catan					\
+	    sinh  cosh  tanh  asinh  acosh  atanh					\
+	    csinh ccosh ctanh casinh cacosh catanh
     do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"
     done
     unset MMUX_BASH_LIBC_MATH_BUILTIN
