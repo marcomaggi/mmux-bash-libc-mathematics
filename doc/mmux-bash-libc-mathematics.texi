@@ -149,6 +149,7 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * comparison::                  Comparison builtins.
 * sorting::                     Sorting builtins.
 * arithmetics::                 Arithmetics builtins.
+* exponentiation::              Exponentiation and logarithms.
 * trigonometric::               Trigonometric builtins.
 * hyperbolic::                  Hyperbolic builtins.
 
@@ -585,6 +586,92 @@ Print a string which is the result of applying @cfunc{round} to the operand.
 Print a string which is the result of applying @cfunc{rint} to the operand.
 @end deffn
 
+@c page
+@node exponentiation
+@chapter Exponentiation and logarithms
+
+
+@deffn Builtin exp @var{REAL}
+Compute @math{e} raised to the power of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin exp2 @var{REAL}
+Compute @math{2} raised to the power of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin exp10 @var{REAL}
+Compute @math{10} raised to the power of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin expm1 @var{REAL}
+Compute @math{exp(@var{REAL}) - 1}, print the result on stdout.
+@end deffn
+
+@c ------------------------------------------------------------------------
+
+@deffn Builtin log @var{REAL}
+Compute the base @math{e} logarithm of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin log2 @var{REAL}
+Compute the base @math{2} logarithm of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin log10 @var{REAL}
+Compute the base @math{10} logarithm of a real number, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin logb @var{REAL}
+Extract the exponent of a real number, print the result on stdout.
+
+@example
+logb 12.3               @print{} 3
+@end example
+@end deffn
+
+
+@deffn Builtin log1p @var{REAL}
+Compute @math{log(1 + @var{REAL})}, print the result on stdout.
+@end deffn
+
+@c ------------------------------------------------------------------------
+
+@deffn Builtin pow @var{REAL_BASE} @var{REAL_EXPONENT}
+Compute @var{REAL_BASE} raised to the power of @var{REAL_EXPONENT}, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin sqrt @var{REAL}
+Compute square root of a real number, print the result on stdout.
+
+@example
+sqrt 64                 @print{} 8
+@end example
+@end deffn
+
+
+@deffn Builtin cbrt @var{REAL}
+Compute cube root of a real number, print the result on stdout.
+
+@example
+cbrt 8                  @print{} 3
+@end example
+@end deffn
+
+
+@deffn Builtin hypot @var{REAL_X} @var{REAL_Y}
+Compute @math{sqrt(X^2 + Y^2)}, print the result on stdout.
+
+@example
+hypot 2 3               @print{} 3.6056
+@end example
+@end deffn
 @c page
 @node trigonometric
 @chapter Trigonometric builtins

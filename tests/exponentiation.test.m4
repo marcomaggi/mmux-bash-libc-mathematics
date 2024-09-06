@@ -141,6 +141,10 @@ function exponentiation-hypot-1.1 () {
     mmux-bash-libc-math-double-format "%.0f"
     dotest-equal $(sqrt $(add $(pow 2 2) $(pow 3 2))) $(hypot 2 3)
 }
+function exponentiation-hypot-1.2 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal 3.6056 $(hypot 2 3)
+}
 
 
 
