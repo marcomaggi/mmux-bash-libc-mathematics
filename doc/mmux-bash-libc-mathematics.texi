@@ -145,6 +145,7 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * overview::                    Overview of the package.
 * version::                     Version functions.
 * format::                      Input and output formats.
+* variables::                   Global variables.
 * complex::                     Complex numbers utilities.
 * comparison::                  Comparison builtins.
 * sorting::                     Sorting builtins.
@@ -269,6 +270,37 @@ mmux-bash-libc-math-double-format "%.1lf" OLD_FORMAT
 $OLD_FORMAT     @print{} "%lf"
 @end example
 @end deffn
+
+@c page
+@node variables
+@chapter Global variables
+
+
+@macro MmuxLibcMathDefvar{NAME}
+@defvr {Global Variable} \NAME\
+The value of the C language constant @samp{\NAME\}.
+@end defvr
+
+@end macro
+
+@MmuxLibcMathDefvar{M_E}
+@MmuxLibcMathDefvar{M_LOG2E}
+@MmuxLibcMathDefvar{M_LOG10E}
+@MmuxLibcMathDefvar{M_LN2}
+@MmuxLibcMathDefvar{M_LN10}
+@MmuxLibcMathDefvar{M_PI}
+@MmuxLibcMathDefvar{M_PI_2}
+@MmuxLibcMathDefvar{M_PI_4}
+@MmuxLibcMathDefvar{M_1_PI}
+@MmuxLibcMathDefvar{M_2_PI}
+@MmuxLibcMathDefvar{M_2_SQRTPI}
+@MmuxLibcMathDefvar{M_SQRT2}
+@MmuxLibcMathDefvar{M_SQRT1_2}
+@MmuxLibcMathDefvar{FP_NAN}
+@MmuxLibcMathDefvar{FP_INFINITE}
+@MmuxLibcMathDefvar{FP_ZERO}
+@MmuxLibcMathDefvar{FP_SUBNORMAL}
+@MmuxLibcMathDefvar{FP_NORMAL}
 
 @c page
 @node complex
