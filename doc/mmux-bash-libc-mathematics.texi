@@ -248,6 +248,12 @@ This package's ``official'' representation of complex numbers is like this:
 in which both the real part @samp{1.2} and the imaginary part @samp{3.4} are enclosed in
 parentheses; this way any format for the real numbers can be used in the representation.
 
+@example
+mmux-bash-libc-math-double-format "%a"
+cadd '(1.2)+i*(3.4)'
+@print{} (0x1.3333333333333p+0)+i*(0x1.b333333333333p+1)
+@end example
+
 
 @deffn Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT}
 @deffnx Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT} @var{OLD_FORMAT_VARNAME}
