@@ -101,6 +101,7 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 	src/mmux-bash-libc-mathematics-sorting.c	\
 	src/mmux-bash-libc-mathematics-complex.c	\
 	src/mmux-bash-libc-mathematics-arithmetics.c	\
+	src/mmux-bash-libc-mathematics-exponentiation.c	\
 	src/mmux-bash-libc-mathematics-trigonometric.c	\
 	src/mmux-bash-libc-mathematics-hyperbolic.c
 
@@ -124,6 +125,7 @@ EXTRA_DIST		+= \
 	tests/arithmetics.test.m4	\
 	tests/comparison.test.m4	\
 	tests/complex.test.m4		\
+	tests/exponentiation.test.m4	\
 	tests/format.test.m4		\
 	tests/sorting.test.m4		\
 	tests/hyperbolic.test.m4	\
@@ -133,6 +135,7 @@ MMUX_CHECK_BUILT_TESTS	=		\
 	tests/arithmetics.test		\
 	tests/comparison.test		\
 	tests/complex.test		\
+	tests/exponentiation.test	\
 	tests/format.test		\
 	tests/sorting.test		\
 	tests/hyperbolic.test		\
