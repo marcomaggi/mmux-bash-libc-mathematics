@@ -109,7 +109,7 @@ function format-f-3.3 () {
 ### ------------------------------------------------------------------------
 
 # Always include a decimal point, even if ".0" requests zero digits after the decimal point.
-function format-f-100.1 () {
+function format-f-4.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%#.0f"
@@ -120,7 +120,7 @@ function format-f-100.1 () {
 ### ------------------------------------------------------------------------
 
 # Group digits.  This is a GNU Extension.
-function format-f-200.1 () {
+function format-f-5.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%'.0f"
@@ -131,7 +131,7 @@ function format-f-200.1 () {
 ### ------------------------------------------------------------------------
 
 # Pad the field with zeros.
-function format-f-300.1 () {
+function format-f-6.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%013.0f"
@@ -140,7 +140,7 @@ function format-f-300.1 () {
 }
 
 # Ignore the padding with zero when left-justification is requested.
-function format-f-300.2 () {
+function format-f-6.2 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%-013.0f"
@@ -151,14 +151,14 @@ function format-f-300.2 () {
 ### ------------------------------------------------------------------------
 
 # Always include a plus/minus sign.
-function format-f-400.1 () {
+function format-f-7.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%+.0f"
     printf -v RESULT '{%s}' "$(add '123456789')"
     dotest-equal '{+123456789}' QQ(RESULT)
 }
-function format-f-400.2 () {
+function format-f-7.2 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%+.0f"
@@ -169,7 +169,7 @@ function format-f-400.2 () {
 ### ------------------------------------------------------------------------
 
 # Left justify, fill with spaces.
-function format-f-500.1 () {
+function format-f-8.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "%-13.0f"
@@ -180,21 +180,21 @@ function format-f-500.1 () {
 ### ------------------------------------------------------------------------
 
 # Prefix with a space if the output does not include a plus/minus sign.
-function format-f-600.1 () {
+function format-f-9.1 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "% .0f"
     printf -v RESULT '{%s}' "$(add '123456789')"
     dotest-equal '{ 123456789}' QQ(RESULT)
 }
-function format-f-600.2 () {
+function format-f-9.2 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "% .0f"
     printf -v RESULT '{%s}' "$(add '-123456789')"
     dotest-equal '{-123456789}' QQ(RESULT)
 }
-function format-f-600.3 () {
+function format-f-9.3 () {
     declare RESULT
 
     mmux-bash-libc-math-double-format "% +.0f"
@@ -208,6 +208,157 @@ function format-f-600.3 () {
 function format-g-1.1 () {
     mmux-bash-libc-math-double-format "%g"
     dotest-equal 1 $(add '1')
+}
+function format-g-1.2 () {
+    mmux-bash-libc-math-double-format "%lg"
+    dotest-equal 1 $(add '1')
+}
+
+### ------------------------------------------------------------------------
+
+# Select the precision.
+function format-g-2.1 () {
+    mmux-bash-libc-math-double-format "%.1g"
+    dotest-equal '1e+08' $(add '123456789.0987654321')
+}
+function format-g-2.2 () {
+    mmux-bash-libc-math-double-format "%.2g"
+    dotest-equal '1.2e+08' $(add '123456789.0987654321')
+}
+function format-g-2.3 () {
+    mmux-bash-libc-math-double-format "%.3g"
+    dotest-equal '1.23e+08' $(add '123456789.0987654321')
+}
+function format-g-2.4 () {
+    mmux-bash-libc-math-double-format "%.4g"
+    dotest-equal '1.235e+08' $(add '123456789.0987654321')
+}
+
+### ------------------------------------------------------------------------
+
+# Select the minimum field width.
+function format-g-3.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%20g"
+    printf -v RESULT '{%s}' "$(add '123456789.0987654321')"
+    dotest-equal '{         1.23457e+08}' QQ(RESULT)
+    #              01234567890123456789
+}
+function format-g-3.2 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%5.0g"
+    printf -v RESULT '{%s}' "$(add '12345')"
+    dotest-equal '{1e+04}' QQ(RESULT)
+    #              01234
+}
+function format-g-3.3 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%6.0g"
+    printf -v RESULT '{%s}' "$(add '12345')"
+    dotest-equal '{ 1e+04}' QQ(RESULT)
+    #              012345
+}
+
+### ------------------------------------------------------------------------
+
+# Always include a decimal point, even if ".0" requests zero digits after the decimal point.
+function format-g-4.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%#.0g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{1.e+08}' QQ(RESULT)
+}
+
+### ------------------------------------------------------------------------
+
+# Group digits.  This is a GNU Extension.
+function format-g-5.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%'.8g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{1.2345679e+08}' QQ(RESULT)
+}
+
+### ------------------------------------------------------------------------
+
+# Pad the field with zeros.
+function format-g-6.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%013.4g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{00001.235e+08}' QQ(RESULT)
+    #              0123456789012
+}
+
+# Ignore the padding with zero when left-justification is requested.
+function format-g-6.2 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%-013.3g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{1.23e+08     }' QQ(RESULT)
+    #              0123456789012
+}
+
+### ------------------------------------------------------------------------
+
+# Always include a plus/minus sign.
+function format-g-7.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%+.0g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{+1e+08}' QQ(RESULT)
+}
+function format-g-7.2 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%+.0g"
+    printf -v RESULT '{%s}' "$(add '-123456789')"
+    dotest-equal '{-1e+08}' QQ(RESULT)
+}
+
+### ------------------------------------------------------------------------
+
+# Left justify, fill with spaces.
+function format-g-8.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "%-13.0g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{1e+08        }' QQ(RESULT)
+    #              0123456789012
+}
+
+### ------------------------------------------------------------------------
+
+# Prefix with a space if the output does not include a plus/minus sign.
+function format-g-9.1 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "% .0g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{ 1e+08}' QQ(RESULT)
+}
+function format-g-9.2 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "% .0g"
+    printf -v RESULT '{%s}' "$(add '-123456789')"
+    dotest-equal '{-1e+08}' QQ(RESULT)
+}
+function format-g-9.3 () {
+    declare RESULT
+
+    mmux-bash-libc-math-double-format "% +.0g"
+    printf -v RESULT '{%s}' "$(add '123456789')"
+    dotest-equal '{+1e+08}' QQ(RESULT)
 }
 
 

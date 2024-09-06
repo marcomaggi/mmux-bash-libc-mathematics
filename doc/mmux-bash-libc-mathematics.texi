@@ -238,7 +238,7 @@ In this documentation: every argument @var{REAL} is meant to be a string represe
 language type @code{double float}; every argument @var{complex} is meant to be a @strong{special}
 string representation of a C language type @code{complex double}.
 
-This pakcage's ``official'' representation of complex numbers is like this:
+This package's ``official'' representation of complex numbers is like this:
 
 @example
 (1.2)+i*(3.4)
@@ -252,12 +252,13 @@ parentheses; this way any format for the real numbers can be used in the represe
 @deffn Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT}
 @deffnx Builtin mmux-bash-libc-math-double-format @var{NEW_FORMAT} @var{OLD_FORMAT_VARNAME}
 When called with one argument: store internally a copy of the string @var{NEW_FORMAT} to be used as
-format for floating--point double numbers.
+format for floating--point real numbers.  If the new format specification is valid: return true and
+print an error message to stderr; otherwise return false.
 
 @example
 add 1 2         @print{} 3.00000
 
-mmux-bash-libc-math-double-format "%.1lf"
+mmux-bash-libc-math-double-format "%.0f"
 add 1 2         @print{} 3
 @end example
 
@@ -265,9 +266,10 @@ When called with two arguments: in addition store the previous format, as a stri
 variable @var{OLD_FORMAT_VARNAME}.
 
 @example
-mmux-bash-libc-math-double-format "%.1lf" OLD_FORMAT
+mmux-bash-libc-math-double-format "%.2f" OLD_FORMAT
+mmux-bash-libc-math-double-format "%.0f" OLD_FORMAT
 
-$OLD_FORMAT     @print{} "%lf"
+$OLD_FORMAT     @print{} "%.2f"
 @end example
 @end deffn
 
