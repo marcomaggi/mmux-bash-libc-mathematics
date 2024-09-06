@@ -279,6 +279,153 @@ $OLD_FORMAT     @print{} "%.2f"
 @end example
 @end deffn
 
+
+@menu
+* format examples f::           Examples with the format @samp{%f}.
+@end menu
+
+@c page
+@node format examples f
+@section Examples with the format @samp{%f}
+
+
+Basic examples:
+
+@example
+mmux-bash-libc-math-double-format "%f"
+add '1'
+@print{} 1.000000
+
+mmux-bash-libc-math-double-format "%lf"
+add '1'
+@print{} 1.000000
+@end example
+
+@c ------------------------------------------------------------------------
+
+Select the precision:
+
+@example
+mmux-bash-libc-math-double-format "%.1f"
+add '123456789.0987654321'
+@print{} 123456789.1
+
+mmux-bash-libc-math-double-format "%.2f"
+add '123456789.0987654321'
+@print{} 123456789.10
+
+mmux-bash-libc-math-double-format "%.3f"
+add '123456789.0987654321'
+@print{} 123456789.099
+
+mmux-bash-libc-math-double-format "%.4f"
+add '123456789.0987654321
+@print{} 123456789.0988
+@end example
+
+@c ------------------------------------------------------------------------
+
+Select the minimum field width:
+
+@example
+mmux-bash-libc-math-double-format "%20f"
+printf '@{%s@}' "$(add '123456789.0987654321')"
+@print{} @{    123456789.098765@}
+#   01234567890123456789
+@}
+
+mmux-bash-libc-math-double-format "%5.0f"
+printf '@{%s@}' "$(add '12345')"
+@print{} @{12345@}
+
+mmux-bash-libc-math-double-format "%6.0f"
+printf '@{%s@}' "$(add '12345')"
+@print{} @{ 12345@}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Always include a decimal point, even if @samp{.0} requests zero digits after the decimal point:
+
+@example
+mmux-bash-libc-math-double-format "%#.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{123456789.@}
+@}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Group digits; this is a @gnu{} extension:
+
+@example
+mmux-bash-libc-math-double-format "%'.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{123,456,789@}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Pad the field with zeros:
+
+@example
+mmux-bash-libc-math-double-format "%013.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{0000123456789@}
+@}
+@end example
+
+Ignore the padding with zero when left--justification is requested:
+
+@example
+mmux-bash-libc-math-double-format "%-013.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{123456789    @}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Always include a plus/minus sign:
+
+@example
+mmux-bash-libc-math-double-format "%+.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{+123456789@}
+
+mmux-bash-libc-math-double-format "%+.0f"
+printf '@{%s@}' "$(add '-123456789')"
+@print{} @{-123456789@}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Left justify, fill with spaces:
+
+@example
+mmux-bash-libc-math-double-format "%-13.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{123456789    @}
+@}
+@end example
+
+@c ------------------------------------------------------------------------
+
+Prefix with a space if the output does not include a plus/minus sign:
+
+@example
+mmux-bash-libc-math-double-format "% .0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{ 123456789@}
+
+mmux-bash-libc-math-double-format "% .0f"
+printf '@{%s@}' "$(add '-123456789')"
+@print{} @{-123456789@}
+
+mmux-bash-libc-math-double-format "% +.0f"
+printf '@{%s@}' "$(add '123456789')"
+@print{} @{+123456789@}
+@end example
+
 @c page
 @node variables
 @chapter Global variables
