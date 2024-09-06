@@ -39,14 +39,14 @@ min_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "min");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "min");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] = fmin(ops[1], ops[i]);
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[min]]],[[[(2 > argc)]]],
     [[["min DOUBLE DOUBLE ..."]]],
@@ -60,14 +60,14 @@ max_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "max");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "max");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] = fmax(ops[1], ops[i]);
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[max]]],[[[(2 > argc)]]],
     [[["max DOUBLE DOUBLE ..."]]],

@@ -39,14 +39,14 @@ add_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "add");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "add");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] += ops[i];
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[add]]],[[[(2 > argc)]]],
     [[["add DOUBLE DOUBLE ..."]]],
@@ -60,14 +60,14 @@ sub_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "sub");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "sub");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] -= ops[i];
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sub]]],[[[(2 > argc)]]],
     [[["sub DOUBLE DOUBLE ..."]]],
@@ -81,14 +81,14 @@ mul_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "mul");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "mul");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] *= ops[i];
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[mul]]],[[[(2 > argc)]]],
     [[["mul DOUBLE DOUBLE ..."]]],
@@ -102,14 +102,14 @@ div_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "div");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "div");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
   for (int i = 2; i < argc; ++i) {
     ops[1] /= ops[i];
   }
-  return mmux_bash_libc_math_print_double(ops[1]);
+  return mmux_bash_libc_math_print_real(ops[1]);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[div]]],[[[(2 > argc)]]],
     [[["div DOUBLE DOUBLE ..."]]],
@@ -122,9 +122,9 @@ neg_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "neg");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "neg");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(-op);
+  return mmux_bash_libc_math_print_real(-op);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[neg]]],[[[(2 != argc)]]],
     [[["neg DOUBLE"]]],
@@ -137,9 +137,9 @@ abs_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "abs");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "abs");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(fabs(op));
+  return mmux_bash_libc_math_print_real(fabs(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[abs]]],[[[(2 != argc)]]],
     [[["abs DOUBLE"]]],
@@ -152,9 +152,9 @@ ceil_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "ceil");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "ceil");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(ceil(op));
+  return mmux_bash_libc_math_print_real(ceil(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ceil]]],[[[(2 != argc)]]],
     [[["ceil DOUBLE"]]],
@@ -167,9 +167,9 @@ floor_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "floor");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "floor");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(floor(op));
+  return mmux_bash_libc_math_print_real(floor(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[floor]]],[[[(2 != argc)]]],
     [[["floor DOUBLE"]]],
@@ -182,9 +182,9 @@ trunc_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "trunc");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "trunc");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(trunc(op));
+  return mmux_bash_libc_math_print_real(trunc(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[trunc]]],[[[(2 != argc)]]],
     [[["trunc DOUBLE"]]],
@@ -197,9 +197,9 @@ rint_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "rint");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "rint");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(rint(op));
+  return mmux_bash_libc_math_print_real(rint(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[rint]]],[[[(2 != argc)]]],
     [[["rint DOUBLE"]]],
@@ -212,9 +212,9 @@ round_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 {
   double	op;
 
-  int rv = mmux_bash_libc_math_parse_double(&op, argv[1], "round");
+  int rv = mmux_bash_libc_math_parse_real(&op, argv[1], "round");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(round(op));
+  return mmux_bash_libc_math_print_real(round(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[round]]],[[[(2 != argc)]]],
     [[["round DOUBLE"]]],
@@ -228,11 +228,11 @@ mod_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "mod");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "mod");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
-  return mmux_bash_libc_math_print_double(fmod(ops[1], ops[2]));
+  return mmux_bash_libc_math_print_real(fmod(ops[1], ops[2]));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[mod]]],[[[(3 != argc)]]],
     [[["mod REAL_NUMERATOR REAL_DENOMINATOR"]]],
@@ -246,11 +246,11 @@ remainder_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "remainder");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "remainder");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
-  return mmux_bash_libc_math_print_double(remainder(ops[1], ops[2]));
+  return mmux_bash_libc_math_print_real(remainder(ops[1], ops[2]));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[remainder]]],[[[(3 != argc)]]],
     [[["remainder REAL_NUMERATOR REAL_DENOMINATOR"]]],
@@ -367,7 +367,7 @@ cabs_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 
   int rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "cabs");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(cabs(op));
+  return mmux_bash_libc_math_print_real(cabs(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cabs]]],[[[(2 != argc)]]],
     [[["cabs COMPLEX"]]],

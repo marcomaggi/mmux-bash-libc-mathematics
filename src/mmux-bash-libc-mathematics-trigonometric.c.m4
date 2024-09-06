@@ -35,10 +35,10 @@ sin_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "sin");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "sin");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = sin(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sin]]],[[[(2 != argc)]]],
     [[["sin DOUBLE"]]],
@@ -52,10 +52,10 @@ cos_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "cos");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "cos");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = cos(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cos]]],[[[(2 != argc)]]],
     [[["cos DOUBLE"]]],
@@ -69,10 +69,10 @@ tan_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "tan");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "tan");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = tan(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[tan]]],[[[(2 != argc)]]],
     [[["tan DOUBLE"]]],
@@ -85,10 +85,10 @@ asin_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "asin");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "asin");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = asin(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[asin]]],[[[(2 != argc)]]],
     [[["asin DOUBLE"]]],
@@ -102,10 +102,10 @@ acos_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "acos");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "acos");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = acos(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[acos]]],[[[(2 != argc)]]],
     [[["acos DOUBLE"]]],
@@ -119,10 +119,10 @@ atan_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "atan");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "atan");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = atan(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[atan]]],[[[(2 != argc)]]],
     [[["atan DOUBLE"]]],
@@ -136,14 +136,14 @@ atan2_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op1, op2, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op1, argv[1], "atan2");
+  rv = mmux_bash_libc_math_parse_real(&op1, argv[1], "atan2");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
-  rv = mmux_bash_libc_math_parse_double(&op2, argv[2], "atan2");
+  rv = mmux_bash_libc_math_parse_real(&op2, argv[2], "atan2");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
   rop = atan2(op1, op2);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[atan2]]],[[[(3 != argc)]]],
     [[["atan2 DOUBLE"]]],

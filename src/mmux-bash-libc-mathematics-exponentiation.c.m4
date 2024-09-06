@@ -35,10 +35,10 @@ exp_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "exp");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "exp");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = exp(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp]]],[[[(2 != argc)]]],
     [[["exp DOUBLE"]]],
@@ -52,10 +52,10 @@ exp2_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "exp2");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "exp2");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = exp2(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp2]]],[[[(2 != argc)]]],
     [[["exp2 DOUBLE"]]],
@@ -69,10 +69,10 @@ exp10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "exp10");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "exp10");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = exp10(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp10]]],[[[(2 != argc)]]],
     [[["exp10 DOUBLE"]]],
@@ -86,10 +86,10 @@ expm1_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "expm1");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "expm1");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = expm1(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[expm1]]],[[[(2 != argc)]]],
     [[["expm1 DOUBLE"]]],
@@ -102,10 +102,10 @@ log_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "log");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "log");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = log(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log]]],[[[(2 != argc)]]],
     [[["log DOUBLE"]]],
@@ -119,10 +119,10 @@ log2_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "log2");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "log2");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = log2(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log2]]],[[[(2 != argc)]]],
     [[["log2 DOUBLE"]]],
@@ -136,10 +136,10 @@ log10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "log10");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "log10");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = log10(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log10]]],[[[(2 != argc)]]],
     [[["log10 DOUBLE"]]],
@@ -153,10 +153,10 @@ logb_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "logb");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "logb");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = logb(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[logb]]],[[[(2 != argc)]]],
     [[["logb DOUBLE"]]],
@@ -170,10 +170,10 @@ log1p_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "log1p");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "log1p");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = log1p(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log1p]]],[[[(2 != argc)]]],
     [[["log1p DOUBLE"]]],
@@ -186,14 +186,14 @@ pow_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op1, op2, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op1, argv[1], "pow");
+  rv = mmux_bash_libc_math_parse_real(&op1, argv[1], "pow");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
-  rv = mmux_bash_libc_math_parse_double(&op2, argv[2], "pow");
+  rv = mmux_bash_libc_math_parse_real(&op2, argv[2], "pow");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
   rop = pow(op1, op2);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[pow]]],[[[(3 != argc)]]],
     [[["pow DOUBLE_BASE DOUBLE_EXPONENT"]]],
@@ -207,10 +207,10 @@ sqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "sqrt");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "sqrt");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = sqrt(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sqrt]]],[[[(2 != argc)]]],
     [[["sqrt DOUBLE"]]],
@@ -224,10 +224,10 @@ cbrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "cbrt");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "cbrt");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = cbrt(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cbrt]]],[[[(2 != argc)]]],
     [[["cbrt DOUBLE"]]],
@@ -241,14 +241,14 @@ hypot_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op1, op2, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op1, argv[1], "hypot");
+  rv = mmux_bash_libc_math_parse_real(&op1, argv[1], "hypot");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
-  rv = mmux_bash_libc_math_parse_double(&op2, argv[2], "hypot");
+  rv = mmux_bash_libc_math_parse_real(&op2, argv[2], "hypot");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
   rop = hypot(op1, op2);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[hypot]]],[[[(3 != argc)]]],
     [[["hypot DOUBLE_X DOUBLE_Y"]]],

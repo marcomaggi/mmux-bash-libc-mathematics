@@ -119,8 +119,8 @@ mmux_bash_libc_math_decl int		mmux_bash_libc_math_version_interface_age	(void);
 
 mmux_bash_libc_math_decl int mmux_bash_libc_math_double_format_set (const char * new_double_format);
 
-mmux_bash_libc_math_decl int mmux_bash_libc_math_print_double (double rop);
-mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_double (double * op, const char * s_op, const char * caller_name);
+mmux_bash_libc_math_decl int mmux_bash_libc_math_print_real (double rop);
+mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_real (double * op, const char * s_op, const char * caller_name);
 
 mmux_bash_libc_math_decl int mmux_bash_libc_math_print_complex (double complex rop);
 mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_complex (double complex * op, const char * s_op, const char * caller_name);

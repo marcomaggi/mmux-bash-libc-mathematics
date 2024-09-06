@@ -210,7 +210,7 @@ mmux_bash_libc_math_double_format_set (const char * new_result_format)
  ** ----------------------------------------------------------------- */
 
 int
-mmux_bash_libc_math_print_double (double rop)
+mmux_bash_libc_math_print_real (double rop)
 {
   if (0) {
     fprintf(stderr, "%s: using double format: %s\n", __func__, mmux_bash_libc_math_double_format);
@@ -228,7 +228,7 @@ mmux_bash_libc_math_print_complex (double complex rop)
   }
 
   if (0.0 == rop_im) {
-    mmux_bash_libc_math_print_double(rop_re);
+    mmux_bash_libc_math_print_real(rop_re);
     return EXECUTION_SUCCESS;
   } else {
     printf("(");
@@ -245,12 +245,12 @@ mmux_bash_libc_math_print_complex (double complex rop)
  ** Parsing real numbers in double format.
  ** ----------------------------------------------------------------- */
 
-static int parse_double (double * p_op, const char * s_op);
+static int parse_real (double * p_op, const char * s_op);
 
 int
-mmux_bash_libc_math_parse_double (double * p_op, const char * s_op, const char * caller_name)
+mmux_bash_libc_math_parse_real (double * p_op, const char * s_op, const char * caller_name)
 {
-  int	rv = parse_double(p_op, s_op);
+  int	rv = parse_real(p_op, s_op);
 
   if (EXECUTION_FAILURE == rv) {
     fprintf(stderr, "%s: error: invalid argument, expected double: \"%s\"\n", caller_name, s_op);
@@ -258,7 +258,7 @@ mmux_bash_libc_math_parse_double (double * p_op, const char * s_op, const char *
   return rv;
 }
 static int
-parse_double (double * p_op, const char * s_op)
+parse_real (double * p_op, const char * s_op)
 {
   int	rv;
 
@@ -301,7 +301,7 @@ mmux_bash_libc_math_parse_complex (double complex * p_op, const char * s_op, con
     } else {
       double	op_re;
 
-      rv = parse_double(&op_re, s_op);
+      rv = parse_real(&op_re, s_op);
       if (EXECUTION_SUCCESS == rv) {
 	*p_op = op_re + 0.0 * ((double complex)_Complex_I);
 	return EXECUTION_SUCCESS;
@@ -366,13 +366,13 @@ parse_complex_parentheses_format (double complex * p_op, const char * s_op, cons
 
   /* Parse the real part. */
   {
-    rv = mmux_bash_libc_math_parse_double(&op_re, s_op_re, caller_name);
+    rv = mmux_bash_libc_math_parse_real(&op_re, s_op_re, caller_name);
     if (EXECUTION_FAILURE == rv) { return rv; }
   }
 
   /* Parse the imaginary part. */
   {
-    rv = mmux_bash_libc_math_parse_double(&op_im, s_op_im, caller_name);
+    rv = mmux_bash_libc_math_parse_real(&op_im, s_op_im, caller_name);
     if (EXECUTION_FAILURE == rv) { return rv; }
   }
 

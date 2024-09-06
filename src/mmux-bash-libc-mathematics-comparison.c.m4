@@ -39,7 +39,7 @@ isgreater_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "isgreater");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "isgreater");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
@@ -61,7 +61,7 @@ isgreaterequal_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "isgreaterequal");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "isgreaterequal");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
@@ -83,7 +83,7 @@ isless_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "isless");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "isless");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
@@ -105,7 +105,7 @@ islessequal_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "islessequal");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "islessequal");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
@@ -127,7 +127,7 @@ islessgreater_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "islessgreater");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "islessgreater");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 
@@ -149,7 +149,7 @@ isunordered_main (int argc,  char * argv[])
   double	ops[argc]; /* we allocate one more of these, not a problem */
 
   for (int i = 1; i < argc; ++i) {
-    int rv = mmux_bash_libc_math_parse_double(&ops[i], argv[i], "isunordered");
+    int rv = mmux_bash_libc_math_parse_real(&ops[i], argv[i], "isunordered");
     if (EXECUTION_SUCCESS != rv) { return rv; }
   }
 

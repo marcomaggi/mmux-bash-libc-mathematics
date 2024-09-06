@@ -40,10 +40,10 @@ rectangular_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   double complex	rop;
   int			rv;
 
-  rv = mmux_bash_libc_math_parse_double(&re_op, argv[1], "rectangular");
+  rv = mmux_bash_libc_math_parse_real(&re_op, argv[1], "rectangular");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
-  rv = mmux_bash_libc_math_parse_double(&im_op, argv[2], "rectangular");
+  rv = mmux_bash_libc_math_parse_real(&im_op, argv[2], "rectangular");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
   rop = re_op + im_op * ((double complex)_Complex_I);
@@ -62,10 +62,10 @@ polar_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   double complex	rop;
   int			rv;
 
-  rv = mmux_bash_libc_math_parse_double(&magnitude_op, argv[1], "polar");
+  rv = mmux_bash_libc_math_parse_real(&magnitude_op, argv[1], "polar");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
-  rv = mmux_bash_libc_math_parse_double(&angle_op, argv[2], "polar");
+  rv = mmux_bash_libc_math_parse_real(&angle_op, argv[2], "polar");
   if (EXECUTION_SUCCESS != rv) { return rv; }
 
   rop = magnitude_op * cos(angle_op) + magnitude_op * sin(angle_op) * ((double complex)_Complex_I);
@@ -84,7 +84,7 @@ creal_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 
   int rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "creal");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(creal(op));
+  return mmux_bash_libc_math_print_real(creal(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[creal]]],[[[(2 != argc)]]],
     [[["creal COMPLEX"]]],
@@ -99,7 +99,7 @@ cimag_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
 
   int rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "cimag");
   if (EXECUTION_SUCCESS != rv) { return rv; }
-  return mmux_bash_libc_math_print_double(cimag(op));
+  return mmux_bash_libc_math_print_real(cimag(op));
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cimag]]],[[[(2 != argc)]]],
     [[["cimag COMPLEX"]]],

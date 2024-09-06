@@ -35,10 +35,10 @@ sinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "sinh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "sinh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = sinh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sinh]]],[[[(2 != argc)]]],
     [[["sinh DOUBLE"]]],
@@ -52,10 +52,10 @@ cosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "cosh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "cosh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = cosh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cosh]]],[[[(2 != argc)]]],
     [[["cosh DOUBLE"]]],
@@ -69,10 +69,10 @@ tanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "tanh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "tanh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = tanh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[tanh]]],[[[(2 != argc)]]],
     [[["tanh DOUBLE"]]],
@@ -85,10 +85,10 @@ asinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "asinh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "asinh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = asinh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[asinh]]],[[[(2 != argc)]]],
     [[["asinh DOUBLE"]]],
@@ -102,10 +102,10 @@ acosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "acosh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "acosh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = acosh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[acosh]]],[[[(2 != argc)]]],
     [[["acosh DOUBLE"]]],
@@ -119,10 +119,10 @@ atanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   double	op, rop;
   int		rv;
 
-  rv = mmux_bash_libc_math_parse_double(&op, argv[1], "atanh");
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "atanh");
   if (EXECUTION_SUCCESS != rv) { return rv; }
   rop = atanh(op);
-  return mmux_bash_libc_math_print_double(rop);
+  return mmux_bash_libc_math_print_real(rop);
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[atanh]]],[[[(2 != argc)]]],
     [[["atanh DOUBLE"]]],
