@@ -7,7 +7,7 @@ shell; to  do so  it installs a  C language library  and a  shell script
 which is meant to be sourced in a Bash session or script.
 
 The  library targets  POSIX  systems.  Only  for  testing: this  package
-depends on the external package MBFL.
+depends on the external package MBFL (at least version v3.0.0-devel.8).
 
 The  package uses  the  GNU  Autotools and  it  is  tested on  GNU+Linux
 systems.  The  package relies on  `pkg-config` to find  the dependencies
