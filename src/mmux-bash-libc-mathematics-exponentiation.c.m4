@@ -214,7 +214,7 @@ sqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sqrt]]],[[[(2 != argc)]]],
     [[["sqrt DOUBLE"]]],
-    [[["Compute square root a real number, print the result on stdout."]]])
+    [[["Compute the square root a real number, print the result on stdout."]]])
 
 /* ------------------------------------------------------------------ */
 
@@ -231,7 +231,7 @@ cbrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
 }
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cbrt]]],[[[(2 != argc)]]],
     [[["cbrt DOUBLE"]]],
-    [[["Compute cube root a real number, print the result on stdout."]]])
+    [[["Compute the cube root a real number, print the result on stdout."]]])
 
 /* ------------------------------------------------------------------ */
 
@@ -253,5 +253,94 @@ hypot_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[hypot]]],[[[(3 != argc)]]],
     [[["hypot DOUBLE_X DOUBLE_Y"]]],
     [[["Compute 'sqrt(DOUBLE_X^2 + DOUBLE_Y^2)', print the result on stdout."]]])
+
+
+static int
+cexp_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "cexp");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  rop = cexp(op);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cexp]]],[[[(2 != argc)]]],
+    [[["cexp DOUBLE"]]],
+    [[["Compute 'e' raised to the power of a complex number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+clog_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "clog");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  rop = clog(op);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog]]],[[[(2 != argc)]]],
+    [[["clog DOUBLE"]]],
+    [[["Compute the base 'e' logarithm of a complex number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+clog10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "clog10");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  rop = clog10(op);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog10]]],[[[(2 != argc)]]],
+    [[["clog10 DOUBLE"]]],
+    [[["Compute the base '10' logarithm of a complex number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+csqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "csqrt");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+  rop = csqrt(op);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csqrt]]],[[[(2 != argc)]]],
+    [[["csqrt DOUBLE"]]],
+    [[["Compute the square root a complex number, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+cpow_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op1, op2, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op1, argv[1], "cpow");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rv = mmux_bash_libc_math_parse_complex(&op2, argv[2], "cpow");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = cpow(op1, op2);
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cpow]]],[[[(3 != argc)]]],
+    [[["cpow DOUBLE_BASE DOUBLE_EXPONENT"]]],
+    [[["Compute BASE raised to the power of EXPONENT for complex numbers, print the result on stdout."]]])
+
 
 /* end of file */

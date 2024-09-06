@@ -592,7 +592,8 @@ Print a string which is the result of applying @cfunc{rint} to the operand.
 
 
 @deffn Builtin exp @var{REAL}
-Compute @math{e} raised to the power of a real number, print the result on stdout.
+@deffnx Builtin cexp @var{COMPLEX}
+Compute @math{e} raised to the power of a number, print the result on stdout.
 @end deffn
 
 
@@ -613,7 +614,8 @@ Compute @math{exp(@var{REAL}) - 1}, print the result on stdout.
 @c ------------------------------------------------------------------------
 
 @deffn Builtin log @var{REAL}
-Compute the base @math{e} logarithm of a real number, print the result on stdout.
+@deffnx Builtin clog @var{COMPLEX}
+Compute the base @math{e} logarithm of a number, print the result on stdout.
 @end deffn
 
 
@@ -623,7 +625,8 @@ Compute the base @math{2} logarithm of a real number, print the result on stdout
 
 
 @deffn Builtin log10 @var{REAL}
-Compute the base @math{10} logarithm of a real number, print the result on stdout.
+@deffnx Builtin clog10 @var{REAL}
+Compute the base @math{10} logarithm of a number, print the result on stdout.
 @end deffn
 
 
@@ -643,12 +646,14 @@ Compute @math{log(1 + @var{REAL})}, print the result on stdout.
 @c ------------------------------------------------------------------------
 
 @deffn Builtin pow @var{REAL_BASE} @var{REAL_EXPONENT}
-Compute @var{REAL_BASE} raised to the power of @var{REAL_EXPONENT}, print the result on stdout.
+@deffnx Builtin cpow @var{COMPLEX_BASE} @var{COMPLEX_EXPONENT}
+Compute @var{BASE} raised to the power of @var{EXPONENT}, print the result on stdout.
 @end deffn
 
 
 @deffn Builtin sqrt @var{REAL}
-Compute square root of a real number, print the result on stdout.
+@deffnx Builtin csqrt @var{REAL}
+Compute square root of a number, print the result on stdout.
 
 @example
 sqrt 64                 @print{} 8

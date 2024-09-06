@@ -77,6 +77,13 @@ function exponentiation-expm1-1.1 () {
     dotest-equal 2.3201 $(expm1 1.2)
 }
 
+### ------------------------------------------------------------------------
+
+function exponentiation-cexp-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal $(rectangular -3.2099 -0.8484) $(cexp '(1.2)+i*(3.4)')
+}
+
 
 #### log
 
@@ -113,6 +120,20 @@ function exponentiation-log1p-1.1 () {
     dotest-equal 0.7885 $(log1p 1.2)
 }
 
+### ------------------------------------------------------------------------
+
+function exponentiation-clog-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal $(rectangular 1.2825 1.2315) $(clog '(1.2)+i*(3.4)')
+}
+
+### ------------------------------------------------------------------------
+
+function exponentiation-clog10-1.1 () {
+    mmux-bash-libc-math-double-format "%.5f"
+    dotest-equal $(rectangular 0.55697 0.53484) $(clog10 '(1.2)+i*(3.4)')
+}
+
 
 #### powers and roots
 
@@ -144,6 +165,20 @@ function exponentiation-hypot-1.1 () {
 function exponentiation-hypot-1.2 () {
     mmux-bash-libc-math-double-format "%.4f"
     dotest-equal 3.6056 $(hypot 2 3)
+}
+
+### ------------------------------------------------------------------------
+
+function exponentiation-csqrt-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal $(rectangular 1.5501 1.0967) $(csqrt '(1.2)+i*(3.4)')
+}
+
+### ------------------------------------------------------------------------
+
+function exponentiation-cpow-1.1 () {
+    mmux-bash-libc-math-double-format "%.6f"
+    dotest-equal $(rectangular -0.032776 -0.082291) $(cpow '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
 }
 
 
