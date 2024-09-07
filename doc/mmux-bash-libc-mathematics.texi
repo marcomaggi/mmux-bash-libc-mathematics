@@ -70,9 +70,11 @@
 
 This document describes version @value{VERSION} of @value{PACKAGE}, a package implementing
 additional builtin commands for the @gnu{} Bash shell; to do so it installs a C language library and
-a shell script which is meant to be sourced in a Bash session or script.
+a shell script which is meant to be sourced in a Bash session or script.  The bulitins implement
+interfaces to standard C Library's mathematics functions for @code{double float} and @code{complex
+double float} number representations.
 
-The library supports @posix{} platforms.  Only for testing: this package depends on the external
+This package targets @posix{} platforms.  Only for testing: this package depends on the external
 package @acronym{MBFL} (at least version @samp{v3.0.0-devel.8}).
 
 This package is distributed under the terms of the @gnu{} Lesser General Public License (@lgpl{}).
@@ -176,7 +178,9 @@ Indexes
 
 This document describes version @value{VERSION} of @value{PACKAGE}, a package implementing
 additional builtin commands for the @gnu{} Bash shell; to do so it installs a C language library and
-a shell script which is meant to be sourced in a Bash session or script.
+a shell script which is meant to be sourced in a Bash session or script.  The bulitins implement
+interfaces to standard C Library's mathematics functions for @code{double float} and @code{complex
+double float} number representations.
 
 @value{PACKAGE} installs a shared library under @code{$libdir}; for example:
 
