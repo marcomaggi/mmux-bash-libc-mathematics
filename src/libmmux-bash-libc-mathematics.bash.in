@@ -41,7 +41,8 @@ then
 	    add sub mul div neg abs ceil floor trunc rint mod remainder			\
 	    cadd csub cmul cdiv cneg cabs						\
 	    exp exp2 exp10 log log2 log10 logb pow sqrt cbrt hypot expm1 log1p		\
-	    cexp clog clog10 csqrt cpow							\
+	    square cube									\
+	    cexp clog clog10 csqrt cpow csquare ccube					\
 	    isgreater isgreaterequal isless islessequal islessgreater isunordered	\
 	    min max									\
 	    rectangular polar								\

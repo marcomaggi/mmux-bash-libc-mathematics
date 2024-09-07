@@ -194,6 +194,20 @@ it also installs a shell script, a ``shell library'', under @code{$datavar/bash}
 @noindent
 to use the builtins, we have to load the shell library using the builtin @code{source}.
 
+Once we have sourced the library:
+
+@example
+source "$datavar/bash/libmmux-bash-libc-mathematics.bash"
+@end example
+
+@noindent
+we can perform computations as follows:
+
+@example
+sqrt $(add $(square $(sin 0.2)) $(square $(cos 0.2)))
+@print{} 1.000000
+@end example
+
 @menu
 * overview linking::            Linking code with the library.
 @end menu
@@ -1711,6 +1725,28 @@ Compute @math{log(1 + @var{REAL})}, print the result on stdout.
 @deffn Builtin pow @var{REAL_BASE} @var{REAL_EXPONENT}
 @deffnx Builtin cpow @var{COMPLEX_BASE} @var{COMPLEX_EXPONENT}
 Compute @var{BASE} raised to the power of @var{EXPONENT}, print the result on stdout.
+@end deffn
+
+
+@deffn Builtin square @var{REAL}
+@deffnx Builtin csquare @var{COMPLEX}
+Compute the square of the operand, print the result on stdout.
+
+@example
+square 2.0              @print{} 4.0000
+csquare '(1.2)+i*(3.4)' @print{} (-10.1200)+i*(8.1600)
+@end example
+@end deffn
+
+
+@deffn Builtin cube @var{REAL}
+@deffnx Builtin ccube @var{COMPLEX}
+Compute the cube of the operand, print the result on stdout.
+
+@example
+cube 3.0                @print{} 8.0000
+ccube '(1.2)+i*(3.4)'   @print{} (-39.8880)+i*(-24.6160)
+@end example
 @end deffn
 
 

@@ -144,6 +144,20 @@ function exponentiation-pow-1.1 () {
 
 ### ------------------------------------------------------------------------
 
+function exponentiation-square-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal 4.0000 $(square 2.0)
+}
+
+### ------------------------------------------------------------------------
+
+function exponentiation-cube-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal 8.0000 $(cube 2.0)
+}
+
+### ------------------------------------------------------------------------
+
 function exponentiation-sqrt-1.1 () {
     mmux-bash-libc-math-double-format "%.0f"
     dotest-equal 8 $(sqrt 64)
@@ -181,6 +195,19 @@ function exponentiation-cpow-1.1 () {
     dotest-equal $(rectangular -0.032776 -0.082291) $(cpow '(1.2)+i*(3.4)' '(5.6)+i*(7.8)')
 }
 
+### ------------------------------------------------------------------------
+
+function exponentiation-csquare-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal '(-10.1200)+i*(8.1600)' $(csquare '(1.2)+i*(3.4)')
+}
+
+### ------------------------------------------------------------------------
+
+function exponentiation-ccube-1.1 () {
+    mmux-bash-libc-math-double-format "%.4f"
+    dotest-equal '(-39.8880)+i*(-24.6160)'  $(ccube '(1.2)+i*(3.4)')
+}
 
 
 #### let's go

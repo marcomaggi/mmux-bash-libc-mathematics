@@ -7,6 +7,12 @@
 Revision 0.1.0-devel.0
 ----------------------
 
+* Added new builtins: square, csquare, cube, ccube.
+
+
+Revision 0.1.0-devel.0
+----------------------
+
 * Initial development release.
 
 

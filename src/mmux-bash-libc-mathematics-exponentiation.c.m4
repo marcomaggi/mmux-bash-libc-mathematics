@@ -202,6 +202,42 @@ MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[pow]]],[[[(3 != argc)]]],
 /* ------------------------------------------------------------------ */
 
 static int
+square_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double	op, rop;
+  int		rv;
+
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "square");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = pow(op, 2.0);
+  return mmux_bash_libc_math_print_real(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[square]]],[[[(2 != argc)]]],
+    [[["square DOUBLE"]]],
+    [[["Compute the square of a real numbers, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+cube_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double	op, rop;
+  int		rv;
+
+  rv = mmux_bash_libc_math_parse_real(&op, argv[1], "cube");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = pow(op, 3.0);
+  return mmux_bash_libc_math_print_real(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cube]]],[[[(2 != argc)]]],
+    [[["cube DOUBLE"]]],
+    [[["Compute the cube of a real numbers, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
 sqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
 {
   double	op, rop;
@@ -341,6 +377,42 @@ cpow_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
 MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cpow]]],[[[(3 != argc)]]],
     [[["cpow DOUBLE_BASE DOUBLE_EXPONENT"]]],
     [[["Compute BASE raised to the power of EXPONENT for complex numbers, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+csquare_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "csquare");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = op * op;
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csquare]]],[[[(2 != argc)]]],
+    [[["csquare DOUBLE"]]],
+    [[["Compute the square of a complex numbers, print the result on stdout."]]])
+
+/* ------------------------------------------------------------------ */
+
+static int
+ccube_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
+{
+  double complex	op, rop;
+  int			rv;
+
+  rv = mmux_bash_libc_math_parse_complex(&op, argv[1], "ccube");
+  if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  rop = op * op * op;
+  return mmux_bash_libc_math_print_complex(rop);
+}
+MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ccube]]],[[[(2 != argc)]]],
+    [[["ccube DOUBLE"]]],
+    [[["Compute the cube of a complex numbers, print the result on stdout."]]])
 
 
 /* end of file */
