@@ -78,8 +78,22 @@ install-html-local:
 
 EXTRA_DIST	+= \
 	src/mmux-bash-libc-mathematics.m4			\
+	src/mmux-bash-libc-mathematics-comparison.c.m4		\
+	src/mmux-bash-libc-mathematics-sorting.c.m4		\
+	src/mmux-bash-libc-mathematics-complex.c.m4		\
 	src/mmux-bash-libc-mathematics-arithmetics.c.m4		\
-	src/mmux-bash-libc-mathematics-trigonometric.c.m4
+	src/mmux-bash-libc-mathematics-exponentiation.c.m4	\
+	src/mmux-bash-libc-mathematics-trigonometric.c.m4	\
+	src/mmux-bash-libc-mathematics-hyperbolic.c.m4
+
+CLEANFILES	+= \
+	src/mmux-bash-libc-mathematics-comparison.c		\
+	src/mmux-bash-libc-mathematics-sorting.c		\
+	src/mmux-bash-libc-mathematics-complex.c		\
+	src/mmux-bash-libc-mathematics-arithmetics.c		\
+	src/mmux-bash-libc-mathematics-exponentiation.c		\
+	src/mmux-bash-libc-mathematics-trigonometric.c		\
+	src/mmux-bash-libc-mathematics-hyperbolic.c
 
 mmux_bash_libc_mathematics_CURRENT		= @mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
 mmux_bash_libc_mathematics_REVISION		= @mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
