@@ -52,15 +52,15 @@ source "$MMUX_LIBRARY"
 #### min
 
 function sorting-min-1.1 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 1 $(min 3 2 1)
 }
 function sorting-min-1.2 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 1 $(min 3 1 2)
 }
 function sorting-min-1.3 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 1 $(min 1)
 }
 
@@ -68,15 +68,15 @@ function sorting-min-1.3 () {
 #### max
 
 function sorting-max-1.1 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 3 $(max 3 2 1)
 }
 function sorting-max-1.2 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 3 $(max 2 3 1)
 }
 function sorting-max-1.3 () {
-    mmux-bash-libc-math-double-format "%.0lf"
+    mmux-bash-libc-mathematics-double-format "%.0lf"
     dotest-equal 1 $(max 1)
 }
 

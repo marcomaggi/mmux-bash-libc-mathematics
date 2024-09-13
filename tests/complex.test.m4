@@ -52,7 +52,7 @@ source "$MMUX_LIBRARY"
 #### rectangular
 
 function complex-rectangular-1.1 () {
-    mmux-bash-libc-math-double-format "%.1lf"
+    mmux-bash-libc-mathematics-double-format "%.1lf"
     dotest-equal '(1.2)+i*(3.4)' $(rectangular 1.2 3.4)
 }
 
@@ -60,7 +60,7 @@ function complex-rectangular-1.1 () {
 #### polar
 
 function complex-polar-1.1 () {
-    mmux-bash-libc-math-double-format "%.9lf"
+    mmux-bash-libc-mathematics-double-format "%.9lf"
     declare MAG=$(cabs '(1.2)+i*(3.4)')
     declare ANG=$(carg '(1.2)+i*(3.4)')
     dotest-equal '(1.200000001)+i*(3.399999999)' $(polar QQ(MAG) QQ(ANG))
@@ -70,7 +70,7 @@ function complex-polar-1.1 () {
 #### real part
 
 function complex-creal-1.1 () {
-    mmux-bash-libc-math-double-format "%.1lf"
+    mmux-bash-libc-mathematics-double-format "%.1lf"
     dotest-equal '1.2' $(creal '(1.2)+i*(3.4)')
 }
 
@@ -78,7 +78,7 @@ function complex-creal-1.1 () {
 #### imag part
 
 function complex-cimag-1.1 () {
-    mmux-bash-libc-math-double-format "%.1lf"
+    mmux-bash-libc-mathematics-double-format "%.1lf"
     dotest-equal '3.4' $(cimag '(1.2)+i*(3.4)')
 }
 
@@ -86,7 +86,7 @@ function complex-cimag-1.1 () {
 #### conjugate
 
 function complex-conj-1.1 () {
-    mmux-bash-libc-math-double-format "%.1lf"
+    mmux-bash-libc-mathematics-double-format "%.1lf"
     dotest-equal '(1.2)+i*(-3.4)' $(conj '(1.2)+i*(3.4)')
 }
 
@@ -94,7 +94,7 @@ function complex-conj-1.1 () {
 #### argument
 
 function complex-carg-1.1 () {
-    mmux-bash-libc-math-double-format "%.6lf"
+    mmux-bash-libc-mathematics-double-format "%.6lf"
     dotest-equal '1.231504' $(carg '(1.2)+i*(3.4)')
 }
 

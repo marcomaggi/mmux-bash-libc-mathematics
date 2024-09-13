@@ -38,7 +38,7 @@ function mmux-bash-libc-mathematics-library-load () {
     if mmuxbashlibcmathinit
     then
 	enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" 'mmuxbashlibcmathdoubleformat'
-	alias mmux-bash-libc-math-double-format='mmuxbashlibcmathdoubleformat'
+	alias mmux-bash-libc-mathematics-double-format='mmuxbashlibcmathdoubleformat'
 
 	declare -i IDX
 	for ((IDX=0; IDX < ${#MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[@]}; ++IDX))
@@ -52,7 +52,7 @@ function mmux-bash-libc-mathematics-library-unload () {
     do enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "${MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[$IDX]}"
     done
 
-    unalias mmux-bash-libc-math-double-format
+    unalias mmux-bash-libc-mathematics-double-format
 
     enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathdoubleformat
     enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathinit

@@ -52,14 +52,14 @@ source "$MMUX_LIBRARY"
 #### hyperbolic sine
 
 function hyperbolic-sinh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 1.5095 $(sinh 1.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-csinh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(-1.4593)+i*(-0.4627)' $(csinh '(1.2)+i*(3.4)')
 }
 
@@ -67,14 +67,14 @@ function hyperbolic-csinh-1.1 () {
 #### hyperbolic cosine
 
 function hyperbolic-cosh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 1.8107 $(cosh 1.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-ccosh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(-1.7505)+i*(-0.3857)' $(ccosh '(1.2)+i*(3.4)')
 }
 
@@ -82,14 +82,14 @@ function hyperbolic-ccosh-1.1 () {
 #### hyperbolic tangent
 
 function hyperbolic-tanh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 0.8337 $(tanh 1.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-ctanh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(0.8506)+i*(0.0769)' $(ctanh '(1.2)+i*(3.4)')
 }
 
@@ -97,14 +97,14 @@ function hyperbolic-ctanh-1.1 () {
 #### hyperbolic arc sine
 
 function hyperbolic-asinh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 1.0160 $(asinh 1.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-casinh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(1.9605)+i*(1.2189)' $(casinh '(1.2)+i*(3.4)')
 }
 
@@ -112,14 +112,14 @@ function hyperbolic-casinh-1.1 () {
 #### hyperbolic arc cosine
 
 function hyperbolic-acosh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 0.6224 $(acosh 1.2)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-cacosh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(1.9905)+i*(1.2431)' $(cacosh '(1.2)+i*(3.4)')
 }
 
@@ -127,14 +127,14 @@ function hyperbolic-cacosh-1.1 () {
 #### hyperbolic arc tangent
 
 function hyperbolic-atanh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal 0.1206 $(atanh 0.12)
 }
 
 ### ------------------------------------------------------------------------
 
 function hyperbolic-catanh-1.1 () {
-    mmux-bash-libc-math-double-format "%.4f"
+    mmux-bash-libc-mathematics-double-format "%.4f"
     dotest-equal '(0.0866)+i*(1.3130)' $(catanh '(1.2)+i*(3.4)')
 }
 
