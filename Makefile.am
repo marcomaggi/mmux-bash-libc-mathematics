@@ -77,7 +77,6 @@ install-html-local:
 #### libraries
 
 EXTRA_DIST	+= \
-	src/mmux-bash-libc-mathematics.m4			\
 	src/mmux-bash-libc-mathematics-comparison.c.m4		\
 	src/mmux-bash-libc-mathematics-sorting.c.m4		\
 	src/mmux-bash-libc-mathematics-complex.c.m4		\

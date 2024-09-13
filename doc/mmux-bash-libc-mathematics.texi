@@ -1894,7 +1894,7 @@ Libtool's versioning system, libtool, Shared library support for @gnu{}}.
 
 
 @deftypefun {char const *} mmux_bash_libc_math_version_string (void)
-Return a pointer to a statically allocated @asciiz{} string representing the interface version
+Return a pointer to a statically allocated @mmuxasciiz{} string representing the interface version
 number.
 @end deftypefun
 

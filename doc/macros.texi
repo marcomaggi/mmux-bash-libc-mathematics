@@ -63,11 +63,11 @@
 @acronym{API}
 @end macro
 
-@macro ascii{}
+@macro mmuxascii{}
 @acronym{ASCII}
 @end macro
 
-@macro asciiz{}
+@macro mmuxasciiz{}
 @acronym{ASCIIZ}
 @end macro
 
