@@ -50,8 +50,6 @@
 @set PackageHeaderFile                  @file{@value{PackageHeader}}
 
 @set GithubUrl                 @url{https://github.com/marcomaggi/@value{PACKAGE_NICKNAME}}
-@set BitbucketUrl              @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}}
-@set DownloadUrl               @url{https://bitbucket.org/marcomaggi/@value{PACKAGE_NICKNAME}/downloads}
 @set DocumentationUrl          @url{https://marcomaggi.github.io/docs/@value{PACKAGE_NICKNAME}.html}
 
 @c page
@@ -79,19 +77,9 @@ package @acronym{MBFL} (at least version @samp{v3.0.0-devel.8}).
 
 This package is distributed under the terms of the @gnu{} Lesser General Public License (@lgpl{}).
 
-The latest release can be downloaded from:
-
-@center @value{DownloadUrl}
-
-@noindent
-development takes place at:
+Development takes place at:
 
 @center @value{GithubUrl}
-
-@noindent
-and as backup at:
-
-@center @value{BitbucketUrl}
 
 @noindent
 Copyright @copyright{} @value{COPYRIGHT_YEARS} by @value{AUTHOR} @value{AUTHOR_EMAIL}
@@ -1935,19 +1923,9 @@ The documentation of @value{PACKAGE} is available online:
 @center @value{DocumentationUrl}
 
 @noindent
-the latest release of this package can be downloaded from:
-
-@center @value{DownloadUrl}
-
-@noindent
 development takes place at:
 
 @center @value{GithubUrl}
-
-@noindent
-and as backup at:
-
-@center @value{BitbucketUrl}
 
 @noindent
 the package @acronym{MBFL} is available online:
