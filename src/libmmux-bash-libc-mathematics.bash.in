@@ -30,7 +30,7 @@ function mmux-bash-libc-mathematics-library-load () {
     declare -g  MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
     declare -g  MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
     declare -g  MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
-    declare -ga MMUX_BASH_LIBC_MATHEMATICS_BUILTINS=(add sub mul div neg abs ceil floor trunc rint mod remainder cadd csub cmul cdiv cneg cabs exp exp2 exp10 log log2 log10 logb pow sqrt cbrt hypot expm1 log1p square cube cexp clog clog10 csqrt cpow csquare ccube isgreater isgreaterequal isless islessequal islessgreater isunordered min max rectangular polar creal cimag conj carg sin   cos   tan   asin   acos   atan atan2 csin  ccos  ctan  casin  cacos  catan sinh  cosh  tanh  asinh  acosh  atanh csinh ccosh ctanh casinh cacosh catanh)
+    declare -ga MMUX_BASH_LIBC_MATHEMATICS_BUILTINS=(add sub mul div neg abs ceil floor trunc rint mod remainder cadd csub cmul cdiv cneg cabs exp exp2 exp10 log log2 log10 logb pow sqrt cbrt hypot expm1 log1p square cube cexp clog clog10 csqrt cpow csquare ccube isgreater isgreaterequal isless islessequal islessgreater isunordered min max fpclassify isnan isfinite isinfinite iscanonical isnormal issignaling issubnormal iszero ispositive isnegative isnonpositive isnonnegative rectangular polar creal cimag conj carg sin   cos   tan   asin   acos   atan atan2 csin  ccos  ctan  casin  cacos  catan sinh  cosh  tanh  asinh  acosh  atanh csinh ccosh ctanh casinh cacosh catanh)
 
     enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" 'mmuxbashlibcmathinit'
 
@@ -49,13 +49,13 @@ function mmux-bash-libc-mathematics-library-load () {
 function mmux-bash-libc-mathematics-library-unload () {
     declare -i IDX
     for ((IDX=0; IDX < ${#MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[@]}; ++IDX))
-    do enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "${MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[$IDX]}"
+    do enable -d "${MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[$IDX]}"
     done
 
     unalias mmux-bash-libc-mathematics-double-format
 
-    enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathdoubleformat
-    enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathinit
+    enable -d mmuxbashlibcmathdoubleformat
+    enable -d mmuxbashlibcmathinit
 
     unset -v  MMUX_BASH_LIBC_MATHEMATICS_LIBRARY
     unset -v  MMUX_BASH_LIBC_MATHEMATICS_CURRENT

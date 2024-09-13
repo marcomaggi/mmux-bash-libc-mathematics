@@ -4,10 +4,15 @@
 		========================================
 
 
-Revision 0.1.0-devel.1
+Revision 0.1.0-devel.2
 ----------------------
 
-* ...
+* General development.
+
+* Added   new  builtins:   fpclassify,   isnan,  isfinite,   isinfinite,
+  iscanonical, isnormal,  issignaling, issubnormal,  iszero, ispositive,
+  isnegative, isnonpositive, isnonnegative.
+
 
 Revision 0.1.0-devel.1
 ----------------------

@@ -122,11 +122,11 @@ mmuxbashlibcmathinit_builtin (WORD_LIST * list MMUX_BASH_LIBC_MATH_UNUSED)
     mmux_bash_libc_math_create_global_double_variable("M_2_SQRTPI",	M_2_SQRTPI);
     mmux_bash_libc_math_create_global_double_variable("M_SQRT2",	M_SQRT2);
     mmux_bash_libc_math_create_global_double_variable("M_SQRT1_2",	M_SQRT1_2);
-    mmux_bash_libc_math_create_global_double_variable("FP_NAN",		FP_NAN);
-    mmux_bash_libc_math_create_global_double_variable("FP_INFINITE",	FP_INFINITE);
-    mmux_bash_libc_math_create_global_double_variable("FP_ZERO",	FP_ZERO);
-    mmux_bash_libc_math_create_global_double_variable("FP_SUBNORMAL",	FP_SUBNORMAL);
-    mmux_bash_libc_math_create_global_double_variable("FP_NORMAL",	FP_NORMAL);
+    mmux_bash_libc_math_create_global_sint_variable  ("FP_NAN",		FP_NAN);
+    mmux_bash_libc_math_create_global_sint_variable  ("FP_INFINITE",	FP_INFINITE);
+    mmux_bash_libc_math_create_global_sint_variable  ("FP_ZERO",	FP_ZERO);
+    mmux_bash_libc_math_create_global_sint_variable  ("FP_SUBNORMAL",	FP_SUBNORMAL);
+    mmux_bash_libc_math_create_global_sint_variable  ("FP_NORMAL",	FP_NORMAL);
   }
 
   return EXECUTION_SUCCESS;
@@ -392,12 +392,28 @@ void
 mmux_bash_libc_math_create_global_double_variable (const char * name, double value)
 {
   SHELL_VAR *	v MMUX_BASH_LIBC_MATH_UNUSED;
-  char		str[1024];
+#undef  LEN
+#define LEN	1024
+  char		str[LEN];
   /* NOTE I do not know what FLAGS is for, but setting it to zero seems fine.  (Marco
      Maggi; Sep 4, 2024) */
   int		flags = 0;
 
-  snprintf(str, 1024, "%lf", value);
+  snprintf(str, LEN, "%lf", value);
+  v = bind_global_variable(name, str, flags);
+}
+void
+mmux_bash_libc_math_create_global_sint_variable (const char * name, int value)
+{
+  SHELL_VAR *	v MMUX_BASH_LIBC_MATH_UNUSED;
+#undef  LEN
+#define LEN	64
+  char		str[LEN];
+  /* NOTE I do not know what FLAGS is for, but setting it to zero seems fine.  (Marco
+     Maggi; Sep 4, 2024) */
+  int		flags = 0;
+
+  snprintf(str, LEN, "%d", value);
   v = bind_global_variable(name, str, flags);
 }
 
