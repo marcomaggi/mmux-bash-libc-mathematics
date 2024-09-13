@@ -78,6 +78,8 @@
  ** Function prototypes.
  ** ----------------------------------------------------------------- */
 
+mmux_bash_libc_math_private_decl void mmux_bash_libc_math_create_global_double_variable (const char * name, double value);
+
 
 /** --------------------------------------------------------------------
  ** Done.

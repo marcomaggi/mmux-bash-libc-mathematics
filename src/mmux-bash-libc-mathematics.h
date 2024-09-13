@@ -125,8 +125,6 @@ mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_real (double * op, const 
 mmux_bash_libc_math_decl int mmux_bash_libc_math_print_complex (double complex rop);
 mmux_bash_libc_math_decl int mmux_bash_libc_math_parse_complex (double complex * op, const char * s_op, const char * caller_name);
 
-mmux_bash_libc_math_decl void mmux_bash_libc_math_create_global_double_variable (const char * name, double value);
-
 
 /** --------------------------------------------------------------------
  ** Done.

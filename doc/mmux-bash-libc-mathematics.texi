@@ -145,7 +145,6 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 
 @menu
 * overview::                    Overview of the package.
-* version::                     Version functions.
 * format::                      Input and output formats.
 * variables::                   Global variables.
 * complex::                     Complex numbers utilities.
@@ -160,6 +159,7 @@ Appendices
 
 * Package License::             GNU Lesser General Public License.
 * Documentation License::       GNU Free Documentation License.
+* shared library::              Using the shared library.
 * references::                  Bibliography and references.
 
 Indexes
@@ -213,36 +213,6 @@ sqrt $(add $(square $(sin 0.2)) $(square $(cos 0.2)))
 @end menu
 
 @include overview-linking.texi
-
-@c page
-@node version
-@chapter Version functions
-
-
-The installed libraries follow version numbering as established by the @gnu{} Autotools.  For an
-explanation of interface numbers as managed by @gnu{} Libtool @xref{Libtool versioning, interface,
-Libtool's versioning system, libtool, Shared library support for @gnu{}}.
-
-
-@deftypefun {char const *} mmux_bash_libc_math_version_string (void)
-Return a pointer to a statically allocated @asciiz{} string representing the interface version
-number.
-@end deftypefun
-
-
-@deftypefun int mmux_bash_libc_math_version_interface_current (void)
-Return an integer representing the library interface current number.
-@end deftypefun
-
-
-@deftypefun int mmux_bash_libc_math_version_interface_revision (void)
-Return an integer representing the library interface current revision number.
-@end deftypefun
-
-
-@deftypefun int mmux_bash_libc_math_version_interface_age (void)
-Return an integer representing the library interface current age.
-@end deftypefun
 
 @c page
 @node format
@@ -1865,6 +1835,58 @@ and arc tangent function to @var{COMPLEX}.
 
 @include lgpl-3.0.texi
 @include fdl-1.3.texi
+
+@c page
+@node shared library
+@appendix Using the shared library
+
+
+@value{PACKAGE} installs a shared library:
+
+@center @file{libmmux-bash-libc-mathematics.so}
+
+@noindent
+and a C language header:
+
+@center @file{libmmux-bash-libc-mathematics.h}
+
+@noindent
+we can write code that links to the shared library to reuse some of its facilities.  @ref{overview
+linking} for details.
+
+@menu
+* shared library version::      Version functions.
+@end menu
+
+@c page
+@node shared library version
+@appendixsec Version functions
+
+
+The installed libraries follow version numbering as established by the @gnu{} Autotools.  For an
+explanation of interface numbers as managed by @gnu{} Libtool @xref{Libtool versioning, interface,
+Libtool's versioning system, libtool, Shared library support for @gnu{}}.
+
+
+@deftypefun {char const *} mmux_bash_libc_math_version_string (void)
+Return a pointer to a statically allocated @asciiz{} string representing the interface version
+number.
+@end deftypefun
+
+
+@deftypefun int mmux_bash_libc_math_version_interface_current (void)
+Return an integer representing the library interface current number.
+@end deftypefun
+
+
+@deftypefun int mmux_bash_libc_math_version_interface_revision (void)
+Return an integer representing the library interface current revision number.
+@end deftypefun
+
+
+@deftypefun int mmux_bash_libc_math_version_interface_age (void)
+Return an integer representing the library interface current age.
+@end deftypefun
 
 @c page
 @node references
