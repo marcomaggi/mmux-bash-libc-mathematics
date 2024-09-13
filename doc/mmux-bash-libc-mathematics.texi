@@ -1291,6 +1291,43 @@ printf '@{%s@}' "$(add '123456789')"
 @chapter Global variables
 
 
+The shell library installed by @value{PACKAGE} defines global variables to allow inspection of the
+underlying C language platform.
+
+@menu
+* variables version::           Version variables.
+* variables math::              Mathematics variables.
+@end menu
+
+@c page
+@node variables version
+@section Version variables
+
+
+The installed libraries follow version numbering as established by the @gnu{} Autotools.  For an
+explanation of interface numbers as managed by @gnu{} Libtool @xref{Libtool versioning, interface,
+Libtool's versioning system, libtool, Shared library support for @gnu{}}.
+
+
+@defvr {Shell Variable} MMUX_BASH_LIBC_MATHEMATICS_CURRENT
+An integer representing the library interface current number.
+@end defvr
+
+
+@defvr {Shell Variable} MMUX_BASH_LIBC_MATHEMATICS_REVISION
+An integer representing the library interface current revision number.
+@end defvr
+
+
+@defvr {Shell Variable} MMUX_BASH_LIBC_MATHEMATICS_AGE
+An integer representing the library interface current age.
+@end defvr
+
+@c page
+@node variables math
+@section Mathematics variables
+
+
 @macro MmuxLibcMathDefvar{NAME}
 @defvr {Global Variable} \NAME\
 The value of the C language constant @samp{\NAME\}.
