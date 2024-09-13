@@ -25,38 +25,46 @@
 # If not, see <http://www.gnu.org/licenses/>.
 #
 
-declare -rg MMUX_BASH_LIBC_MATHEMATICS_LIBRARY=libmmux-bash-libc-mathematics.so
-declare -rg MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
-declare -rg MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
-declare -rg MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
+function mmux-bash-libc-mathematics-library-load () {
+    declare -g  MMUX_BASH_LIBC_MATHEMATICS_LIBRARY=libmmux-bash-libc-mathematics.so
+    declare -g  MMUX_BASH_LIBC_MATHEMATICS_CURRENT=@mmux_bash_libc_mathematics_VERSION_INTERFACE_CURRENT@
+    declare -g  MMUX_BASH_LIBC_MATHEMATICS_REVISION=@mmux_bash_libc_mathematics_VERSION_INTERFACE_REVISION@
+    declare -g  MMUX_BASH_LIBC_MATHEMATICS_AGE=@mmux_bash_libc_mathematics_VERSION_INTERFACE_AGE@
+    declare -ga MMUX_BASH_LIBC_MATHEMATICS_BUILTINS=(add sub mul div neg abs ceil floor trunc rint mod remainder cadd csub cmul cdiv cneg cabs exp exp2 exp10 log log2 log10 logb pow sqrt cbrt hypot expm1 log1p square cube cexp clog clog10 csqrt cpow csquare ccube isgreater isgreaterequal isless islessequal islessgreater isunordered min max rectangular polar creal cimag conj carg sin   cos   tan   asin   acos   atan atan2 csin  ccos  ctan  casin  cacos  catan sinh  cosh  tanh  asinh  acosh  atanh csinh ccosh ctanh casinh cacosh catanh)
 
-enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathinit
+    enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" 'mmuxbashlibcmathinit'
 
-# This initialises the library.
-if mmuxbashlibcmathinit
-then
-    declare MMUX_BASH_LIBC_MATH_BUILTIN
-    for MMUX_BASH_LIBC_MATH_BUILTIN in \
-	mmuxbashlibcmathdoubleformat							\
-	    add sub mul div neg abs ceil floor trunc rint mod remainder			\
-	    cadd csub cmul cdiv cneg cabs						\
-	    exp exp2 exp10 log log2 log10 logb pow sqrt cbrt hypot expm1 log1p		\
-	    square cube									\
-	    cexp clog clog10 csqrt cpow csquare ccube					\
-	    isgreater isgreaterequal isless islessequal islessgreater isunordered	\
-	    min max									\
-	    rectangular polar								\
-	    creal cimag conj carg							\
-	    sin   cos   tan   asin   acos   atan atan2					\
-	    csin  ccos  ctan  casin  cacos  catan					\
-	    sinh  cosh  tanh  asinh  acosh  atanh					\
-	    csinh ccosh ctanh casinh cacosh catanh
-    do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "$MMUX_BASH_LIBC_MATH_BUILTIN"
+    # This initialises the library.
+    if mmuxbashlibcmathinit
+    then
+	enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" 'mmuxbashlibcmathdoubleformat'
+	alias mmux-bash-libc-math-double-format='mmuxbashlibcmathdoubleformat'
+
+	declare -i IDX
+	for ((IDX=0; IDX < ${#MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[@]}; ++IDX))
+	do enable -f "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "${MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[$IDX]}"
+	done
+    fi
+}
+function mmux-bash-libc-mathematics-library-unload () {
+    declare -i IDX
+    for ((IDX=0; IDX < ${#MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[@]}; ++IDX))
+    do enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" "${MMUX_BASH_LIBC_MATHEMATICS_BUILTINS[$IDX]}"
     done
-    unset MMUX_BASH_LIBC_MATH_BUILTIN
 
-    alias mmux-bash-libc-math-double-format='mmuxbashlibcmathdoubleformat'
-fi
+    unalias mmux-bash-libc-math-double-format
+
+    enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathdoubleformat
+    enable -d "$MMUX_BASH_LIBC_MATHEMATICS_LIBRARY" mmuxbashlibcmathinit
+
+    unset -v  MMUX_BASH_LIBC_MATHEMATICS_LIBRARY
+    unset -v  MMUX_BASH_LIBC_MATHEMATICS_CURRENT
+    unset -v  MMUX_BASH_LIBC_MATHEMATICS_REVISION
+    unset -v  MMUX_BASH_LIBC_MATHEMATICS_AGE
+    unset -v MMUX_BASH_LIBC_MATHEMATICS_BUILTINS
+}
+
+mmux-bash-libc-mathematics-library-load
 
 ### end of file
 # Local Variables:
