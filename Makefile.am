@@ -2,7 +2,7 @@
 
 ACLOCAL_AMFLAGS		= -I meta/autotools
 AUTOMAKE_OPTIONS	= foreign
-EXTRA_DIST		= INSTALL meta/slackware/slack-desc.in
+EXTRA_DIST		= INSTALL meta/slackware/slack-desc.in meta/m4/libmmux-bash-builtins.m4
 dist_doc_DATA		= README COPYING
 AM_CFLAGS		= $(MMUX_CFLAGS)
 AM_CPPFLAGS		= -I$(srcdir)/src
@@ -123,8 +123,8 @@ libmmux_bash_libc_mathematics_la_SOURCES	=	\
 
 library: libmmux-bash-libc-mathematics.la
 
-src/%.c: src/%.c.m4 src/mmux-bash-libc-mathematics.m4
-	$(M4_PROGRAM) --prefix-builtins $(top_srcdir)/src/mmux-bash-libc-mathematics.m4 $< >$@
+src/%.c: src/%.c.m4  $(top_srcdir)/meta/m4/libmmux-bash-builtins.m4
+	$(M4_PROGRAM) --prefix-builtins  $(top_srcdir)/meta/m4/libmmux-bash-builtins.m4 $< >$@
 
 ## ------------------------------------------------------------------------
 
@@ -136,6 +136,7 @@ EXTRA_DIST		+= $(mmux_library_SCRIPTS)
 #### tests
 
 EXTRA_DIST		+= \
+	tests/version.test.m4		\
 	tests/arithmetics.test.m4	\
 	tests/comparison.test.m4	\
 	tests/complex.test.m4		\
@@ -146,6 +147,7 @@ EXTRA_DIST		+= \
 	tests/trigonometric.test.m4
 
 MMUX_CHECK_BUILT_TESTS	=		\
+	tests/version.test		\
 	tests/arithmetics.test		\
 	tests/comparison.test		\
 	tests/complex.test		\

@@ -49,7 +49,8 @@ rectangular_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   rop = re_op + im_op * ((double complex)_Complex_I);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[rectangular]]],[[[(3 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[rectangular]]],
+    [[[(3 == argc)]]],
     [[["rectangular DOUBLE_REAL DOUBLE_IMAG"]]],
     [[["Compose a complex number from its real and imaginary parts, print the result on stdout."]]])
 
@@ -71,7 +72,8 @@ polar_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   rop = magnitude_op * cos(angle_op) + magnitude_op * sin(angle_op) * ((double complex)_Complex_I);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[polar]]],[[[(3 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[polar]]],
+    [[[(3 == argc)]]],
     [[["polar DOUBLE_MAGNITUDE DOUBLE_ANGLE"]]],
     [[["Compose a complex number from its magnitude and angle parts, print the result on stdout."]]])
 
@@ -86,7 +88,8 @@ creal_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   if (EXECUTION_SUCCESS != rv) { return rv; }
   return mmux_bash_libc_math_print_real(creal(op));
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[creal]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[creal]]],
+    [[[(2 == argc)]]],
     [[["creal COMPLEX"]]],
     [[["Compute the real part of a complex floating-point number, print the result on stdout."]]])
 
@@ -101,7 +104,8 @@ cimag_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   if (EXECUTION_SUCCESS != rv) { return rv; }
   return mmux_bash_libc_math_print_real(cimag(op));
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cimag]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cimag]]],
+    [[[(2 == argc)]]],
     [[["cimag COMPLEX"]]],
     [[["Compute the real part of a complex floating-point number, print the result on stdout."]]])
 
@@ -116,7 +120,8 @@ conj_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   if (EXECUTION_SUCCESS != rv) { return rv; }
   return mmux_bash_libc_math_print_complex(conj(op));
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[conj]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[conj]]],
+    [[[(2 == argc)]]],
     [[["conj COMPLEX"]]],
     [[["Compute the conjugate of a complex floating-point number, print the result on stdout."]]])
 
@@ -131,7 +136,8 @@ carg_main (int argc MMUX_BASH_LIBC_MATH_UNUSED,  char * argv[])
   if (EXECUTION_SUCCESS != rv) { return rv; }
   return mmux_bash_libc_math_print_complex(carg(op));
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[carg]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[carg]]],
+    [[[(2 == argc)]]],
     [[["carg COMPLEX"]]],
     [[["Compute the argument of a complex floating-point number, print the result on stdout."]]])
 

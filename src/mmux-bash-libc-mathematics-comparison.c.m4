@@ -49,7 +49,8 @@ isgreater_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isgreater]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isgreater]]],
+    [[[(2 <= argc)]]],
     [[["isgreater DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is greater than the second; otherwise return false."]]])
 
@@ -71,7 +72,8 @@ isgreaterequal_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isgreaterequal]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isgreaterequal]]],
+    [[[(2 <= argc)]]],
     [[["isgreaterequal DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is greater than, or equal to, the second; otherwise return false."]]])
 
@@ -93,7 +95,8 @@ isless_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isless]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isless]]],
+    [[[(2 <= argc)]]],
     [[["isless DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is less than the second; otherwise return false."]]])
 
@@ -115,7 +118,8 @@ islessequal_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[islessequal]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[islessequal]]],
+    [[[(2 <= argc)]]],
     [[["islessequal DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is less than, or equal to, the second; otherwise return false."]]])
 
@@ -137,7 +141,8 @@ islessgreater_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[islessgreater]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[islessgreater]]],
+    [[[(2 <= argc)]]],
     [[["islessgreater DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is less than, or greater than, the second; otherwise return false."]]])
 
@@ -159,9 +164,9 @@ isunordered_main (int argc,  char * argv[])
     return EXECUTION_FAILURE;
   }
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isunordered]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[isunordered]]],
+    [[[(2 <= argc)]]],
     [[["isunordered DOUBLE DOUBLE"]]],
     [[["Return true if the first operand is unordered with respec to the second; otherwise return false."]]])
-
 
 /* end of file */

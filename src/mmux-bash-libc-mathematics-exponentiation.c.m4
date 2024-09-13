@@ -40,7 +40,8 @@ exp_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = exp(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp]]],
+    [[[(2 == argc)]]],
     [[["exp DOUBLE"]]],
     [[["Compute 'e' raised to the power of a real number, print the result on stdout."]]])
 
@@ -57,7 +58,8 @@ exp2_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = exp2(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp2]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp2]]],
+    [[[(2 == argc)]]],
     [[["exp2 DOUBLE"]]],
     [[["Compute '2' raised to the power of a real number, print the result on stdout."]]])
 
@@ -74,7 +76,8 @@ exp10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = exp10(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp10]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[exp10]]],
+    [[[(2 == argc)]]],
     [[["exp10 DOUBLE"]]],
     [[["Compute '10' raised to the power of a real number, print the result on stdout."]]])
 
@@ -91,7 +94,8 @@ expm1_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = expm1(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[expm1]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[expm1]]],
+    [[[(2 == argc)]]],
     [[["expm1 DOUBLE"]]],
     [[["Compute 'exp(DOUBLE) - 1', print the result on stdout."]]])
 
@@ -107,7 +111,8 @@ log_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = log(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log]]],
+    [[[(2 == argc)]]],
     [[["log DOUBLE"]]],
     [[["Compute the base 'e' logarithm of a real number, print the result on stdout."]]])
 
@@ -124,7 +129,8 @@ log2_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = log2(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log2]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log2]]],
+    [[[(2 == argc)]]],
     [[["log2 DOUBLE"]]],
     [[["Compute the base '2' logarithm of a real number, print the result on stdout."]]])
 
@@ -141,7 +147,8 @@ log10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = log10(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log10]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log10]]],
+    [[[(2 == argc)]]],
     [[["log10 DOUBLE"]]],
     [[["Compute the base '10' logarithm of a real number, print the result on stdout."]]])
 
@@ -158,7 +165,8 @@ logb_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = logb(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[logb]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[logb]]],
+    [[[(2 == argc)]]],
     [[["logb DOUBLE"]]],
     [[["Extract the exponent of a real number, print the result on stdout."]]])
 
@@ -175,7 +183,8 @@ log1p_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = log1p(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log1p]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[log1p]]],
+    [[[(2 == argc)]]],
     [[["log1p DOUBLE"]]],
     [[["Compute 'log(1 + DOUBLE)', print the result on stdout."]]])
 
@@ -195,7 +204,8 @@ pow_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = pow(op1, op2);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[pow]]],[[[(3 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[pow]]],
+    [[[(3 == argc)]]],
     [[["pow DOUBLE_BASE DOUBLE_EXPONENT"]]],
     [[["Compute BASE raised to the power of EXPONENT for real numbers, print the result on stdout."]]])
 
@@ -213,7 +223,8 @@ square_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = pow(op, 2.0);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[square]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[square]]],
+    [[[(2 == argc)]]],
     [[["square DOUBLE"]]],
     [[["Compute the square of a real numbers, print the result on stdout."]]])
 
@@ -231,7 +242,8 @@ cube_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = pow(op, 3.0);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cube]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cube]]],
+    [[[(2 == argc)]]],
     [[["cube DOUBLE"]]],
     [[["Compute the cube of a real numbers, print the result on stdout."]]])
 
@@ -248,7 +260,8 @@ sqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = sqrt(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sqrt]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sqrt]]],
+    [[[(2 == argc)]]],
     [[["sqrt DOUBLE"]]],
     [[["Compute the square root a real number, print the result on stdout."]]])
 
@@ -265,7 +278,8 @@ cbrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = cbrt(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cbrt]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cbrt]]],
+    [[[(2 == argc)]]],
     [[["cbrt DOUBLE"]]],
     [[["Compute the cube root a real number, print the result on stdout."]]])
 
@@ -286,7 +300,8 @@ hypot_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = hypot(op1, op2);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[hypot]]],[[[(3 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[hypot]]],
+    [[[(3 == argc)]]],
     [[["hypot DOUBLE_X DOUBLE_Y"]]],
     [[["Compute 'sqrt(DOUBLE_X^2 + DOUBLE_Y^2)', print the result on stdout."]]])
 
@@ -302,7 +317,8 @@ cexp_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = cexp(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cexp]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cexp]]],
+    [[[(2 == argc)]]],
     [[["cexp DOUBLE"]]],
     [[["Compute 'e' raised to the power of a complex number, print the result on stdout."]]])
 
@@ -319,7 +335,8 @@ clog_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = clog(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog]]],
+    [[[(2 == argc)]]],
     [[["clog DOUBLE"]]],
     [[["Compute the base 'e' logarithm of a complex number, print the result on stdout."]]])
 
@@ -336,7 +353,8 @@ clog10_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = clog10(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog10]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[clog10]]],
+    [[[(2 == argc)]]],
     [[["clog10 DOUBLE"]]],
     [[["Compute the base '10' logarithm of a complex number, print the result on stdout."]]])
 
@@ -353,7 +371,8 @@ csqrt_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = csqrt(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csqrt]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csqrt]]],
+    [[[(2 == argc)]]],
     [[["csqrt DOUBLE"]]],
     [[["Compute the square root a complex number, print the result on stdout."]]])
 
@@ -374,7 +393,8 @@ cpow_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = cpow(op1, op2);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cpow]]],[[[(3 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cpow]]],
+    [[[(3 == argc)]]],
     [[["cpow DOUBLE_BASE DOUBLE_EXPONENT"]]],
     [[["Compute BASE raised to the power of EXPONENT for complex numbers, print the result on stdout."]]])
 
@@ -392,7 +412,8 @@ csquare_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = op * op;
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csquare]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csquare]]],
+    [[[(2 == argc)]]],
     [[["csquare DOUBLE"]]],
     [[["Compute the square of a complex numbers, print the result on stdout."]]])
 
@@ -410,7 +431,8 @@ ccube_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = op * op * op;
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ccube]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ccube]]],
+    [[[(2 == argc)]]],
     [[["ccube DOUBLE"]]],
     [[["Compute the cube of a complex numbers, print the result on stdout."]]])
 

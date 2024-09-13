@@ -40,7 +40,8 @@ sinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = sinh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sinh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[sinh]]],
+    [[[(2 == argc)]]],
     [[["sinh DOUBLE"]]],
     [[["Compute the hyperbolic sine, print the result on stdout."]]])
 
@@ -57,7 +58,8 @@ cosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = cosh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cosh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cosh]]],
+    [[[(2 == argc)]]],
     [[["cosh DOUBLE"]]],
     [[["Compute the hyperbolic cosine, print the result on stdout."]]])
 
@@ -74,7 +76,8 @@ tanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = tanh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[tanh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[tanh]]],
+    [[[(2 == argc)]]],
     [[["tanh DOUBLE"]]],
     [[["Compute the hyperbolic tangent, print the result on stdout."]]])
 
@@ -90,7 +93,8 @@ asinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = asinh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[asinh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[asinh]]],
+    [[[(2 == argc)]]],
     [[["asinh DOUBLE"]]],
     [[["Compute the hyperbolic arc sine, print the result on stdout."]]])
 
@@ -107,7 +111,8 @@ acosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = acosh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[acosh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[acosh]]],
+    [[[(2 == argc)]]],
     [[["acosh DOUBLE"]]],
     [[["Compute the hyperbolic arc cosine, print the result on stdout."]]])
 
@@ -124,7 +129,8 @@ atanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = atanh(op);
   return mmux_bash_libc_math_print_real(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[atanh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[atanh]]],
+    [[[(2 == argc)]]],
     [[["atanh DOUBLE"]]],
     [[["Compute the hyperbolic arc tangent, print the result on stdout."]]])
 
@@ -140,7 +146,8 @@ csinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = csinh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csinh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[csinh]]],
+    [[[(2 == argc)]]],
     [[["csinh COMPLEX"]]],
     [[["Compute the hyperbolic sine of a complex number, print the result on stdout."]]])
 
@@ -157,7 +164,8 @@ ccosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = ccosh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ccosh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ccosh]]],
+    [[[(2 == argc)]]],
     [[["ccosh COMPLEX"]]],
     [[["Compute the hyperbolic cosine of a complex number, print the result on stdout."]]])
 
@@ -174,7 +182,8 @@ ctanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = ctanh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ctanh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[ctanh]]],
+    [[[(2 == argc)]]],
     [[["ctanh COMPLEX"]]],
     [[["Compute the hyperbolic tangent of a complex number, print the result on stdout."]]])
 
@@ -190,7 +199,8 @@ casinh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = casinh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[casinh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[casinh]]],
+    [[[(2 == argc)]]],
     [[["casinh COMPLEX"]]],
     [[["Compute the hyperbolic arc sine of a complex number, print the result on stdout."]]])
 
@@ -207,7 +217,8 @@ cacosh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = cacosh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cacosh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[cacosh]]],
+    [[[(2 == argc)]]],
     [[["cacosh COMPLEX"]]],
     [[["Compute the hyperbolic arc cosine of a complex number, print the result on stdout."]]])
 
@@ -224,7 +235,8 @@ catanh_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char *argv[])
   rop = catanh(op);
   return mmux_bash_libc_math_print_complex(rop);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[catanh]]],[[[(2 != argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[catanh]]],
+    [[[(2 == argc)]]],
     [[["catanh COMPLEX"]]],
     [[["Compute the hyperbolic arc tangent of a complex number, print the result on stdout."]]])
 

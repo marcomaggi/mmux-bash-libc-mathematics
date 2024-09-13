@@ -48,7 +48,8 @@ min_main (int argc,  char * argv[])
   }
   return mmux_bash_libc_math_print_real(ops[1]);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[min]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[min]]],
+    [[[(2 <= argc)]]],
     [[["min DOUBLE DOUBLE ..."]]],
     [[["Select the minimum between floating-point numbers, print the result on stdout."]]])
 
@@ -69,7 +70,8 @@ max_main (int argc,  char * argv[])
   }
   return mmux_bash_libc_math_print_real(ops[1]);
 }
-MMUX_BASH_LIBC_MATH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[max]]],[[[(2 > argc)]]],
+MMUX_BASH_DEFINE_TYPICAL_BUILTIN_FUNCTION([[[max]]],
+    [[[(2 <= argc)]]],
     [[["max DOUBLE DOUBLE ..."]]],
     [[["Select the maximum between floating-point numbers, print the result on stdout."]]])
 
