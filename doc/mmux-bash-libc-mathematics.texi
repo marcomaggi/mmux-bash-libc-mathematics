@@ -1560,6 +1560,30 @@ isnonnegative '-inf'            @result{} 1
 @end example
 @end deffn
 
+
+@deffn Builtin iscanonical @var{REAL}
+Interface to the standard C language function @cfunc{iscanonical}.  Return true if @var{REAL}
+satisfies the predicate; otherwise return false.
+@end deffn
+
+
+@deffn Builtin isnormal @var{REAL}
+Interface to the standard C language function @cfunc{isnormal}.  Return true if @var{REAL} satisfies
+the predicate; otherwise return false.
+@end deffn
+
+
+@deffn Builtin issignaling @var{REAL}
+Interface to the standard C language function @cfunc{issignaling}.  Return true if @var{REAL}
+satisfies the predicate; otherwise return false.
+@end deffn
+
+
+@deffn Builtin issubnormal @var{REAL}
+Interface to the standard C language function @cfunc{issubnormal}.  Return true if @var{REAL}
+satisfies the predicate; otherwise return false.
+@end deffn
+
 @c page
 @node comparison
 @chapter Comparison builtins

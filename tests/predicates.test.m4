@@ -302,8 +302,33 @@ function predicates-isnonnegative-1.9 () {
     ! isnonnegative '-inf'
 }
 
+
+#### iscanonical
 
-# iscanonical isnormal issignaling issubnormal
+function predicates-iscanonical-1.1 () {
+    iscanonical 1.2
+}
+
+
+#### isnormal
+
+function predicates-isnormal-1.1 () {
+    isnormal 1.2
+}
+
+
+#### issignaling
+
+function predicates-issignaling-1.1 () {
+    ! issignaling 1.2
+}
+
+
+#### issubnormal
+
+function predicates-issubnormal-1.1 () {
+    ! issubnormal 1.2
+}
 
 
 #### let's go
