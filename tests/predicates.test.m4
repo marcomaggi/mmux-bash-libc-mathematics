@@ -48,8 +48,6 @@ mbfl_linker_source_library_by_stem(tests)
 
 source "$MMUX_LIBRARY"
 
-#fpclassify  iscanonical isnormal issignaling issubnormal iszero ispositive isnegative isnonpositive isnonnegative
-
 
 #### fpclassify
 
@@ -62,11 +60,27 @@ function predicates-fpclassify-1.2 () {
     dotest-equal $RESULT $FP_NAN
 }
 function predicates-fpclassify-1.3 () {
-    declare RESULT=$(fpclassify 'Inf')
+    declare RESULT=$(fpclassify 'inf')
     dotest-equal $RESULT $FP_INFINITE
 }
 function predicates-fpclassify-1.4 () {
+    declare RESULT=$(fpclassify '+inf')
+    dotest-equal $RESULT $FP_INFINITE
+}
+function predicates-fpclassify-1.5 () {
+    declare RESULT=$(fpclassify '-inf')
+    dotest-equal $RESULT $FP_INFINITE
+}
+function predicates-fpclassify-1.6 () {
     declare RESULT=$(fpclassify '0.0')
+    dotest-equal $RESULT $FP_ZERO
+}
+function predicates-fpclassify-1.7 () {
+    declare RESULT=$(fpclassify '+0.0')
+    dotest-equal $RESULT $FP_ZERO
+}
+function predicates-fpclassify-1.8 () {
+    declare RESULT=$(fpclassify '-0.0')
     dotest-equal $RESULT $FP_ZERO
 }
 
@@ -80,7 +94,13 @@ function predicates-isfinite-1.2 () {
     ! isfinite 'NaN'
 }
 function predicates-isfinite-1.3 () {
-    ! isfinite 'Inf'
+    ! isfinite 'inf'
+}
+function predicates-isfinite-1.4 () {
+    ! isfinite '+inf'
+}
+function predicates-isfinite-1.5 () {
+    ! isfinite '-inf'
 }
 
 
@@ -93,10 +113,14 @@ function predicates-isinfinite-1.2 () {
     ! isinfinite 'NaN'
 }
 function predicates-isinfinite-1.3 () {
-    isinfinite 'Inf'
+    isinfinite 'inf'
 }
-
-
+function predicates-isinfinite-1.4 () {
+    isinfinite '+inf'
+}
+function predicates-isinfinite-1.5 () {
+    isinfinite '-inf'
+}
 
 
 #### isnan
@@ -108,8 +132,178 @@ function predicates-isnan-1.2 () {
     isnan 'NaN'
 }
 function predicates-isnan-1.3 () {
-    ! isnan 'Inf'
+    isnan '+NaN'
 }
+function predicates-isnan-1.4 () {
+    isnan '-NaN'
+}
+function predicates-isnan-1.5 () {
+    isnan 'nan'
+}
+function predicates-isnan-1.6 () {
+    isnan '+nan'
+}
+function predicates-isnan-1.7 () {
+    isnan '-nan'
+}
+function predicates-isnan-1.8 () {
+    ! isnan 'inf'
+}
+function predicates-isnan-1.9 () {
+    ! isnan '+inf'
+}
+function predicates-isnan-1.10 () {
+    ! isnan '-inf'
+}
+
+
+#### iszero
+
+function predicates-iszero-1.1 () {
+    ! iszero 1.2
+}
+function predicates-iszero-1.2 () {
+    ! iszero 'NaN'
+}
+function predicates-iszero-1.3 () {
+    ! iszero 'inf'
+}
+function predicates-iszero-1.4 () {
+    iszero '0.0'
+}
+function predicates-iszero-1.5 () {
+    iszero '+0.0'
+}
+function predicates-iszero-1.6 () {
+    iszero '-0.0'
+}
+
+
+#### ispositive
+
+function predicates-ispositive-1.1 () {
+    ispositive 1.2
+}
+function predicates-ispositive-1.2 () {
+    ! ispositive -1.2
+}
+function predicates-ispositive-1.3 () {
+    ispositive '0.0'
+}
+function predicates-ispositive-1.4 () {
+    ispositive '+0.0'
+}
+function predicates-ispositive-1.5 () {
+    ! ispositive '-0.0'
+}
+function predicates-ispositive-1.6 () {
+    ! ispositive 'NaN'
+}
+function predicates-ispositive-1.7 () {
+    ispositive 'inf'
+}
+function predicates-ispositive-1.8 () {
+    ispositive '+inf'
+}
+function predicates-ispositive-1.9 () {
+    ! ispositive '-inf'
+}
+
+
+#### isnegative
+
+function predicates-isnegative-1.1 () {
+    ! isnegative 1.2
+}
+function predicates-isnegative-1.2 () {
+    isnegative -1.2
+}
+function predicates-isnegative-1.3() {
+    ! isnegative '0.0'
+}
+function predicates-isnegative-1.4 () {
+    ! isnegative '+0.0'
+}
+function predicates-isnegative-1.5 () {
+    isnegative '-0.0'
+}
+function predicates-isnegative-1.6 () {
+    ! isnegative 'NaN'
+}
+function predicates-isnegative-1.7 () {
+    ! isnegative 'inf'
+}
+function predicates-isnegative-1.8 () {
+    ! isnegative '+inf'
+}
+function predicates-isnegative-1.9 () {
+    isnegative '-inf'
+}
+
+
+#### isnonpositive
+
+function predicates-isnonpositive-1.1 () {
+    ! isnonpositive 1.2
+}
+function predicates-isnonpositive-1.2 () {
+    isnonpositive -1.2
+}
+function predicates-isnonpositive-1.3() {
+    isnonpositive '0.0'
+}
+function predicates-isnonpositive-1.4 () {
+    isnonpositive '+0.0'
+}
+function predicates-isnonpositive-1.5 () {
+    isnonpositive '-0.0'
+}
+function predicates-isnonpositive-1.6 () {
+    ! isnonpositive 'NaN'
+}
+function predicates-isnonpositive-1.7 () {
+    ! isnonpositive 'inf'
+}
+function predicates-isnonpositive-1.8 () {
+    ! isnonpositive '+inf'
+}
+function predicates-isnonpositive-1.9 () {
+    isnonpositive '-inf'
+}
+
+
+#### isnonnegative
+
+function predicates-isnonnegative-1.1 () {
+    isnonnegative 1.2
+}
+function predicates-isnonnegative-1.2 () {
+    ! isnonnegative -1.2
+}
+function predicates-isnonnegative-1.3 () {
+    isnonnegative '0.0'
+}
+function predicates-isnonnegative-1.4 () {
+    isnonnegative '+0.0'
+}
+function predicates-isnonnegative-1.5 () {
+    isnonnegative '-0.0'
+}
+function predicates-isnonnegative-1.6 () {
+    ! isnonnegative 'NaN'
+}
+function predicates-isnonnegative-1.7 () {
+    isnonnegative 'inf'
+}
+function predicates-isnonnegative-1.8 () {
+    isnonnegative '+inf'
+}
+function predicates-isnonnegative-1.9 () {
+    ! isnonnegative '-inf'
+}
+
+
+# iscanonical isnormal issignaling issubnormal
 
 
 #### let's go

@@ -136,6 +136,7 @@ included in the section entitled ``@gnu{} Free Documentation License''.
 * format::                      Input and output formats.
 * variables::                   Global variables.
 * complex::                     Complex numbers utilities.
+* predicates::                  Predicate builtins.
 * comparison::                  Comparison builtins.
 * sorting::                     Sorting builtins.
 * arithmetics::                 Arithmetics builtins.
@@ -1400,6 +1401,162 @@ Print a string representing the argument of the operand, a real number.
 
 @example
 carg '(1.2)+i*(3.4)'            @print{} 1.231504
+@end example
+@end deffn
+
+@c page
+@node predicates
+@chapter Predicate builtins
+
+
+@deffn Builtin fpclassify @var{REAL}
+Interface to the standard C language function @cfunc{fpclassify}.  Print an exact integer
+representing one of the @code{FP_} constants.
+
+@example
+fpclassify 1.2          @print{} $FP_NORMAL
+fpclassify 'NaN'        @print{} $FP_NAN
+fpclassify 'inf'        @print{} $FP_INFINITE
+fpclassify '+inf'       @print{} $FP_INFINITE
+fpclassify '-inf'       @print{} $FP_INFINITE
+fpclassify '0.0'        @print{} $FP_ZERO
+fpclassify '+0.0'       @print{} $FP_ZERO
+fpclassify '-0.0'       @print{} $FP_ZERO
+@end example
+@end deffn
+
+
+@deffn Builtin isfinite @var{REAL}
+Interface to the standard C language function @cfunc{isfinite}.  Return true if @var{REAL} is
+finite; otherwise return false.
+
+@example
+isfinite 1.2            @result{} 0
+isfinite 'NaN'          @result{} 1
+isfinite 'inf'          @result{} 1
+isfinite '+inf'         @result{} 1
+isfinite '-inf'         @result{} 1
+@end example
+@end deffn
+
+
+@deffn Builtin isinfinite @var{REAL}
+Interface to the standard C language function @cfunc{isinfinite}.  Return true if @var{REAL} is a
+string representation of infinite; otherwise return false.
+
+@example
+isinfinite 1.2          @result{} 1
+isinfinite 'NaN'        @result{} 1
+isinfinite 'inf'        @result{} 0
+isinfinite '+inf'       @result{} 0
+isinfinite '-inf'       @result{} 0
+@end example
+@end deffn
+
+
+@deffn Builtin isnan @var{REAL}
+Interface to the standard C language function @cfunc{isnan}.  Return true if @var{REAL} is a string
+representation of not--a--number; otherwise return false.
+
+@example
+isnan 1.2               @result{} 1
+isnan 'NaN'             @result{} 0
+isnan '+NaN'            @result{} 0
+isnan '-NaN'            @result{} 0
+isnan 'nan'             @result{} 0
+isnan '+nan'            @result{} 0
+isnan '-nan'            @result{} 0
+isnan 'inf'             @result{} 1
+isnan '+inf'            @result{} 1
+isnan '-inf'            @result{} 1
+@end example
+@end deffn
+
+
+@deffn Builtin iszero @var{REAL}
+Interface to the standard C language function @cfunc{iszero}.  Return true if @var{REAL} is zero;
+otherwise return false.
+
+@example
+iszero 1.2              @result{} 1
+iszero 'NaN'            @result{} 1
+iszero 'inf'            @result{} 1
+iszero '0.0'            @result{} 0
+iszero '+0.0'           @result{} 0
+iszero '-0.0'           @result{} 0
+@end example
+@end deffn
+
+
+@deffn Builtin ispositive @var{REAL}
+Return true if @var{REAL} is a string representation of a positive real number; otherwise return
+false.
+
+@example
+ispositive 1.2          @result{} 0
+ispositive +1.2         @result{} 0
+ispositive -1.2         @result{} 1
+ispositive '0.0'        @result{} 0
+ispositive '+0.0'       @result{} 0
+ispositive '-0.0'       @result{} 1
+ispositive 'NaN'        @result{} 1
+ispositive 'inf'        @result{} 0
+ispositive '+inf'       @result{} 0
+ispositive '-inf'       @result{} 1
+@end example
+@end deffn
+
+
+@deffn Builtin isnegative @var{REAL}
+Return true if @var{REAL} is a string representation of a negative real number; otherwise return
+false.
+
+@example
+isnegative 1.2          @result{} 1
+isnegative -1.2         @result{} 0
+isnegative '0.0'        @result{} 1
+isnegative '+0.0'       @result{} 1
+isnegative '-0.0'       @result{} 0
+isnegative 'NaN'        @result{} 1
+isnegative 'inf'        @result{} 1
+isnegative '+inf'       @result{} 1
+isnegative '-inf'       @result{} 0
+@end example
+@end deffn
+
+
+@deffn Builtin isnonpositive @var{REAL}
+Return true if @var{REAL} is a string representation of a non--positive real number; otherwise
+return false.  This builtin differs from @code{isnegative} in the handling of zero representations.
+
+@example
+isnonpositive 1.2               @result{} 1
+isnonpositive -1.2              @result{} 0
+isnonpositive '0.0'             @result{} 0
+isnonpositive '+0.0'            @result{} 0
+isnonpositive '-0.0'            @result{} 0
+isnonpositive 'NaN'             @result{} 1
+isnonpositive 'inf'             @result{} 1
+isnonpositive '+inf'            @result{} 1
+isnonpositive '-inf'            @result{} 0
+@end example
+@end deffn
+
+
+@deffn Builtin isnonnegative @var{REAL}
+Return true if @var{REAL} is a string representation of a non--negative real number; otherwise
+return false.  This builtin differs from @code{ispositive} in the handling of zero representations.
+
+@example
+isnonnegative 1.2               @result{} 0
+isnonnegative -1.2              @result{} 1
+isnonnegative '0.0'             @result{} 0
+isnonnegative '+0.0'            @result{} 0
+isnonnegative '-0.0'            @result{} 0
+isnonnegative 'NaN'             @result{} 1
+isnonnegative 'inf'             @result{} 0
+isnonnegative '+inf'            @result{} 0
+isnonnegative '-inf'            @result{} 1
 @end example
 @end deffn
 

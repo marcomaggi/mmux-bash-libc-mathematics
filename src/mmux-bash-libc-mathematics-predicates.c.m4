@@ -36,20 +36,63 @@
 /* FIXME  Should we  take into  account  "+0.0" and  "-0.0"?  (Marco  Maggi; Sep  13,
    2024)*/
 
-#undef  mmux_ispositive
-#define mmux_ispositive(X)	(0.0 < (X))
-
-#undef  mmux_isnegative
-#define mmux_isnegative(X)	(0.0 > (X))
-
-#undef  mmux_isnonpositive
-#define mmux_isnonpositive(X)	mmux_isnegative(X)
-
-#undef  mmux_isnonnegative
-#define mmux_isnonnegative(X)	mmux_ispositive(X)
-
-#undef  mmux_isinfinite
-#define mmux_isinfinite(X)	(FP_INFINITE == (fpclassify(X)))
+static inline bool
+mmux_ispositive (double X)
+{
+  if (isnan(X)) {
+    return false;
+  } else if (iszero(X)) {
+    if (signbit(X)) {
+      return false;
+    } else {
+      return true;
+    }
+  } else {
+    return (0.0 < X)? true : false;
+  }
+}
+static inline bool
+mmux_isnegative (double X)
+{
+  if (isnan(X)) {
+    return false;
+  } else if (iszero(X)) {
+    if (signbit(X)) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return (0.0 > X)? true : false;
+  }
+}
+static inline bool
+mmux_isnonpositive (double X)
+{
+  if (isnan(X)) {
+    return false;
+  } else if (iszero(X)) {
+    return true;
+  } else {
+    return (0.0 > X)? true : false;
+  }
+}
+static inline bool
+mmux_isnonnegative (double X)
+{
+  if (isnan(X)) {
+    return false;
+  } else if (iszero(X)) {
+    return true;
+  } else {
+    return (0.0 < X)? true : false;
+  }
+}
+static inline bool
+mmux_isinfinite (double X)
+{
+  return (FP_INFINITE == (fpclassify(X)))? true : false;
+}
 
 
 /** --------------------------------------------------------------------
@@ -66,6 +109,8 @@ $1_main (int argc MMUX_BASH_LIBC_MATH_UNUSED, char * argv[])
 
   int rv = mmux_bash_libc_math_parse_real(&op, argv[1], MMUX_BUILTIN_NAME);
   if (EXECUTION_SUCCESS != rv) { return rv; }
+
+  if (0) {fprintf(stderr, "%s: real=%lf result=%d\n", __func__, op, $2(op));}
 
   if ($2(op)) {
     return EXECUTION_SUCCESS;
